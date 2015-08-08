@@ -2,14 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.1'
 gem 'mysql2'
-gem 'jbuilder', '~> 2.0'
 gem 'pry-rails'
+gem 'unicorn'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
