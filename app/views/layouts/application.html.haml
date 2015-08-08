@@ -8,15 +8,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-inverse
+    %nav.navbar.navbar-inverse.navbar-fixed-top
       .container
         .navbar-header
-          = link_to 'Vote', '/races', class: 'navbar-brand'
-        #navbar.navbar-right
-          %ul.nav.navbar-nav
-            %li
-              = link_to 'Sign up', '/users/new', class: 'btn btn-success'
-            %li
-              = link_to 'Sign in', '/users/new', class: 'btn btn-default'
+          = link_to 'Vote', '/', class: 'navbar-brand'
     .container
       = yield

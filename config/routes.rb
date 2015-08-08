@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: 'top#index'
+
   resources :races, only: [:index, :show, :new, :create, :destroy]
   resources :users, only: [:show, :new, :create, :edit, :update, :destroy]
 

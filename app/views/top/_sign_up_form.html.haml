@@ -1,0 +1,7 @@
+= form_for @user do |f|
+  .form-group
+    = f.text_field :name, placeholder: "Pick a username", class: 'form-control'
+  .form-group
+    = f.text_field :email, placeholder: "Your email", class: 'form-control'
+  .form-group
+    = f.submit 'Sign up', class: 'btn btn-success'
