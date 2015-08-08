@@ -1,36 +1,28 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :destroy]
 
-  # GET /questions
-  # GET /questions.json
   def index
     @questions = Question.all
 
     render json: @questions and return
   end
 
-  # GET /questions/1
-  # GET /questions/1.json
   def show
     render json: @question and return
   end
 
-  # POST /questions
-  # POST /questions.json
   def create
     @question = Question.new(question_params)
 
     respond_to do |format|
       if @question.save
-        format.json { render :show, status: :created, location: @question }
+        format.json { render json: @question, status: :created, location: @question }
       else
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /questions/1
-  # DELETE /questions/1.json
   def destroy
     @question.destroy
     respond_to do |format|
