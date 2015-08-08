@@ -1,2 +1,10 @@
-%h1 Users#show
-%p Find me in app/views/users/show.html.haml
+%p#notice= notice
+
+%p
+  %b Name:
+  = @user.name
+%p
+  %b Email:
+  = @user.email
+
+= link_to 'Edit', edit_user_path(@user)

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :races, only: [:index, :show, :new, :create, :destroy]
-  resources :users, only: [:show, :new, :create, :update, :destroy]
+  resources :users, only: [:show, :new, :create, :edit, :update, :destroy]
 
   namespace :api, constraints: { format: :json } do
     resources :races, only: [:index, :show, :create, :destroy]

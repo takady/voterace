@@ -1,2 +1,13 @@
-%h1 Races#show
-%p Find me in app/views/races/show.html.haml
+%p#notice= notice
+
+%p
+  %b Title:
+  = @race.title
+%p
+  %b Candidate 1:
+  = @race.candidate_1
+%p
+  %b Candidate 2:
+  = @race.candidate_2
+
+= link_to 'Back', races_path
