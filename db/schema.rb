@@ -14,26 +14,26 @@
 ActiveRecord::Schema.define(version: 20150726082200) do
 
   create_table "races", force: :cascade do |t|
-    t.string   "title"
-    t.string   "candidate_1"
-    t.string   "candidate_2"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "title",       limit: 255
+    t.string   "candidate_1", limit: 255
+    t.string   "candidate_2", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "votes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "race_id"
-    t.integer  "candidate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id",    limit: 4
+    t.integer  "race_id",    limit: 4
+    t.integer  "candidate",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
 end
