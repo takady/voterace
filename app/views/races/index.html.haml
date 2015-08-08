@@ -1,24 +1,29 @@
-%h1 Listing races
+.row
+  .col-md-12
+    %h1 Listing races
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Candidate 1
-      %th Candidate 2
-      %th
-      %th
-      %th
+.row
+  .col-md-12
+    %table.table
+      %thead
+        %tr
+          %th Title
+          %th Candidate 1
+          %th Candidate 2
+          %th
+          %th
+          %th
+      %tbody
+        - @races.each do |race|
+          %tr
+            %td= race.title
+            %td
+              = race.candidate_1
+              = button_to 'vote', races_vote_path(vote: { race_id: race.id, user_id: 1, candidate: 1 }), class: 'btn btn-danger'
+            %td
+              = race.candidate_2
+              = button_to 'vote', races_vote_path(vote: { race_id: race.id, user_id: 2, candidate: 2 }), class: 'btn btn-primary'
+            %td= link_to 'Show', race
+            %td= link_to 'Destroy', race, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-  %tbody
-    - @races.each do |race|
-      %tr
-        %td= race.title
-        %td= race.candidate_1
-        %td= race.candidate_2
-        %td= link_to 'Show', race
-        %td= link_to 'Destroy', race, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Race', new_race_path
+= link_to 'New Race', new_race_path, class: 'btn btn-primary'

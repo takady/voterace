@@ -1,13 +1,16 @@
-%p#notice= notice
+.row
+  .col-md-12
+    %p#notice= notice
 
-%p
-  %b Title:
-  = @race.title
-%p
-  %b Candidate 1:
-  = @race.candidate_1
-%p
-  %b Candidate 2:
-  = @race.candidate_2
+.row
+  .col-md-12
+    %h1
+      = @race.title
+    %p
+      %b Candidate 1:
+      = @race.candidate_1
+    %p
+      %b Candidate 2:
+      = @race.candidate_2
 
-= link_to 'Back', races_path
+    = link_to 'Back', races_path
