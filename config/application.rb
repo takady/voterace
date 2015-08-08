@@ -15,7 +15,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module VoteApi
+module VoteApp
   class Application < Rails::Application
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
