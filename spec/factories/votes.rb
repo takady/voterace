@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :vote do
     association :user, factory: :user
-    association :question, factory: :question
+    association :race, factory: :race
     candidate 1
   end
 end

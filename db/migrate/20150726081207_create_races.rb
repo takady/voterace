@@ -1,6 +1,6 @@
-class CreateQuestions < ActiveRecord::Migration
+class CreateRaces < ActiveRecord::Migration
   def change
-    create_table :questions do |t|
+    create_table :races do |t|
       t.string :title
       t.string :candidate_1
       t.string :candidate_2

@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20150726082200) do
 
-  create_table "questions", force: :cascade do |t|
+  create_table "races", force: :cascade do |t|
     t.string   "title"
     t.string   "candidate_1"
     t.string   "candidate_2"
@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20150726082200) do
 
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "question_id"
+    t.integer  "race_id"
     t.integer  "candidate"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
