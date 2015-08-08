@@ -35,13 +35,13 @@ class RacesController < ApplicationController
   end
 
   def vote
-    if [1, 2].include?(vote_params[:candidate])
-      vote = Vote.find_or_initialize_by(race: vote_params.race_id, user: vote_params.user_id)
-      vote.update_attributes(candidate: vote_params.candidate)
+    if %w(1 2).include?(vote_params[:candidate])
+      vote = Vote.find_or_initialize_by(race_id: vote_params[:race_id].to_i, user_id: vote_params[:user_id].to_i)
+      vote.update_attributes(candidate: vote_params[:candidate])
     end
 
     respond_to do |format|
-      format.html { redirect_to races_path, notice: 'Vote was successfully created.' }
+      format.html { redirect_to races_path }
     end
   end
 
@@ -49,6 +49,8 @@ class RacesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_race
       @race = Race.find(params[:id])
+      @vote_for_candidate_1 = Vote.where(race: @race.id).where(candidate: 1).count
+      @vote_for_candidate_2 = Vote.where(race: @race.id).where(candidate: 2).count
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

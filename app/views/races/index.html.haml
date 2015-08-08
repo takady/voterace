@@ -22,7 +22,7 @@
               = button_to 'vote', races_vote_path(vote: { race_id: race.id, user_id: 1, candidate: 1 }), class: 'btn btn-danger'
             %td
               = race.candidate_2
-              = button_to 'vote', races_vote_path(vote: { race_id: race.id, user_id: 2, candidate: 2 }), class: 'btn btn-primary'
+              = button_to 'vote', races_vote_path(vote: { race_id: race.id, user_id: 1, candidate: 2 }), class: 'btn btn-primary'
             %td= link_to 'Show', race
             %td= link_to 'Destroy', race, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
