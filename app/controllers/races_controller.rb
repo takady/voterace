@@ -15,23 +15,17 @@ class RacesController < ApplicationController
   def create
     @race = Race.new(race_params)
 
-    respond_to do |format|
-      if @race.save
-        format.html { redirect_to @race, notice: 'Race was successfully created.' }
-        format.json { render :show, status: :created, location: @race }
-      else
-        format.html { render :new }
-        format.json { render json: @race.errors, status: :unprocessable_entity }
-      end
+    if @race.save
+      redirect_to @race, notice: 'Race was successfully created.'
+    else
+      render :new
     end
   end
 
   def destroy
     @race.destroy
-    respond_to do |format|
-      format.html { redirect_to races_url, notice: 'Race was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+
+    redirect_to races_url, notice: 'Race was successfully destroyed.'
   end
 
   def vote
@@ -40,9 +34,7 @@ class RacesController < ApplicationController
       vote.update_attributes(candidate: vote_params[:candidate])
     end
 
-    respond_to do |format|
-      format.html { redirect_to races_path }
-    end
+    redirect_to races_path
   end
 
   private
