@@ -1,0 +1,16 @@
+.row
+  .col-md-12
+    %p#notice= notice
+
+.row
+  .col-md-12
+    %h1
+      = @race.title
+    %p
+      %b= @race.candidate_1
+      = @vote_for_candidate_1
+    %p
+      %b= @race.candidate_2
+      = @vote_for_candidate_2
+
+    = link_to 'Back', races_path

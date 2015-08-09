@@ -4,6 +4,11 @@ gem 'rails', '4.2.1'
 gem 'mysql2'
 gem 'pry-rails'
 gem 'unicorn'
+gem 'sass-rails'
+gem 'bootstrap-sass'
+gem 'haml-rails'
+gem 'coffee-rails'
+gem 'jquery-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

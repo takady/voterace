@@ -21,9 +21,6 @@ module VoteApp
     config.active_record.default_timezone = :local
 
     config.generators do |generator|
-      generator.stylesheets false
-      generator.javascripts false
-      generator.helper false
       generator.test_framework :rspec, view_specs: false, helper_specs: false, fixture: true
       generator.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
