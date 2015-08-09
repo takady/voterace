@@ -6,11 +6,9 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :email
-    = f.text_field :email
-  .actions
-    = f.submit 'Save'
+  .form-group
+    = f.text_field :name, placeholder: "Pick a username", class: 'form-control'
+  .form-group
+    = f.text_field :email, placeholder: "Your email", class: 'form-control'
+  .form-group
+    = f.submit 'Sign up for Vote', class: 'btn btn-success'
