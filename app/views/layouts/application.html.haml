@@ -11,6 +11,24 @@
     %nav.navbar.navbar-inverse.navbar-fixed-top
       .container
         .navbar-header
-          = link_to 'Vote', '/', class: 'navbar-brand'
+          = link_to 'Vote', races_path, class: 'navbar-brand'
+        .collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right
+            - if logged_in?
+              %li
+                = link_to 'Logout', logout_path
+            - else
+              %li
+                = link_to 'Login with Twitter', '/auth/twitter'
     .container
+      .row
+        .col-md-12
+          - if flash[:notice]
+            .alert.alert-success
+              = flash[:notice]
+      .row
+        .col-md-12
+          - if flash[:alert]
+            .alert.alert-danger
+              = flash[:alert]
       = yield
