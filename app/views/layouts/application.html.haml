@@ -12,5 +12,9 @@
       .container
         .navbar-header
           = link_to 'Vote', '/', class: 'navbar-brand'
+        .collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right
+            %li
+              = link_to 'Login with Twitter', '/auth/twitter'
     .container
       = yield
