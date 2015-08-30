@@ -17,4 +17,7 @@
             %li
               = link_to 'Login with Twitter', '/auth/twitter'
     .container
+      - if flash[:notice]
+        .alert.alert-success
+          = flash[:notice]
       = yield

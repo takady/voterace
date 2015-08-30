@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'top#index'
+  get '/auth/twitter/callback' => 'sessions#create'
 
   post '/races/vote' => 'races#vote'
   resources :races, only: [:index, :show, :new, :create, :destroy]
