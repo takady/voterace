@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20150726082200) do
 
   create_table "races", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4,   null: false
     t.string   "title",       limit: 255
     t.string   "candidate_1", limit: 255
     t.string   "candidate_2", limit: 255

@@ -9,11 +9,11 @@ class RacesController < ApplicationController
   end
 
   def new
-    @race = Race.new
+    @race = current_user.created_races.build
   end
 
   def create
-    @race = Race.new(race_params)
+    @race = current_user.created_races.build(race_params)
 
     if @race.save
       redirect_to @race, notice: 'Race was successfully created.'
@@ -29,11 +29,12 @@ class RacesController < ApplicationController
   end
 
   def vote
-    if %w(1 2).include?(vote_params[:candidate])
-      vote = Vote.find_or_initialize_by(race_id: vote_params[:race_id].to_i, user_id: vote_params[:user_id].to_i)
-      vote.update_attributes(candidate: vote_params[:candidate])
-    end
+    Vote.find_or_initialize_by(race_id: vote_params[:race_id], user_id: current_user.id).update(candidate: vote_params[:candidate])
 
+    flash[:notice] = 'Voted!'
+    redirect_to races_path
+  rescue e
+    flash[:alert] = 'Vote Failed!'
     redirect_to races_path
   end
 
