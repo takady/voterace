@@ -22,11 +22,18 @@ ActiveRecord::Schema.define(version: 20150726082200) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "email",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name",        limit: 255, null: false
+    t.string   "email",       limit: 255
+    t.string   "provider",    limit: 255, null: false
+    t.string   "uid",         limit: 255, null: false
+    t.string   "nickname",    limit: 255
+    t.string   "image_url",   limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
+
+  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
