@@ -1,10 +1,8 @@
-%p#notice= notice
-
 %p
   %b Name:
-  = @user.name
+  = @current_user.name
 %p
   %b Email:
-  = @user.email
+  = @current_user.email
 
-= link_to 'Edit', edit_user_path(@user)
+= link_to 'Edit', edit_user_path(@current_user)
