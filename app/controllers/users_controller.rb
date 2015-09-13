@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :current_user
 
-  def show
+  def mypage
   end
 
   def edit
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def update
     if @current_user.update(user_params)
-      redirect_to @current_user, notice: 'User was successfully updated.'
+      redirect_to :mypage, notice: 'User was successfully updated.'
     else
       render :edit
     end
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def destroy
     @current_user.destroy
 
-    redirect_to users_url, notice: 'User was successfully destroyed.'
+    redirect_to root_path, notice: 'User was successfully destroyed.'
   end
 
   private

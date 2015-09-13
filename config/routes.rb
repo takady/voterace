@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   post '/races/vote' => 'races#vote'
   resources :races, only: [:index, :show, :new, :create, :destroy]
-  resources :users, only: [:show, :edit, :update, :destroy]
+
+  get '/mypage' => 'users#mypage'
+  resources :users, only: [:edit, :update, :destroy]
 
   namespace :api, constraints: { format: :json } do
     resources :races, only: [:index, :show, :create, :destroy]
