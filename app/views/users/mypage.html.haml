@@ -1,0 +1,8 @@
+%p
+  %b Name:
+  = @current_user.name
+%p
+  %b Email:
+  = @current_user.email
+
+= link_to 'Edit', edit_user_path(@current_user)
