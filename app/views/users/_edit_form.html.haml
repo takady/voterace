@@ -11,4 +11,8 @@
   .form-group
     = f.text_field :email, placeholder: "Your email", class: 'form-control'
   .form-group
+    = f.text_field :image_url, placeholder: "Your image url", class: 'form-control'
+  .form-group
+    = f.text_area :description, rows: 4, placeholder: "Introduce yourself", class: 'form-control'
+  .form-group
     = f.submit 'Edit', class: 'btn btn-success'
