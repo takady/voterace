@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :authenticate, except: [:create, :destroy]
+
   def create
     user = User.find_or_create_from_auth_hash(request.env['omniauth.auth'])
     session[:user_id] = user.id
