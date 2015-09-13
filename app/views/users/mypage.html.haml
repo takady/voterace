@@ -1,8 +1,13 @@
 %p
+  %img{src: @current_user.image_url, width: '200px'}
+%p
   %b Name:
   = @current_user.name
 %p
   %b Email:
   = @current_user.email
+%p
+  %b Description:
+  = @current_user.description
 
-= link_to 'Edit', edit_user_path(@current_user)
+= link_to 'Edit', edit_user_path(@current_user), class: 'btn btn-success'
