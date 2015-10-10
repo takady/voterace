@@ -8,10 +8,4 @@ Rails.application.routes.draw do
 
   get '/mypage' => 'users#mypage'
   resources :users, only: [:edit, :update, :destroy]
-
-  namespace :api, constraints: { format: :json } do
-    resources :races, only: [:index, :show, :create, :destroy]
-    resources :votes, only: [:create, :update]
-    resources :users, only: [:show, :create, :update, :destroy]
-  end
 end
