@@ -23,7 +23,7 @@ class RacesController < ApplicationController
   end
 
   def destroy
-    if current_user.id == @race.id
+    if current_user.id == @race.user_id
       @race.destroy
       redirect_to races_url, notice: 'Race was successfully destroyed.'
     else
