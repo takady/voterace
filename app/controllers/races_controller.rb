@@ -34,11 +34,9 @@ class RacesController < ApplicationController
   def vote
     Vote.find_or_initialize_by(race_id: vote_params[:race_id], user_id: current_user.id).update(candidate: vote_params[:candidate])
 
-    flash[:notice] = 'Voted!'
-    redirect_to races_path
+    redirect_to races_path, notice: 'Voted!'
   rescue e
-    flash[:alert] = 'Vote Failed!'
-    redirect_to races_path
+    redirect_to races_path, alert: 'Vote Failed!'
   end
 
   private
@@ -55,6 +53,6 @@ class RacesController < ApplicationController
     end
 
     def vote_params
-      params.require(:vote).permit(:race_id, :user_id, :candidate)
+      params.require(:vote).permit(:race_id, :candidate)
     end
 end
