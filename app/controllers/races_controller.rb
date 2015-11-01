@@ -40,19 +40,18 @@ class RacesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_race
-      @race = Race.find(params[:id])
-      @vote_for_candidate_1 = Vote.where(race: @race.id).where(candidate: 1).count
-      @vote_for_candidate_2 = Vote.where(race: @race.id).where(candidate: 2).count
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def race_params
-      params.require(:race).permit(:title, :candidate_1, :candidate_2)
-    end
+  def set_race
+    @race = Race.find(params[:id])
+    @vote_for_candidate_1 = Vote.where(race: @race.id).where(candidate: 1).count
+    @vote_for_candidate_2 = Vote.where(race: @race.id).where(candidate: 2).count
+  end
 
-    def vote_params
-      params.require(:vote).permit(:race_id, :candidate)
-    end
+  def race_params
+    params.require(:race).permit(:title, :candidate_1, :candidate_2)
+  end
+
+  def vote_params
+    params.require(:vote).permit(:race_id, :candidate)
+  end
 end
