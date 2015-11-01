@@ -6,6 +6,16 @@ body {
   max-width: 600px;
 }
 
+.race {
+  border: 1px solid #edeeee;
+  border-radius: 3px;
+  padding: 9px 12px;
+}
+
+.race:hover {
+  background-color: #f5f8fa;
+}
+
 #top-index .jumbotron {
 		padding: 15px;
 }

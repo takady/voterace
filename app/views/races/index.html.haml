@@ -1,16 +1,11 @@
 .row
   .col-md-12
-    %h1 Races
-
-.row
-  .col-md-12
-    %table.table
-      %tbody
-        - @races.each do |race|
-          %tr
-            %th= link_to race.title, race
-            %td
-              .row= vote_button(race, 1)
-              .row= vote_button(race, 2)
+    %ol.list-unstyled
+      - @races.each do |race|
+        %li
+          .race
+            %h3= link_to race.title, race
+            %p= vote_button(race, 1)
+            %p= vote_button(race, 2)
 
 = link_to 'New Race', new_race_path, class: 'btn btn-primary'
