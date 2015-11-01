@@ -4,24 +4,29 @@
     %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
     %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}/
     %title Vote
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
     %nav.navbar.navbar-default.navbar-fixed-top
       .container
         .navbar-header
+          .navbar-toggle
+            - if logged_in?
+              - if current_page?(mypage_path)
+                = link_to 'Logout', logout_path
+              - else
+                = link_to image_tag(current_user.image_url, width: '23px', height: '23px'), mypage_path
           = link_to 'Vote', races_path, class: 'navbar-brand'
-        .collapse.navbar-collapse
+        #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             - if logged_in?
-              %li
-                = link_to image_tag(current_user.image_url, width: '20px', height: '20px'), mypage_path
-              %li
-                = link_to 'Logout', logout_path
+              - if current_page?(mypage_path)
+                %li= link_to 'Logout', logout_path
+              - else
+                %li= link_to image_tag(current_user.image_url, width: '23px', height: '23px'), mypage_path
             - else
-              %li
-                = link_to 'Login with Twitter', '/auth/twitter'
+              %li= link_to 'Login with Twitter', '/auth/twitter'
     .container
       .row
         .col-md-12
