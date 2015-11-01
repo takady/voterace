@@ -4,10 +4,12 @@
       - @races.each do |race|
         %li
           .race
-            = link_to image_tag(race.user.image_url, width: '20px', height: '20px'), mypage_path
-            = link_to race.user.name, mypage_path, class: 'username'
-            %h2.title= link_to race.title, race
-            %p= vote_button(race, 1)
-            %p= vote_button(race, 2)
+            .race-owner
+              = link_to image_tag(race.user.image_url, width: '20px', height: '20px'), race.user
+              = link_to race.user.name, race.user, class: 'username'
+            .race-detail
+              %h2.title= link_to race.title, race
+              %p= vote_button(race, 1)
+              %p= vote_button(race, 2)
 
 = link_to 'New Race', new_race_path, class: 'btn btn-primary'

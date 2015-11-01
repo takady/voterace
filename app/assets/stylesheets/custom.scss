@@ -1,24 +1,30 @@
 body {
-		padding-top: 100px;
+  padding-top: 100px;
+  background-color: #fafafa;
 }
 
 .container {
   max-width: 600px;
 }
 
+nav.navbar.navbar-default {
+  background-color: #fff;
+}
+
 .race {
+  background-color: #fff;
   border: 1px solid #edeeee;
   border-radius: 3px;
   padding: 9px 12px;
 }
 
-.race:hover {
-  background-color: #f5f8fa;
-}
-
-.race a.username {
+.race .race-owner a.username {
   font-weight: bold;
   color: #0d3c5f;
+}
+
+.race .race-detail {
+  padding-left: 20px;
 }
 
 #top-index .jumbotron {
