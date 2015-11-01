@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   def mypage
   end
 
+  def show
+    @user = User.find(params[:id])
+    @races = Race.where(user: @user)
+  end
+
   def edit
   end
 

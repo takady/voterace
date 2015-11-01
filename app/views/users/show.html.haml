@@ -1,0 +1,19 @@
+.row.profile
+  .col-md-5
+    %img{src: @user.image_url, width: '200px'}
+  .col-md-7
+    %h2= @user.name
+    %p= @user.description
+.row
+  .col-md-12
+    %ol.list-unstyled
+      - @races.each do |race|
+        %li
+          .race
+            .race-owner
+              = link_to image_tag(race.user.image_url, width: '20px', height: '20px'), race.user
+              = link_to race.user.name, race.user, class: 'username'
+            .race-detail
+              %h2.title= link_to race.title, race
+              %p= vote_button(race, 1)
+              %p= vote_button(race, 2)

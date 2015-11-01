@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :races, only: [:index, :show, :new, :create, :destroy]
 
   get '/mypage' => 'users#mypage'
-  resources :users, only: [:edit, :update, :destroy]
+  resources :users, only: [:show, :edit, :update, :destroy]
 end
