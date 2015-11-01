@@ -15,11 +15,14 @@
       %tbody
         - @races.each do |race|
           %tr
-            %td= race.title
+            %td= link_to race.title, race
             %td
-              = button_to race.candidate_1, races_vote_path(vote: { race_id: race.id, candidate: 1 }), class: 'btn btn-danger'
-              = button_to race.candidate_2, races_vote_path(vote: { race_id: race.id, candidate: 2 }), class: 'btn btn-primary'
-            %td= link_to 'Show', race
+              - if race.voted_by?(current_user)
+                .row= button_to "#{race.candidate_1}: #{race.votes.count_of_candidate 1}", races_vote_path(vote: { race_id: race.id, candidate: 1 }), class: 'btn btn-danger'
+                .row= button_to "#{race.candidate_2}: #{race.votes.count_of_candidate 2}", races_vote_path(vote: { race_id: race.id, candidate: 2 }), class: 'btn btn-primary'
+              - else
+                .row= button_to race.candidate_1, races_vote_path(vote: { race_id: race.id, candidate: 1 }), class: 'btn btn-danger'
+                .row= button_to race.candidate_2, races_vote_path(vote: { race_id: race.id, candidate: 2 }), class: 'btn btn-primary'
             -if current_user.id == race.user_id
               %td= link_to 'Destroy', race, method: :delete, :data => { :confirm => 'Are you sure?' }
 
