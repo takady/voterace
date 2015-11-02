@@ -43,8 +43,6 @@ class RacesController < ApplicationController
 
   def set_race
     @race = Race.find(params[:id])
-    @vote_for_candidate_1 = Vote.where(race: @race.id).where(candidate: 1).count
-    @vote_for_candidate_2 = Vote.where(race: @race.id).where(candidate: 2).count
   end
 
   def race_params
