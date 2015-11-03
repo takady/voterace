@@ -1,9 +1,5 @@
 .row
   .col-md-12
-    %p#notice= notice
-
-.row
-  .col-md-12
     %h1
       = @race.title
     - if @race.voted_by?(current_user)
