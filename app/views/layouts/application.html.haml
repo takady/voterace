@@ -17,7 +17,7 @@
                 = link_to 'Logout', logout_path
               - else
                 = link_to image_tag(current_user.image_url, width: '23px', height: '23px'), mypage_path
-          = link_to 'Voterace', races_path, class: 'navbar-brand'
+          = link_to 'Voterace', root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             - if logged_in?

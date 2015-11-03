@@ -25,18 +25,18 @@ class RacesController < ApplicationController
   def destroy
     if current_user.id == @race.user_id
       @race.destroy
-      redirect_to races_url, notice: 'Race was successfully destroyed.'
+      redirect_to root_path, notice: 'Race was successfully destroyed.'
     else
-      redirect_to races_url
+      redirect_to root_path
     end
   end
 
   def vote
     Vote.find_or_initialize_by(race_id: vote_params[:race_id], user_id: current_user.id).update(candidate: vote_params[:candidate])
 
-    redirect_to races_path, notice: 'Voted!'
+    redirect_to root_path, notice: 'Voted!'
   rescue e
-    redirect_to races_path, alert: 'Vote Failed!'
+    redirect_to root_path, alert: 'Vote Failed!'
   end
 
   private

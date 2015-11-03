@@ -12,4 +12,4 @@
       -if current_user.id == @race.user_id
         %p= button_to 'Destroy', @race, method: :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
 
-    = link_to 'Back', races_path
+    = link_to 'Back', root_path
