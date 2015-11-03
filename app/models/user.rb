@@ -17,4 +17,10 @@ class User < ActiveRecord::Base
       user.image_url = image_url
     end
   end
+
+  def voted_candidate(race)
+    if vote = votes.find_by(race: race)
+      vote.candidate
+    end
+  end
 end

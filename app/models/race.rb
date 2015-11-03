@@ -7,6 +7,10 @@ class Race < ActiveRecord::Base
   end
 
   def voted_by?(user)
+    !!vote_of(user)
+  end
+
+  def vote_of(user)
     votes.find_by(user_id: user.id)
   end
 end
