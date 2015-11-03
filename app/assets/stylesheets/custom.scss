@@ -31,6 +31,15 @@ nav.navbar.navbar-default {
   padding-left: 20px;
 }
 
+.race .btn {
+  background-color: #fafafa;
+}
+
+.race .btn.voted {
+  background-color: #F12938;
+  color: #ffffff;
+}
+
 .profile {
   margin-bottom: 20px;
 }
