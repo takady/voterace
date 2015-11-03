@@ -3,7 +3,7 @@
   %head
     %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
     %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}/
-    %title Vote
+    %title Voterace
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
@@ -17,7 +17,7 @@
                 = link_to 'Logout', logout_path
               - else
                 = link_to image_tag(current_user.image_url, width: '23px', height: '23px'), mypage_path
-          = link_to 'Vote', races_path, class: 'navbar-brand'
+          = link_to 'Voterace', races_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             - if logged_in?
@@ -25,6 +25,7 @@
                 %li= link_to 'Logout', logout_path
               - else
                 %li= link_to image_tag(current_user.image_url, width: '23px', height: '23px'), mypage_path
+                %li= link_to 'New Race', new_race_path, class: 'btn btn-primary new-race'
             - else
               %li= link_to 'Login with Twitter', '/auth/twitter'
     .container
@@ -39,3 +40,8 @@
             .alert.alert-danger
               = flash[:alert]
       = yield
+    %footer.footer
+      .container
+        .row
+          .col-md-12
+            %p.copyright.text-center= "© #{Time.zone.now.year} Voterace."

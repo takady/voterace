@@ -9,10 +9,31 @@ body {
 
 nav.navbar.navbar-default {
   background-color: #fff;
+
+  .navbar-nav {
+    a.btn.new-race {
+      margin: 8px;
+      padding: 8px;
+      color: #fefefe;
+    }
+
+    a.btn.new-race:hover {
+      color: #000000;
+    }
+  }
 }
 
 .navbar-toggle {
   border: none;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 30px 0 30px 0;
+
+  .copyright {
+    color: #767676;
+  }
 }
 
 .race {
@@ -20,24 +41,24 @@ nav.navbar.navbar-default {
   border: 1px solid #edeeee;
   border-radius: 3px;
   padding: 9px 12px;
-}
 
-.race .race-owner a.username {
-  font-weight: bold;
-  color: #0d3c5f;
-}
+  .race-owner a.username {
+    font-weight: bold;
+    color: #0d3c5f;
+  }
 
-.race .race-detail {
+  .race-detail {
   padding-left: 20px;
-}
+  }
 
-.race .btn {
-  background-color: #fafafa;
-}
+  .btn {
+    background-color: #fafafa;
+  }
 
-.race .btn.voted {
-  background-color: #F12938;
-  color: #ffffff;
+  .btn.voted {
+    background-color: #F12938;
+    color: #ffffff;
+  }
 }
 
 .profile {
