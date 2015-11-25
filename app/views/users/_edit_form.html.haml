@@ -7,7 +7,9 @@
           %li= msg
 
   .form-group
-    = f.text_field :name, placeholder: "Pick a username", class: 'form-control'
+    = f.text_field :username, placeholder: "Pick a username", class: 'form-control'
+  .form-group
+    = f.text_field :fullname, placeholder: "Your name", class: 'form-control'
   .form-group
     = f.text_field :email, placeholder: "Your email", class: 'form-control'
   .form-group

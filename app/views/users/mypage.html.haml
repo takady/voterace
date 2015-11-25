@@ -1,8 +1,11 @@
 %p
   %img{src: @current_user.image_url, width: '200px'}
 %p
-  %b Name:
-  = @current_user.name
+  %b User name:
+  = @current_user.username
+%p
+  %b Full name:
+  = @current_user.fullname
 %p
   %b Email:
   = @current_user.email
