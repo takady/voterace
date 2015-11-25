@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   root to: 'top#index'
-  get '/auth/twitter/callback' => 'sessions#create'
-  get '/logout' => 'sessions#destroy', as: :logout
+
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    sessions: 'users/sessions'
+  }
 
   post '/races/vote' => 'races#vote'
   resources :races, only: [:index, :show, :new, :create, :destroy]

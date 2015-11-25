@@ -12,22 +12,22 @@
       .container
         .navbar-header
           .navbar-toggle
-            - if logged_in?
+            - if user_signed_in?
               - if current_page?(mypage_path)
-                = link_to 'Logout', logout_path
+                = link_to 'Logout', destroy_user_session_path
               - else
                 = link_to image_tag(current_user.image_url, width: '23px', height: '23px'), mypage_path
           = link_to 'Voterace', root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
-            - if logged_in?
+            - if user_signed_in?
               - if current_page?(mypage_path)
-                %li= link_to 'Logout', logout_path
+                %li= link_to 'Logout', destroy_user_session_path, method: :delete
               - else
                 %li= link_to image_tag(current_user.image_url, width: '23px', height: '23px'), mypage_path
                 %li= link_to 'New Race', new_race_path, class: 'btn btn-primary new-race'
             - else
-              %li= link_to 'Login with Twitter', '/auth/twitter'
+              %li= link_to 'Login with Twitter', user_omniauth_authorize_path(:twitter)
     .container
       .row
         .col-md-12

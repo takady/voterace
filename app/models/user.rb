@@ -1,20 +1,21 @@
 class User < ActiveRecord::Base
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         :confirmable, :omniauthable, authentication_keys: [:name]
+
   has_many :votes
   has_many :created_races, class_name: 'Race', foreign_key: :user_id
+  has_many :social_profiles, dependent: :destroy
 
-  def self.find_or_create_from_auth_hash(auth_hash)
-    provider = auth_hash[:provider]
-    uid = auth_hash[:uid]
-    nickname = auth_hash[:info][:nickname]
-    image_url = auth_hash[:info][:image]
-    name = auth_hash[:info][:nickname]
-    description = auth_hash[:info][:description]
+  validates :username, presence: true, uniqueness: true
 
-    User.find_or_create_by(provider: provider, uid: uid) do |user|
-      user.name = name
-      user.description = description
-      user.nickname = nickname
-      user.image_url = image_url
+  def self.new_with_session(params, session)
+    if session['devise.user_attributes']
+      new(session['devise.user_attributes'], without_protection: true) do |user|
+        user.attributes = params
+      end
+    else
+      super
     end
   end
 

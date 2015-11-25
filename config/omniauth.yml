@@ -1,0 +1,16 @@
+production: &production
+  facebook:
+    key: <%= ENV["FACEBOOK_API_KEY"] %>
+    secret: <%= ENV["FACEBOOK_API_SECRET"] %>
+  twitter:
+    key: <%= ENV["TWITTER_API_KEY"] %>
+    secret: <%= ENV["TWITTER_API_SECRET"] %>
+
+development: &development
+  <<: *production
+  facebook:
+    key: <%= ENV["DEV_FACEBOOK_API_KEY"] %>
+    secret: <%= ENV["DEV_FACEBOOK_API_SECRET"] %>
+
+test:
+  <<: *development
