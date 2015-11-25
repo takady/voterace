@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726082200) do
+ActiveRecord::Schema.define(version: 20151125134444) do
 
   create_table "races", force: :cascade do |t|
     t.integer  "user_id",     limit: 4,   null: false
@@ -22,19 +22,30 @@ ActiveRecord::Schema.define(version: 20150726082200) do
     t.datetime "updated_at",              null: false
   end
 
+  create_table "social_profiles", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "provider",   limit: 255
+    t.string   "uid",        limit: 255
+    t.string   "username",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "social_profiles", ["provider", "uid"], name: "index_social_profiles_on_provider_and_uid", unique: true, using: :btree
+  add_index "social_profiles", ["user_id"], name: "index_social_profiles_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
-    t.string   "name",        limit: 255, null: false
+    t.string   "username",    limit: 255, null: false
     t.string   "email",       limit: 255
-    t.string   "provider",    limit: 255, null: false
-    t.string   "uid",         limit: 255, null: false
-    t.string   "nickname",    limit: 255
+    t.string   "fullname",    limit: 255
     t.string   "image_url",   limit: 255
     t.string   "description", limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
 
-  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -44,4 +55,5 @@ ActiveRecord::Schema.define(version: 20150726082200) do
     t.datetime "updated_at",           null: false
   end
 
+  add_foreign_key "social_profiles", "users"
 end

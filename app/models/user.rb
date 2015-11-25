@@ -1,13 +1,19 @@
 class User < ActiveRecord::Base
+  has_many :social_profiles
   has_many :votes
   has_many :created_races, class_name: 'Race', foreign_key: :user_id
 
   def self.find_or_create_from_auth(auth)
-    find_or_create_by!(provider: auth.provider, uid: auth.uid) do |user|
-      user.name = auth.info.nickname
-      user.description = auth.info.description
-      user.nickname = auth.info.nickname
-      user.image_url = auth.info.image
+    transaction do
+      social_profile = SocialProfile.create_with(username: auth.info.nickname).find_or_create_by!(provider: auth.provider, uid: auth.uid)
+
+      unless social_profile.user.present?
+        social_profile.user = create!(username: auth.info.nickname, email: auth.info.email, fullname: auth.info.name, description: auth.info.description, image_url: auth.info.image)
+
+        social_profile.save!
+      end
+
+      social_profile.user
     end
   end
 
