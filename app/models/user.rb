@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :social_profiles
   has_many :votes
-  has_many :created_races, class_name: 'Race', foreign_key: :user_id
+  has_many :races
 
   def self.find_or_create_from_auth(auth)
     transaction do

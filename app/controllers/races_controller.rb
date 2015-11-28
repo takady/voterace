@@ -9,11 +9,11 @@ class RacesController < ApplicationController
   end
 
   def new
-    @race = current_user.created_races.build
+    @race = current_user.races.build
   end
 
   def create
-    @race = current_user.created_races.build(race_params)
+    @race = current_user.races.build(race_params)
 
     if @race.save
       redirect_to @race, notice: 'Race was successfully created.'
