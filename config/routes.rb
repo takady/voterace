@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   get '/mypage' => 'users#mypage'
 
   resources :users, param: :username, path: '/', only: [:show, :edit, :update, :destroy]
-  resources :users, param: :username, only: [:create]
+  resources :users, only: [:new, :create]
 end
