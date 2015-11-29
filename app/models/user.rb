@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :username
 
+  def to_param
+    username
+  end
+
   def voted_candidate(race)
     if vote = votes.find_by(race: race)
       vote.candidate
