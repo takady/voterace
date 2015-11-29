@@ -3,7 +3,7 @@ class TopController < ApplicationController
 
   def index
     if sign_in?
-      @races = Race.page(params[:page]).per(10).order(:id)
+      @races = Race.page(params[:page]).order(:id)
 
       render 'races/index'
     end
