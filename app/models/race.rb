@@ -6,6 +6,9 @@ class Race < ActiveRecord::Base
     end
   end
 
+  paginates_per 10
+  max_paginates_per 10
+
   def voted_by?(user)
     !!vote_of(user)
   end

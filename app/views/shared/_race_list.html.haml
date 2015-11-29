@@ -11,3 +11,4 @@
               %h2.title= link_to race.title, race
               %p= vote_button(race, 1)
               %p= vote_button(race, 2)
+      = paginate(@races)
