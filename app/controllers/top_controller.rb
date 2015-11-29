@@ -3,7 +3,7 @@ class TopController < ApplicationController
 
   def index
     if sign_in?
-      @races = Race.all
+      @races = Race.order(:id).last(10)
 
       render 'races/index'
     end

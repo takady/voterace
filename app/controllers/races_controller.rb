@@ -2,7 +2,7 @@ class RacesController < ApplicationController
   before_action :set_race, only: [:show, :destroy]
 
   def index
-    @races = Race.all
+    @races = Race.order(:id).last(10)
   end
 
   def show
