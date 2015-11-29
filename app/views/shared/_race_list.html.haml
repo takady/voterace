@@ -5,8 +5,8 @@
         %li
           .race
             .race-owner
-              = link_to image_tag(race.user.image_url, width: '20px', height: '20px'), race.user
-              = link_to race.user.username, race.user, class: 'username'
+              = link_to image_tag(race.user.image_url, width: '20px', height: '20px'), race.user.username
+              = link_to race.user.username, race.user.username, class: 'username'
             .race-detail
               %h2.title= link_to race.title, race
               %p= vote_button(race, 1)
