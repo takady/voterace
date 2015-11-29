@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username
   validates_uniqueness_of :username, case_sensitive: false
-  validates_exclusion_of :username, in: RESERVED_USERNAME, message: 'Username has already been taken'
+  validates_exclusion_of :username, in: RESERVED_USERNAME
 
   def to_param
     username
