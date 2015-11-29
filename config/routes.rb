@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'top#index'
-  get '/auth/twitter/callback' => 'users#new'
-  get '/auth/facebook/callback' => 'users#new'
+  get '/auth/:provider/callback' => 'users#new'
+  get '/signup' => 'users#new', as: :signup
   get '/logout' => 'sessions#destroy', as: :logout
 
   post '/races/vote' => 'races#vote'
@@ -9,7 +9,6 @@ Rails.application.routes.draw do
 
   get '/mypage' => 'users#mypage'
 
-  resources :users, only: [:new, :create, :edit, :update, :destroy]
-
-  get '/:username', :to => 'users#show'
+  resources :users, param: :username, path: '/', only: [:show, :edit, :update, :destroy]
+  resources :users, param: :username, only: [:create]
 end
