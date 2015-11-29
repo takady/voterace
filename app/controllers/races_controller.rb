@@ -2,18 +2,18 @@ class RacesController < ApplicationController
   before_action :set_race, only: [:show, :destroy]
 
   def index
-    @races = Race.all
+    @races = Race.order(:id).last(10)
   end
 
   def show
   end
 
   def new
-    @race = current_user.created_races.build
+    @race = current_user.races.build
   end
 
   def create
-    @race = current_user.created_races.build(race_params)
+    @race = current_user.races.build(race_params)
 
     if @race.save
       redirect_to @race, notice: 'Race was successfully created.'

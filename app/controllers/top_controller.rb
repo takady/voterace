@@ -2,8 +2,9 @@ class TopController < ApplicationController
   before_action :authenticate, except: :index
 
   def index
-    if logged_in?
-      @races = Race.all
+    if sign_in?
+      @races = Race.order(:id).last(10)
+
       render 'races/index'
     end
   end

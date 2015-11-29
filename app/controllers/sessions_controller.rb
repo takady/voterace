@@ -1,11 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :authenticate, except: [:create, :destroy]
-
-  def create
-    user = User.find_or_create_from_auth_hash(request.env['omniauth.auth'])
-    session[:user_id] = user.id
-    redirect_to root_path
-  end
+  before_action :authenticate, except: [:destroy]
 
   def destroy
     reset_session
