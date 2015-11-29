@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate
 
-  helper_method :current_user, :logged_in?
+  helper_method :current_user, :sign_in?
 
   private
 
@@ -20,12 +20,12 @@ class ApplicationController < ActionController::Base
     @current_user
   end
 
-  def logged_in?
+  def sign_in?
     !!session[:user_id]
   end
 
   def authenticate
-    return if logged_in?
+    return if sign_in?
     redirect_to root_path, alert: 'You are not singed in.'
   end
 end
