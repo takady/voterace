@@ -29,7 +29,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    if @current_user = User.create!(user_params)
+    @current_user = User.new(user_params)
+
+    if @current_user.save
       if session[:social_profile_id]
         if social_profile = SocialProfile.find(session[:social_profile_id])
           social_profile.update(user: @current_user)
