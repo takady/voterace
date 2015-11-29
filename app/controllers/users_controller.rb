@@ -14,8 +14,8 @@ class UsersController < ApplicationController
     if auth = request.env['omniauth.auth']
       social_profile = SocialProfile.create_with(username: auth.info.nickname).find_or_create_by(provider: auth.provider, uid: auth.uid)
 
-      if current_user = social_profile.user
-        session[:user_id] = current_user.id
+      if social_profile.user
+        session[:user_id] = social_profile.user.id
         redirect_to root_path
       else
         session[:social_profile_id] = social_profile.id
@@ -32,10 +32,8 @@ class UsersController < ApplicationController
     @current_user = User.new(user_params)
 
     if @current_user.save
-      if session[:social_profile_id]
-        if social_profile = SocialProfile.find(session[:social_profile_id])
-          social_profile.update(user: @current_user)
-        end
+      if social_profile = SocialProfile.find_by(id: session[:social_profile_id])
+        social_profile.update(user: @current_user)
       end
       session[:user_id] = @current_user.id
 
