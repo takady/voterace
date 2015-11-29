@@ -17,4 +17,7 @@
   .form-group
     = f.text_area :description, rows: 4, placeholder: "Introduce yourself", class: 'form-control'
   .form-group
-    = f.submit 'Edit', class: 'btn btn-success'
+    - if controller.action_name == 'new'
+      = f.submit 'Sign up', class: 'btn btn-success'
+    - else
+      = f.submit 'Edit', class: 'btn btn-success'
