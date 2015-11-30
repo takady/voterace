@@ -14,13 +14,15 @@
 ActiveRecord::Schema.define(version: 20151125134444) do
 
   create_table "races", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4,   null: false
+    t.integer  "user_id",     limit: 4
     t.string   "title",       limit: 255
     t.string   "candidate_1", limit: 255
     t.string   "candidate_2", limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  add_index "races", ["user_id"], name: "index_races_on_user_id", using: :btree
 
   create_table "social_profiles", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -55,5 +57,11 @@ ActiveRecord::Schema.define(version: 20151125134444) do
     t.datetime "updated_at",           null: false
   end
 
+  add_index "votes", ["race_id"], name: "index_votes_on_race_id", using: :btree
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
+
+  add_foreign_key "races", "users"
   add_foreign_key "social_profiles", "users"
+  add_foreign_key "votes", "races"
+  add_foreign_key "votes", "users"
 end
