@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username, case_sensitive: false
   validates_exclusion_of :username, in: RESERVED_USERNAME
 
+  def vote(race_id:, candidate:)
+    Vote.find_or_initialize_by(race_id: race_id, user_id: self.id).update(candidate: candidate)
+  end
+
   def voted_candidate(race)
     if vote = votes.find_by(race: race)
       vote.candidate
