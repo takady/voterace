@@ -46,7 +46,7 @@ class RacesController < ApplicationController
   end
 
   def race_params
-    params.require(:race).permit(:title, :candidate_1, :candidate_2)
+    params.require(:race).permit(:title, :candidate_1, :candidate_2, :expired_at)
   end
 
   def vote_params

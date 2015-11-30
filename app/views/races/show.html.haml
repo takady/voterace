@@ -9,6 +9,9 @@
       %p
         %b= @race.candidate_2
         = @race.votes.count_of_candidate(2)
+      %p
+        %b= @race.expired_at
+        = @race.expired_at
       -if current_user.id == @race.user_id
         %p= button_to 'Destroy', @race, method: :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
 
