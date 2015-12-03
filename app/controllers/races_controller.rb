@@ -32,11 +32,17 @@ class RacesController < ApplicationController
   end
 
   def vote
-    if @race.votable? && current_user.vote(race_id: @race.id, candidate: params[:candidate])
-      redirect_to root_path, notice: 'Voted!'
+    if @race.votable?
+      if current_user.vote(race_id: @race.id, candidate: params[:candidate])
+        flash[:notice] = 'Voted!'
+      else
+        flash[:alert] = 'Vote failed!'
+      end
     else
-      redirect_to root_path, alert: 'Vote Failed!'
+      flash[:alert] = 'Vote failed! This race has already been expired.'
     end
+
+    redirect_to root_path
   end
 
   private

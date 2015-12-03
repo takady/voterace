@@ -39,7 +39,7 @@ footer {
 .race {
   background-color: #fff;
   border: 1px solid #edeeee;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 9px 12px;
 
   .race-owner a.username {
@@ -55,13 +55,45 @@ footer {
     }
   }
 
-  .btn {
+  .btn.candidate {
     background-color: #fafafa;
   }
 
   .btn.voted {
     background-color: #F12938;
     color: #ffffff;
+  }
+}
+
+.race-permalink {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 30px 40px;
+
+  .race-owner {
+    img.avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 5px;
+    }
+
+    .fullname {
+      font-size: 18px;
+      font-weight: bold;
+      color: #0d3c5f;
+      margin-left: 5px;
+    }
+
+    .username {
+      font-size: 14px;
+      color: #8899a6;
+      margin-left: 5px;
+    }
+
+    a:hover {
+      color: #fff;
+      text-decoration: none;
+    }
   }
 }
 
