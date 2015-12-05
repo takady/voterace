@@ -7,8 +7,14 @@ body {
   max-width: 600px;
 }
 
-nav.navbar.navbar-default {
-  background-color: #fff;
+img {
+  border-radius: 5px;
+}
+
+nav {
+  .navbar.navbar-default {
+    background-color: #fff;
+  }
 
   .navbar-nav {
     a.btn.new-race {
@@ -18,8 +24,14 @@ nav.navbar.navbar-default {
     }
 
     a.btn.new-race:hover {
-      color: #000000;
+      color: #fff;
+      background-color: #286090;
     }
+  }
+
+  img.avatar {
+    width: 25px;
+    height: 25px;
   }
 }
 
@@ -36,32 +48,40 @@ footer {
   }
 }
 
-.race {
-  background-color: #fff;
-  border: 1px solid #edeeee;
-  border-radius: 5px;
-  padding: 9px 12px;
+.race-list {
+  .race {
+    background-color: #fff;
+    border: 1px solid #edeeee;
+    padding: 9px 12px;
 
-  .race-owner a.username {
-    font-weight: bold;
-    color: #0d3c5f;
-  }
-
-  .race-detail {
-  padding-left: 20px;
-
-    .title a {
-      text-decoration: initial;
+    img.avatar {
+      width: 30px;
+      height: 30px;
     }
-  }
 
-  .btn.candidate {
-    background-color: #fafafa;
-  }
+    .race-owner a.username {
+      color: #0d3c5f;
+      font-weight: bold;
+      font-size: 15px;
+      margin-left: 5px;
+    }
 
-  .btn.voted {
-    background-color: #F12938;
-    color: #ffffff;
+    .race-detail {
+      padding-left: 20px;
+
+      .title a {
+        text-decoration: initial;
+      }
+    }
+
+    .btn.candidate {
+      background-color: #fafafa;
+    }
+
+    .btn.voted {
+      background-color: #F12938;
+      color: #ffffff;
+    }
   }
 }
 
@@ -74,7 +94,6 @@ footer {
     img.avatar {
       width: 48px;
       height: 48px;
-      border-radius: 5px;
     }
 
     .fullname {

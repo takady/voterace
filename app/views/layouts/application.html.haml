@@ -16,7 +16,7 @@
               - if current_page?(mypage_path)
                 = link_to 'Logout', logout_path
               - else
-                = link_to image_tag(current_user.image_url, width: '23px', height: '23px'), mypage_path
+                = link_to image_tag(current_user.image_url, class: 'avatar'), mypage_path
           = link_to 'Voterace', root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
@@ -24,7 +24,7 @@
               - if current_page?(mypage_path)
                 %li= link_to 'Logout', logout_path
               - else
-                %li= link_to image_tag(current_user.image_url, width: '23px', height: '23px'), mypage_path
+                %li= link_to image_tag(current_user.image_url, class: 'avatar'), mypage_path
                 %li= link_to 'New Race', new_race_path, class: 'btn btn-primary new-race'
             - else
               %li= link_to 'Login with Twitter', '/auth/twitter'
