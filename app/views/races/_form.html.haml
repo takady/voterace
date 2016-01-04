@@ -7,12 +7,12 @@
           %li= msg
 
   .form-group
-    = f.text_field :title, placeholder: 'Title', class: 'form-control'
+    = f.text_field :title, placeholder: 'Race Title', class: 'form-control'
   .form-group
-    = f.text_field :candidate_1, placeholder: 'Red', class: 'form-control'
+    = f.text_field :candidate_1, placeholder: 'First Lane', class: 'form-control'
   .form-group
-    = f.text_field :candidate_2, placeholder: 'Blue', class: 'form-control'
+    = f.text_field :candidate_2, placeholder: 'Second Lane', class: 'form-control'
   .form-group
-    = f.text_field :expired_at, placeholder: 'Expired time', class: 'form-control'
+    = f.text_field :expired_at, placeholder: 'Expired Time', class: 'form-control'
   .form-group
     = f.submit 'Start race', class: 'btn btn-primary'

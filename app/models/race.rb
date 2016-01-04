@@ -6,6 +6,8 @@ class Race < ActiveRecord::Base
     end
   end
 
+  validates :title, :candidate_1, :candidate_2, :expired_at, presence: true
+
   paginates_per 10
   max_paginates_per 10
 
