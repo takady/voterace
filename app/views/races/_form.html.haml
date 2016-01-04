@@ -13,6 +13,11 @@
   .form-group
     = f.text_field :candidate_2, placeholder: 'Second Lane', class: 'form-control'
   .form-group
-    = f.text_field :expired_at, placeholder: 'Expired Time', class: 'form-control'
+    = f.text_field :expired_at, placeholder: 'Expired Time', class: 'form-control', id: 'datetimepicker4'
   .form-group
     = f.submit 'Start race', class: 'btn btn-primary'
+
+:javascript
+  $(function () {
+    $('#datetimepicker4').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss', sideBySide: true});
+  });
