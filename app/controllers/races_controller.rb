@@ -34,7 +34,7 @@ class RacesController < ApplicationController
 
   def vote
     if @race.votable?
-      if current_user.vote(race_id: @race.id, candidate: params[:candidate])
+      if current_user.vote_for(race_id: @race.id, candidate: params[:candidate])
         flash[:notice] = 'Voted!'
       else
         flash[:alert] = 'Vote failed!'
