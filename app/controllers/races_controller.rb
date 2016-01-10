@@ -1,4 +1,5 @@
 class RacesController < ApplicationController
+  before_action :authenticate, except: :show
   before_action :set_race, only: [:show, :destroy, :vote]
 
   def index
