@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate, except: [:new, :create]
+  before_action :authenticate, except: [:show, :new, :create]
   before_action :set_current_user, only: [:edit, :update, :destroy]
 
   def mypage
