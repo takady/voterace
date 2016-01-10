@@ -6,17 +6,15 @@
         %strong.fullname= @race.user.fullname
       %span.username= "@#{@race.user.username}"
 
-    %h1
-      = @race.title
-    - if @race.voted_by?(current_user)
+    %h1= @race.title
+
+    - (1..2).each do |index|
       %p
-        %b= @race.candidate_1
-        = @race.votes.count_of_candidate(1)
-      %p
-        %b= @race.candidate_2
-        = @race.votes.count_of_candidate(2)
-      %p
-        %b Expired time
-        = @race.expired_at
-      -if current_user.id == @race.user_id
-        %p= button_to 'Destroy', @race, method: :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-destroy'
+        %b= @race.send("candidate_#{index}")
+        - if @race.voted_by?(current_user)
+          = @race.votes.count_of_candidate(index)
+    %p
+      %b Deadline
+      = @race.expired_at
+      - if current_user.id == @race.user_id
+        %p= button_to 'Destroy', @race, method: :delete, data: {confirm: :'Are you sure?'}, class: 'btn btn-danger btn-destroy'
