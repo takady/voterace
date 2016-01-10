@@ -1,5 +1,5 @@
 class RacesController < ApplicationController
-  before_action :set_race, only: [:show, :destroy]
+  before_action :set_race, only: [:show, :destroy, :vote]
 
   def index
     @races = Race.page(params[:page]).order(:id)
@@ -32,11 +32,17 @@ class RacesController < ApplicationController
   end
 
   def vote
-    Vote.find_or_initialize_by(race_id: vote_params[:race_id], user_id: current_user.id).update(candidate: vote_params[:candidate])
+    if @race.votable?
+      if current_user.vote(race_id: @race.id, candidate: params[:candidate])
+        flash[:notice] = 'Voted!'
+      else
+        flash[:alert] = 'Vote failed!'
+      end
+    else
+      flash[:alert] = 'Vote failed! This race has already been expired.'
+    end
 
-    redirect_to root_path, notice: 'Voted!'
-  rescue e
-    redirect_to root_path, alert: 'Vote Failed!'
+    redirect_to root_path
   end
 
   private
@@ -46,10 +52,6 @@ class RacesController < ApplicationController
   end
 
   def race_params
-    params.require(:race).permit(:title, :candidate_1, :candidate_2)
-  end
-
-  def vote_params
-    params.require(:vote).permit(:race_id, :candidate)
+    params.require(:race).permit(:title, :candidate_1, :candidate_2, :expired_at)
   end
 end

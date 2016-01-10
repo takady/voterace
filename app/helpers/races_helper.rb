@@ -9,6 +9,6 @@ module RacesHelper
       button_class << ' voted' if candidate_code == voted_candidate
     end
 
-    button_to button_label, races_vote_path(vote: { race_id: race.id, candidate: candidate_code }), class: button_class
+    button_to button_label, races_vote_path(id: race.id, candidate: candidate_code), class: button_class
   end
 end

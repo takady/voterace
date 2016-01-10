@@ -1,7 +1,7 @@
 class CreateRaces < ActiveRecord::Migration
   def change
     create_table :races do |t|
-      t.integer :user_id, null: false
+      t.references :user, index: true, foreign_key: true
       t.string :title
       t.string :candidate_1
       t.string :candidate_2

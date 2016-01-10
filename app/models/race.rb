@@ -6,8 +6,12 @@ class Race < ActiveRecord::Base
     end
   end
 
+  validates :title, :candidate_1, :candidate_2, :expired_at, presence: true
+
   paginates_per 10
   max_paginates_per 10
+
+  scope :votable, -> { where('expired_at > ?', Time.zone.now) }
 
   def voted_by?(user)
     !!vote_of(user)
@@ -15,5 +19,9 @@ class Race < ActiveRecord::Base
 
   def vote_of(user)
     votes.find_by(user_id: user.id)
+  end
+
+  def votable?
+    expired_at > Time.zone.now
   end
 end

@@ -1,15 +1,20 @@
 .row
-  .col-md-12
-    %h1
-      = @race.title
-    - if @race.voted_by?(current_user)
-      %p
-        %b= @race.candidate_1
-        = @race.votes.count_of_candidate(1)
-      %p
-        %b= @race.candidate_2
-        = @race.votes.count_of_candidate(2)
-      -if current_user.id == @race.user_id
-        %p= button_to 'Destroy', @race, method: :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger'
+  .race-permalink.col-md-12
+    .race-owner
+      = link_to user_path(@race.user.username) do
+        = image_tag(@race.user.image_url, class: 'avatar')
+        %strong.fullname= @race.user.fullname
+      %span.username= "@#{@race.user.username}"
 
-    = link_to 'Back', root_path
+    %h1= @race.title
+
+    - (1..2).each do |index|
+      %p
+        %b= @race.send("candidate_#{index}")
+        - if @race.voted_by?(current_user)
+          = @race.votes.count_of_candidate(index)
+    %p
+      %b Deadline
+      = @race.expired_at
+      - if current_user.id == @race.user_id
+        %p= button_to 'Destroy', @race, method: :delete, data: {confirm: :'Are you sure?'}, class: 'btn btn-danger btn-destroy'
