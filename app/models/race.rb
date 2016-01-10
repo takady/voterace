@@ -11,6 +11,8 @@ class Race < ActiveRecord::Base
   paginates_per 10
   max_paginates_per 10
 
+  scope :votable, -> { where('expired_at > ?', Time.zone.now) }
+
   def voted_by?(user)
     !!vote_of(user)
   end
