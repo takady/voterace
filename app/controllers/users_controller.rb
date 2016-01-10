@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-  before_action :authenticate, except: [:new, :create]
+  before_action :authenticate, except: [:show, :new, :create]
+  before_action :set_current_user, only: [:edit, :update, :destroy]
 
   def mypage
   end
 
   def show
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by!(username: params[:username])
     @races = Race.where(user: @user).page(params[:page]).order(:id)
   end
 
@@ -43,11 +44,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
   end
 
   def update
-    if current_user.update(user_params)
+    if @user.update(user_params)
       redirect_to :mypage, notice: 'User was successfully updated.'
     else
       render :edit
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    current_user.destroy
+    @user.destroy
 
     redirect_to root_path, notice: 'User was successfully destroyed.'
   end

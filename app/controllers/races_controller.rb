@@ -1,8 +1,9 @@
 class RacesController < ApplicationController
+  before_action :authenticate, except: :show
   before_action :set_race, only: [:show, :destroy, :vote]
 
   def index
-    @races = Race.page(params[:page]).order(:id)
+    @races = Race.votable.page(params[:page]).order(:id)
   end
 
   def show
@@ -33,7 +34,7 @@ class RacesController < ApplicationController
 
   def vote
     if @race.votable?
-      if current_user.vote(race_id: @race.id, candidate: params[:candidate])
+      if current_user.vote_for(race_id: @race.id, candidate: params[:candidate])
         flash[:notice] = 'Voted!'
       else
         flash[:alert] = 'Vote failed!'
