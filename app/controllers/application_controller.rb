@@ -12,11 +12,7 @@ class ApplicationController < ActionController::Base
   def current_user
     return unless session[:user_id]
 
-    user ||= User.find_by(id: session[:user_id])
-
-    redirect_to root_path, alert: 'You are not singed in.' if user.nil?
-
-    user
+    User.find_by!(id: session[:user_id])
   end
 
   def set_current_user
@@ -24,7 +20,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sign_in?
-    !!session[:user_id]
+    session[:user_id].present?
   end
 
   def authenticate
