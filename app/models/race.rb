@@ -7,6 +7,9 @@ class Race < ActiveRecord::Base
   end
 
   validates :title, :candidate_1, :candidate_2, :expired_at, presence: true
+  validate do |race|
+    errors.add(:expired_at, 'must be in a year from now') unless Time.zone.now < race.expired_at && race.expired_at < Time.zone.now.years_since(1)
+  end
 
   paginates_per 10
   max_paginates_per 10
