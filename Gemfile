@@ -10,6 +10,7 @@ gem 'haml-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'therubyracer', platforms: :ruby
+gem 'uglifier'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
