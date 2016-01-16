@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 gem 'mysql2'
 gem 'pry-rails'
-gem 'unicorn'
 gem 'sass-rails'
 gem 'bootstrap-sass'
 gem 'haml-rails'
@@ -36,4 +35,8 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'database_rewinder'
+end
+
+group :production do
+  gem 'unicorn'
 end

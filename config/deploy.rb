@@ -36,6 +36,7 @@ set :rbenv_roles, :all # default value
 
 set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 set :unicorn_config_path, 'config/unicorn.rb'
+set :unicorn_rack_env, 'none'
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
