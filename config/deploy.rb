@@ -35,6 +35,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all # default value
 
 set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
+set :unicorn_config_path, 'config/unicorn.rb'
 
 after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do

@@ -3,7 +3,7 @@ timeout 15
 preload_app true
 
 if ENV['RAILS_ENV'] == 'production'
-  listen '/tmp/unicorn.sock'
+  listen File.expand_path('tmp/sockets/unicorn.sock', ENV['RAILS_ROOT'])
 else
   listen 10083
 end
