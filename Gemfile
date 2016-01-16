@@ -9,6 +9,7 @@ gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'therubyracer', platforms: :ruby
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
@@ -16,11 +17,12 @@ gem 'kaminari'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
+end
 
 group :development, :test do
   gem 'byebug'
