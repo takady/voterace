@@ -5,7 +5,7 @@ preload_app true
 if ENV['RAILS_ENV'] == 'production'
   listen '/tmp/unicorn.sock'
 else
-  listen 3000
+  listen 10083
 end
 
 pid File.expand_path('tmp/pids/unicorn.pid', ENV['RAILS_ROOT'])
