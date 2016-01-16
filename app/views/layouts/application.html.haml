@@ -18,6 +18,9 @@
               - else
                 = link_to image_tag(current_user.image_url, class: 'avatar'), mypage_path
                 = link_to 'New Race', new_race_path, class: 'btn btn-primary new-race'
+            - else
+              %li= link_to 'Login with Twitter', '/auth/twitter'
+              %li= link_to 'Login with Facebook', '/auth/facebook'
           = link_to 'VoteRace', root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
