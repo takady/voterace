@@ -18,4 +18,4 @@ production:
   database: voterace
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
-  host: <%= ENV['DB_HOST'] %>
+  socket: /var/lib/mysql/mysql.sock

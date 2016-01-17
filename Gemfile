@@ -3,12 +3,13 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.1'
 gem 'mysql2'
 gem 'pry-rails'
-gem 'unicorn'
 gem 'sass-rails'
 gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'therubyracer', platforms: :ruby
+gem 'uglifier'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
@@ -16,11 +17,12 @@ gem 'kaminari'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
+end
 
 group :development, :test do
   gem 'byebug'
@@ -33,4 +35,8 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'database_rewinder'
+end
+
+group :production do
+  gem 'unicorn'
 end
