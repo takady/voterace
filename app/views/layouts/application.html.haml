@@ -21,7 +21,7 @@
             - else
               %li= link_to 'Login with Twitter', '/auth/twitter'
               %li= link_to 'Login with Facebook', '/auth/facebook'
-          = link_to 'VoteRace', root_path, class: 'navbar-brand'
+          = link_to image_tag('voterace.jpg'), root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
             - if sign_in?
