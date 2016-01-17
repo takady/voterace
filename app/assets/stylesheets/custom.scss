@@ -12,10 +12,6 @@ img {
 }
 
 nav {
-  .navbar.navbar-default {
-    background-color: #fff;
-  }
-
   .navbar-nav {
     a.btn.new-race {
       margin: 8px;
@@ -33,6 +29,15 @@ nav {
     width: 25px;
     height: 25px;
   }
+}
+
+.navbar.navbar-default {
+  background-color: #fff;
+}
+
+.navbar-brand img {
+  width: 30px;
+  height: 30px;
 }
 
 .navbar-toggle {
