@@ -16,6 +16,7 @@ gem 'omniauth-facebook'
 gem 'kaminari'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
+gem 'google-analytics-rails'
 
 group :development do
   gem 'capistrano-rails'
