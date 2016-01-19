@@ -7,6 +7,7 @@ class RacesController < ApplicationController
   end
 
   def show
+    @title = @race.title
   end
 
   def new
