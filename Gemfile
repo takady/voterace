@@ -17,6 +17,7 @@ gem 'kaminari'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'google-analytics-rails'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'capistrano-rails'
