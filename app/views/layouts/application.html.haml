@@ -19,10 +19,15 @@
                 = link_to 'Logout', logout_path
               - else
                 = link_to image_tag(current_user.image_url, class: 'avatar'), mypage_path
-                = link_to 'New Race', new_race_path, class: 'btn btn-primary new-race'
+                = link_to new_race_path, class: 'btn btn-primary new-race' do
+                  = fa_icon :plus, text: 'New Race'
             - else
-              %li= link_to 'Login with Twitter', '/auth/twitter'
-              %li= link_to 'Login with Facebook', '/auth/facebook'
+              %li
+                = link_to '/auth/twitter' do
+                  = fa_icon :twitter, text: 'Login with Twitter'
+              %li
+                = link_to '/auth/facebook' do
+                  = fa_icon :facebook, text: 'Login with Facebook'
           = link_to image_tag('voterace.jpg'), root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
@@ -31,10 +36,16 @@
                 %li= link_to 'Logout', logout_path
               - else
                 %li= link_to image_tag(current_user.image_url, class: 'avatar'), mypage_path
-                %li= link_to 'New Race', new_race_path, class: 'btn btn-primary new-race'
+                %li
+                  = link_to new_race_path, class: 'btn btn-primary new-race' do
+                    = fa_icon :plus, text: 'New Race'
             - else
-              %li= link_to 'Login with Twitter', '/auth/twitter'
-              %li= link_to 'Login with Facebook', '/auth/facebook'
+              %li
+                = link_to '/auth/twitter' do
+                  = fa_icon :twitter, text: 'Login with Twitter'
+              %li
+                = link_to '/auth/facebook' do
+                  = fa_icon :facebook, text: 'Login with Facebook'
     .container
       .row
         .col-md-12
