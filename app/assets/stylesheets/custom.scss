@@ -1,5 +1,4 @@
 body {
-  padding-top: 100px;
   background-color: #fafafa;
 }
 
@@ -46,6 +45,22 @@ nav {
 .navbar-brand img {
   width: 30px;
   height: 30px;
+}
+
+header.jumbotron {
+  background-image: url('//unsplash.it/1600/400/?random');
+  background-position: center center;
+  background-size: cover;
+
+  .container {
+    margin-top: 100px;
+    margin-bottom: 7%;
+    text-align: center;
+  }
+}
+
+.main-content {
+  margin-top: 100px;
 }
 
 footer {
@@ -138,8 +153,4 @@ footer {
 
 .profile {
   margin-bottom: 20px;
-}
-
-#top-index .jumbotron {
-		padding: 15px;
 }

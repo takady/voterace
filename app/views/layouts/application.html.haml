@@ -46,7 +46,14 @@
               %li
                 = link_to '/auth/facebook' do
                   = fa_icon :facebook, text: 'Login with Facebook'
-    .container
+
+    - if current_page?(root_path) && !sign_in?
+      %header.jumbotron
+        .container
+          %h1 VoteRace
+          %p Which one would you vote for ?
+
+    .container.main-content
       .row
         .col-md-12
           - if flash[:notice]
@@ -58,7 +65,7 @@
             .alert.alert-danger
               = flash[:alert]
       = yield
-    %footer.footer
+    %footer.container-fluid
       .container
         .row
           .col-md-12
