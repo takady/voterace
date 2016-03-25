@@ -7,14 +7,19 @@
           %li= msg
 
   .form-group
+    = f.label :username, class: 'form-label'
     = f.text_field :username, placeholder: "Pick a username", class: 'form-control'
   .form-group
+    = f.label :fullname, class: 'form-label'
     = f.text_field :fullname, placeholder: "Your name", class: 'form-control'
   .form-group
+    = f.label :email, class: 'form-label'
     = f.text_field :email, placeholder: "Your email", class: 'form-control'
   .form-group
+    = f.label :image_url, class: 'form-label'
     = f.text_field :image_url, placeholder: "Your image url", class: 'form-control'
   .form-group
+    = f.label :description, class: 'form-label'
     = f.text_area :description, rows: 4, placeholder: "Introduce yourself", class: 'form-control'
   .form-group
     - if controller.action_name == 'new'

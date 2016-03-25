@@ -7,17 +7,24 @@
           %li= msg
 
   .form-group
+    = f.label :title
     = f.text_field :title, placeholder: 'Race Title', class: 'form-control'
   .form-group
+    = f.label :candidate_1
     = f.text_field :candidate_1, placeholder: 'First Lane', class: 'form-control'
   .form-group
+    = f.label :candidate_2
     = f.text_field :candidate_2, placeholder: 'Second Lane', class: 'form-control'
   .form-group
-    = f.text_field :expired_at, placeholder: 'Expired Time', class: 'form-control', id: 'datetimepicker4'
+    = f.label :expired_at
+    #datetimepicker1.input-group.date
+      = f.text_field :expired_at, placeholder: 'Expired Time', class: 'form-control'
+      .input-group-addon
+        .glyphicon.glyphicon-calendar
   .form-group
     = f.submit 'Start race', class: 'btn btn-primary'
 
 :javascript
   $(function () {
-    $('#datetimepicker4').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss', sideBySide: true});
+    $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss', sideBySide: true});
   });
