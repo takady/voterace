@@ -2,9 +2,6 @@ class UsersController < ApplicationController
   before_action :authenticate, except: [:show, :new, :create]
   before_action :set_current_user, only: [:edit, :update, :destroy]
 
-  def mypage
-  end
-
   def show
     @user = User.find_by!(username: params[:username])
     @races = Race.where(user: @user).page(params[:page]).order('id DESC')
@@ -37,7 +34,7 @@ class UsersController < ApplicationController
       end
       session[:user_id] = @user.id
 
-      redirect_to :mypage, notice: 'You are successfully sign up!'
+      redirect_to root_path, notice: 'You are successfully sign up!'
     else
       render :new
     end
@@ -48,7 +45,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to :mypage, notice: 'User was successfully updated.'
+      redirect_to :settings, notice: 'User was successfully updated.'
     else
       render :edit
     end

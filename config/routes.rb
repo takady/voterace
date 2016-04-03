@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   post '/races/vote' => 'races#vote'
   resources :races, only: [:index, :show, :new, :create, :destroy]
 
-  get '/mypage' => 'users#mypage'
+  get '/settings/profile' => 'users#edit', as: :settings
 
-  resources :users, param: :username, path: '/', only: [:show, :edit, :update, :destroy]
+  resources :users, param: :username, path: '/', only: [:show, :update, :destroy]
   resources :users, only: [:new, :create]
 end

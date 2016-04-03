@@ -5,8 +5,8 @@
         %li
           .race
             .race-owner
-              = link_to image_tag(race.user.image_url, class: 'avatar'), race.user.username
-              = link_to race.user.username, race.user.username, class: 'username'
+              = link_to image_tag(race.user.image_url, class: 'avatar'), user_path(race.user.username)
+              = link_to race.user.username, user_path(race.user.username), class: 'username'
             .race-detail
               %h2.title= link_to race.title, race
               - if sign_in?
