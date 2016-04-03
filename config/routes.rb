@@ -9,6 +9,6 @@ Rails.application.routes.draw do
 
   get '/settings/profile' => 'users#edit', as: :settings
 
-  resources :users, param: :username, path: '/', only: [:show, :edit, :update, :destroy]
+  resources :users, param: :username, path: '/', only: [:show, :update, :destroy]
   resources :users, only: [:new, :create]
 end
