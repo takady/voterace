@@ -1,3 +1,14 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h2.fullname {
+  font-weight: bold;
+}
+
+h3.username {
+  font-size: 20px;
+  font-weight: 300;
+  color: #8899a6;
+  margin-top: 10px;
+}

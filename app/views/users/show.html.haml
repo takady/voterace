@@ -2,6 +2,7 @@
   .col-md-5
     %img{src: @user.image_url, width: '200px'}
   .col-md-7
-    %h2= @user.username
+    %h2.fullname= @user.fullname
+    %h3.username= "@#{@user.username}"
     %p= @user.description
 = render 'shared/race_list'
