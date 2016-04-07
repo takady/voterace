@@ -17,8 +17,8 @@ Bundler.require(*Rails.groups)
 
 module Voterace
   class Application < Rails::Application
-    config.time_zone = 'Tokyo'
-    config.active_record.default_timezone = :local
+    config.time_zone = 'UTC'
+    config.active_record.default_timezone = :utc
 
     config.generators do |generator|
       generator.test_framework :rspec, view_specs: false, helper_specs: false, fixture: true
