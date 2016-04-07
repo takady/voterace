@@ -44,7 +44,7 @@ class RacesController < ApplicationController
       flash[:alert] = 'Vote failed! This race has already been expired.'
     end
 
-    redirect_to root_path
+    redirect_to request.referer
   end
 
   private
