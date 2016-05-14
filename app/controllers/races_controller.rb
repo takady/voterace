@@ -33,20 +33,6 @@ class RacesController < ApplicationController
     end
   end
 
-  def vote
-    if @race.votable?
-      if current_user.vote_for(race_id: @race.id, candidate: params[:candidate])
-        flash[:notice] = 'Voted!'
-      else
-        flash[:alert] = 'Vote failed!'
-      end
-    else
-      flash[:alert] = 'Vote failed! This race has already been expired.'
-    end
-
-    redirect_to request.referer
-  end
-
   private
 
   def set_race

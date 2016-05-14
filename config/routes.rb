@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new', as: :signup
   get '/logout' => 'sessions#destroy', as: :logout
 
-  post '/races/vote' => 'races#vote'
-  resources :races, only: [:index, :show, :new, :create, :destroy]
+  resources :races, only: [:index, :show, :new, :create, :destroy] do
+    resources :votes, only: [:create]
+  end
 
   get '/settings/profile' => 'users#edit', as: :settings
 

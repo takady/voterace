@@ -10,7 +10,7 @@
             = race.candidate_1
             = fa_icon 'check-circle-o'
           - elsif race.votable?
-            %b= link_to race.candidate_1, races_vote_path(id: race.id, candidate: 1), method: :post
+            %b= link_to race.candidate_1, race_votes_path(race_id: race.id, candidate: 1), method: :post
           - else
             = race.candidate_1
       .candidate
@@ -20,18 +20,18 @@
             = race.candidate_2
             = fa_icon 'check-circle-o'
           - elsif race.votable?
-            %b= link_to race.candidate_2, races_vote_path(id: race.id, candidate: 2), method: :post
+            %b= link_to race.candidate_2, race_votes_path(race_id: race.id, candidate: 2), method: :post
           - else
             = race.candidate_2
     - else
       .candidate
         - if race.votable?
-          %b= link_to race.candidate_1, races_vote_path(id: race.id, candidate: 1), method: :post
+          %b= link_to race.candidate_1, race_votes_path(race_id: race.id, candidate: 1), method: :post
         - else
           %b= race.candidate_1
       .candidate
         - if race.votable?
-          %b= link_to race.candidate_2, races_vote_path(id: race.id, candidate: 2), method: :post
+          %b= link_to race.candidate_2, race_votes_path(race_id: race.id, candidate: 2), method: :post
         - else
           %b= race.candidate_2
   - else
