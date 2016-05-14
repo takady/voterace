@@ -1,10 +1,6 @@
 class Race < ActiveRecord::Base
   belongs_to :user
-  has_many :votes do
-    def count_of_candidate(candidate)
-      where(candidate: candidate).count
-    end
-  end
+  has_many :candidates
 
   validates :title, :candidate_1, :candidate_2, :expired_at, presence: true
   validate do |race|
@@ -29,8 +25,8 @@ class Race < ActiveRecord::Base
   end
 
   def vote_rates
-    votes_for_1 = votes.count_of_candidate(1)
-    votes_for_2 = votes.count_of_candidate(2)
+    votes_for_1 = candidates.find_by(order: 1).votes.count
+    votes_for_2 = candidates.find_by(order: 2).votes.count
     total_votes = votes_for_1 + votes_for_2
     vote_rate_of_1 = ((votes_for_1/total_votes.to_f) * 100).round
     vote_rate_of_2 = ((votes_for_2/total_votes.to_f) * 100).round

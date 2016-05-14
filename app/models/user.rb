@@ -10,12 +10,14 @@ class User < ActiveRecord::Base
   validates :username, exclusion: { in: RESERVED_USERNAME }
 
   def vote_for(race_id:, candidate_order:)
-    Vote.find_or_initialize_by(race_id: race_id, user_id: self.id).update(candidate_order: candidate_order)
+    candidate = Candidate.find_by!(race_id: race_id, order: candidate_order)
+
+    Vote.find_or_initialize_by(race_id: race_id, user_id: self.id).update(candidate_order: candidate_order, candidate_id: candidate.id)
   end
 
   def voted_candidate(race)
     if vote = votes.find_by(race: race)
-      vote.candidate
+      vote.candidate_order
     end
   end
 end
