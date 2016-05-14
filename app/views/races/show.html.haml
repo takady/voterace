@@ -8,12 +8,8 @@
 
     %h1= @race.title
 
-    - (1..2).each do |index|
-      %p
-        - if sign_in?
-          %p= vote_button(@race, index)
-        - else
-          %b= @race.send("candidate_#{index}")
+    = render partial: 'shared/candidates', locals: {race: @race}
+
     %p
       %b= fa_icon 'clock-o', text: 'expire at'
       = @race.expired_at

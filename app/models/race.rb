@@ -27,4 +27,14 @@ class Race < ActiveRecord::Base
   def votable?
     expired_at > Time.zone.now
   end
+
+  def vote_rates
+    votes_for_1 = votes.count_of_candidate(1)
+    votes_for_2 = votes.count_of_candidate(2)
+    total_votes = votes_for_1 + votes_for_2
+    vote_rate_of_1 = ((votes_for_1/total_votes.to_f) * 100).round
+    vote_rate_of_2 = ((votes_for_2/total_votes.to_f) * 100).round
+
+    [vote_rate_of_1, vote_rate_of_2]
+  end
 end
