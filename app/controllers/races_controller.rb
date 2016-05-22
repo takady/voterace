@@ -13,8 +13,9 @@ class RacesController < ApplicationController
   def new
     @race = current_user.races.build
 
-    @race.candidates.build(order: 1)
-    @race.candidates.build(order: 2)
+    Candidate::ORDERS.each do |order|
+      @race.candidates.build(order: order)
+    end
   end
 
   def create
