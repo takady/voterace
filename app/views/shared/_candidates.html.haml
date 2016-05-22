@@ -2,7 +2,7 @@
 - candidate_2 = race.candidates.find_by(order: 2)
 .candidates
   - if sign_in?
-    - if current_user.voted?(race)
+    - if current_user.voted_for?(race)
       - vote_rate_of_1, vote_rate_of_2 = race.vote_rates
 
       .candidate
