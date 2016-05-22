@@ -1,6 +1,11 @@
 class Race < ActiveRecord::Base
   belongs_to :user
-  has_many :candidates
+  has_many :candidates, dependent: :destroy
+
+  after_create -> {
+    Candidate.find_or_initialize_by(race_id: id, order: 1).update!(name: candidate_1)
+    Candidate.find_or_initialize_by(race_id: id, order: 2).update!(name: candidate_2)
+  }
 
   validates :title, :candidate_1, :candidate_2, :expired_at, presence: true
   validate do |race|
