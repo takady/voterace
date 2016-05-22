@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522073716) do
+ActiveRecord::Schema.define(version: 20160522074322) do
 
   create_table "candidates", force: :cascade do |t|
     t.integer  "race_id",    limit: 4
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20160522073716) do
     t.integer  "race_id",      limit: 4
   end
 
+  add_index "votes", ["candidate_id"], name: "index_votes_on_candidate_id", using: :btree
   add_index "votes", ["race_id"], name: "index_votes_on_race_id", using: :btree
   add_index "votes", ["user_id"], name: "index_votes_on_user_id", using: :btree
 
