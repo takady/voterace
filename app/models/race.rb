@@ -14,14 +14,6 @@ class Race < ActiveRecord::Base
 
   scope :votable, -> { where('expired_at > ?', Time.zone.now) }
 
-  def voted_by?(user)
-    !!vote_of(user)
-  end
-
-  def vote_of(user)
-    votes.find_by(user_id: user.id)
-  end
-
   def votable?
     expired_at > Time.zone.now
   end
