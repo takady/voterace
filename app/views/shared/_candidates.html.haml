@@ -1,43 +1,36 @@
 - candidate_1 = race.candidates.find_by(order: 1)
 - candidate_2 = race.candidates.find_by(order: 2)
 .candidates
-  - if sign_in?
-    - if current_user.voted_for?(race)
-      - vote_rate_of_1, vote_rate_of_2 = race.vote_rates
-
-      .candidate
-        .candidate-chart{style: "width: #{vote_rate_of_1}%;", class: "#{'most-voted' if vote_rate_of_1 > vote_rate_of_2}"}
-          %b= "#{vote_rate_of_1}%"
-          - if candidate_1.voted_by?(current_user)
-            = candidate_1.name
-            = fa_icon 'check-circle-o'
-          - elsif race.votable?
-            %b= link_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), method: :post
-          - else
-            = candidate_1
-      .candidate
-        .candidate-chart{style: "width: #{vote_rate_of_2}%;", class: "#{'most-voted' if vote_rate_of_1 < vote_rate_of_2}"}
-          %b= "#{vote_rate_of_2}%"
-          - if candidate_2.voted_by?(current_user)
-            = candidate_2.name
-            = fa_icon 'check-circle-o'
-          - elsif race.votable?
-            %b= link_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), method: :post
-          - else
-            = candidate_2.name
-    - else
-      .candidate
-        - if race.votable?
+  - if sign_in? && current_user.voted_for?(race)
+    - vote_rate_of_1, vote_rate_of_2 = race.vote_rates
+    .candidate
+      .candidate-chart{style: "width: #{vote_rate_of_1}%;", class: "#{'most-voted' if vote_rate_of_1 > vote_rate_of_2}"}
+        %b= "#{vote_rate_of_1}%"
+        - if candidate_1.voted_by?(current_user)
+          = candidate_1.name
+          = fa_icon 'check-circle-o'
+        - elsif race.votable?
           %b= link_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), method: :post
         - else
-          %b= candidate_1.name
-      .candidate
-        - if race.votable?
+          = candidate_1
+    .candidate
+      .candidate-chart{style: "width: #{vote_rate_of_2}%;", class: "#{'most-voted' if vote_rate_of_1 < vote_rate_of_2}"}
+        %b= "#{vote_rate_of_2}%"
+        - if candidate_2.voted_by?(current_user)
+          = candidate_2.name
+          = fa_icon 'check-circle-o'
+        - elsif race.votable?
           %b= link_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), method: :post
         - else
-          %b= candidate_2.name
+          = candidate_2.name
   - else
     .candidate
-      %b= candidate_1.name
+      - if race.votable?
+        %b= link_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), method: :post
+      - else
+        %b= candidate_1.name
     .candidate
-      %b= candidate_2.name
+      - if race.votable?
+        %b= link_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), method: :post
+      - else
+        %b= candidate_2.name
