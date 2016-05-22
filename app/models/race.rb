@@ -2,12 +2,9 @@ class Race < ActiveRecord::Base
   belongs_to :user
   has_many :candidates, dependent: :destroy
 
-  after_create -> {
-    Candidate.find_or_initialize_by(race_id: id, order: 1).update!(name: candidate_1)
-    Candidate.find_or_initialize_by(race_id: id, order: 2).update!(name: candidate_2)
-  }
+  accepts_nested_attributes_for :candidates
 
-  validates :title, :candidate_1, :candidate_2, :expired_at, presence: true
+  validates :title, :expired_at, presence: true
   validate do |race|
     errors.add(:expired_at, 'must be in a year from now') unless race.expired_at.present? && Time.zone.now < race.expired_at && race.expired_at < Time.zone.now.years_since(1)
   end
@@ -16,14 +13,6 @@ class Race < ActiveRecord::Base
   max_paginates_per 10
 
   scope :votable, -> { where('expired_at > ?', Time.zone.now) }
-
-  def voted_by?(user)
-    !!vote_of(user)
-  end
-
-  def vote_of(user)
-    votes.find_by(user_id: user.id)
-  end
 
   def votable?
     expired_at > Time.zone.now

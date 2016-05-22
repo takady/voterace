@@ -1,6 +1,6 @@
 class RacesController < ApplicationController
   before_action :authenticate, except: :show
-  before_action :set_race, only: [:show, :destroy, :vote]
+  before_action :set_race, only: [:show, :destroy]
 
   def index
     @races = Race.votable.page(params[:page]).order('id DESC')
@@ -12,6 +12,10 @@ class RacesController < ApplicationController
 
   def new
     @race = current_user.races.build
+
+    Candidate::ORDERS.each do |order|
+      @race.candidates.build(order: order)
+    end
   end
 
   def create
@@ -40,6 +44,6 @@ class RacesController < ApplicationController
   end
 
   def race_params
-    params.require(:race).permit(:title, :candidate_1, :candidate_2, :expired_at)
+    params.require(:race).permit(:title, :expired_at, candidates_attributes: [:name, :order])
   end
 end

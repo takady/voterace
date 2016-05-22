@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522074322) do
+ActiveRecord::Schema.define(version: 20160522074938) do
 
   create_table "candidates", force: :cascade do |t|
     t.integer  "race_id",    limit: 4
@@ -24,13 +24,11 @@ ActiveRecord::Schema.define(version: 20160522074322) do
   add_index "candidates", ["race_id"], name: "index_candidates_on_race_id", using: :btree
 
   create_table "races", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
-    t.string   "title",       limit: 255
-    t.string   "candidate_1", limit: 255
-    t.string   "candidate_2", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.datetime "expired_at",              null: false
+    t.integer  "user_id",    limit: 4
+    t.string   "title",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.datetime "expired_at",             null: false
   end
 
   add_index "races", ["user_id"], name: "index_races_on_user_id", using: :btree
