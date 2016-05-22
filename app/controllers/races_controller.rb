@@ -12,6 +12,9 @@ class RacesController < ApplicationController
 
   def new
     @race = current_user.races.build
+
+    @race.candidates.build(order: 1)
+    @race.candidates.build(order: 2)
   end
 
   def create
@@ -40,6 +43,6 @@ class RacesController < ApplicationController
   end
 
   def race_params
-    params.require(:race).permit(:title, :candidate_1, :candidate_2, :expired_at)
+    params.require(:race).permit(:title, :expired_at, candidates_attributes: [:name, :order])
   end
 end

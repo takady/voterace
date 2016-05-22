@@ -15,9 +15,7 @@ class User < ActiveRecord::Base
     Vote.find_or_initialize_by(race_id: race_id, user_id: self.id).update(candidate_id: candidate.id)
   end
 
-  def voted_candidate(race)
-    if vote = Vote.find_by(user_id: self.id, race_id: race.id)
-      vote.candidate.order
-    end
+  def voted?(race)
+    Vote.find_by(user_id: self.id, race_id: race.id).present?
   end
 end

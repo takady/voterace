@@ -1,41 +1,43 @@
+- candidate_1 = race.candidates.find_by(order: 1)
+- candidate_2 = race.candidates.find_by(order: 2)
 .candidates
   - if sign_in?
-    - if voted_candidate = current_user.voted_candidate(race)
+    - if current_user.voted?(race)
       - vote_rate_of_1, vote_rate_of_2 = race.vote_rates
 
       .candidate
         .candidate-chart{style: "width: #{vote_rate_of_1}%;", class: "#{'most-voted' if vote_rate_of_1 > vote_rate_of_2}"}
           %b= "#{vote_rate_of_1}%"
-          - if voted_candidate == 1
-            = race.candidate_1
+          - if candidate_1.voted_by?(current_user)
+            = candidate_1.name
             = fa_icon 'check-circle-o'
           - elsif race.votable?
-            %b= link_to race.candidate_1, race_votes_path(race_id: race.id, candidate_order: 1), method: :post
+            %b= link_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), method: :post
           - else
-            = race.candidate_1
+            = candidate_1
       .candidate
         .candidate-chart{style: "width: #{vote_rate_of_2}%;", class: "#{'most-voted' if vote_rate_of_1 < vote_rate_of_2}"}
           %b= "#{vote_rate_of_2}%"
-          - if voted_candidate == 2
-            = race.candidate_2
+          - if candidate_2.voted_by?(current_user)
+            = candidate_2.name
             = fa_icon 'check-circle-o'
           - elsif race.votable?
-            %b= link_to race.candidate_2, race_votes_path(race_id: race.id, candidate_order: 2), method: :post
+            %b= link_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), method: :post
           - else
-            = race.candidate_2
+            = candidate_2.name
     - else
       .candidate
         - if race.votable?
-          %b= link_to race.candidate_1, race_votes_path(race_id: race.id, candidate_order: 1), method: :post
+          %b= link_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), method: :post
         - else
-          %b= race.candidate_1
+          %b= candidate_1.name
       .candidate
         - if race.votable?
-          %b= link_to race.candidate_2, race_votes_path(race_id: race.id, candidate_order: 2), method: :post
+          %b= link_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), method: :post
         - else
-          %b= race.candidate_2
+          %b= candidate_2.name
   - else
     .candidate
-      %b= race.candidate_1
+      %b= candidate_1.name
     .candidate
-      %b= race.candidate_2
+      %b= candidate_2.name

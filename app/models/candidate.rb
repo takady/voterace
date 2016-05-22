@@ -3,4 +3,8 @@ class Candidate < ActiveRecord::Base
   has_many :votes, dependent: :destroy
 
   validates :name, presence: true
+
+  def voted_by?(user)
+    votes.find_by(user_id: user.id).present?
+  end
 end
