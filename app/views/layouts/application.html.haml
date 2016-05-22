@@ -14,7 +14,7 @@
       .container
         .navbar-header
           .navbar-toggle
-            - if sign_in?
+            - if signed_in?
               - if current_page?(user_path(current_user.username))
                 = link_to logout_path do
                   = fa_icon 'sign-out', text: 'Logout'
@@ -32,7 +32,7 @@
           = link_to image_tag('voterace.jpg'), root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
-            - if sign_in?
+            - if signed_in?
               %li.dropdown
                 = link_to '#', class: 'dropdown-toggle', 'data-toggle': 'dropdown' do
                   = image_tag(current_user.image_url, class: 'avatar')
@@ -56,7 +56,7 @@
                 = link_to '/auth/facebook' do
                   = fa_icon :facebook, text: 'Login with Facebook'
 
-    - if current_page?(root_path) && !sign_in?
+    - if current_page?(root_path) && !signed_in?
       %header.jumbotron
         .container
           %h1.title VoteRace

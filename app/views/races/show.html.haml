@@ -18,7 +18,7 @@
       = link_to 'https://twitter.com/share', 'Tweet', {'class' => 'twitter-share-button', 'data-hashtags' => 'voterace'}
       .fb-share-button{'data-href' => request.url, 'data-layout' => 'button', 'style' => 'position: relative;top: -6px;'}
 
-    - if sign_in? && current_user.id == @race.user_id
+    - if signed_in? && current_user.id == @race.user_id
       %p
         = link_to @race, method: :delete, data: {confirm: :'Are you sure?'}, class: 'btn btn-danger btn-destroy' do
           = fa_icon 'trash-o', text: 'Delete this race'
