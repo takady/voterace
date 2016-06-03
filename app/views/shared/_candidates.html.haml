@@ -26,11 +26,11 @@
   - else
     .candidate
       - if race.votable?
-        %b= link_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), method: :post
+        = button_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), class: 'btn btn-default'
       - else
         %b= candidate_1.name
     .candidate
       - if race.votable?
-        %b= link_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), method: :post
+        = button_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), class: 'btn btn-default'
       - else
         %b= candidate_2.name
