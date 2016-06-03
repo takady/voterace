@@ -22,6 +22,7 @@
                 = link_to image_tag(current_user.image_url, class: 'avatar'), user_path(current_user.username)
                 = link_to new_race_path, class: 'btn btn-primary new-race' do
                   = fa_icon :plus, text: 'New Race'
+            - elsif current_page?(signin_path)
             - else
               %li
                 = link_to '/auth/twitter' do
@@ -47,7 +48,7 @@
               %li
                 = link_to new_race_path, class: 'btn btn-primary new-race' do
                   = fa_icon :plus, text: 'New Race'
-
+            - elsif current_page?(signin_path)
             - else
               %li
                 = link_to '/auth/twitter' do
