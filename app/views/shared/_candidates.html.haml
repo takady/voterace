@@ -12,7 +12,7 @@
         - elsif race.votable?
           %b= link_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), method: :post
         - else
-          = candidate_1
+          = candidate_1.name
     .candidate
       .candidate-chart{style: "width: #{vote_rate_of_2}%;", class: "#{'most-voted' if vote_rate_of_1 < vote_rate_of_2}"}
         %b= "#{vote_rate_of_2}%"
