@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate, except: [:show, :new, :create]
+  before_action :authenticate, except: [:show, :new, :create, :signin]
   before_action :set_current_user, only: [:edit, :update, :destroy]
 
   def show
@@ -55,6 +55,9 @@ class UsersController < ApplicationController
     @user.destroy
 
     redirect_to root_path, notice: 'User was successfully destroyed.'
+  end
+
+  def signin
   end
 
   private
