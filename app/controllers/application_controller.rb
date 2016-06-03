@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     return if signed_in?
-    redirect_to root_path, alert: 'You are not singed in.'
+
+    redirect_to signin_path
   end
 end

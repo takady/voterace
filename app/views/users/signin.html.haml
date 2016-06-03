@@ -1,0 +1,11 @@
+.row.signin
+  .row.signin-buttons
+    .col-md-9.col-md-offset-1
+      %h1 Let's sign in!
+    .col-md-8.col-md-offset-2.text-center
+      .signin-with-twitter
+        = link_to '/auth/twitter', class: 'btn btn-info btn-block' do
+          = fa_icon :twitter, text: 'Sign in with Twitter'
+      .signin-with-facebook
+        = link_to '/auth/facebook', class: 'btn btn-primary btn-block' do
+          = fa_icon :facebook, text: 'Sign in with Facebook'

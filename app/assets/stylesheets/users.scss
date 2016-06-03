@@ -12,3 +12,19 @@ h3.username {
   color: #8899a6;
   margin-top: 10px;
 }
+
+.signin {
+  max-width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 30px 40px;
+
+  .signin-buttons {
+    .btn {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}

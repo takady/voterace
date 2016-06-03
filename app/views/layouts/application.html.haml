@@ -22,13 +22,10 @@
                 = link_to image_tag(current_user.image_url, class: 'avatar'), user_path(current_user.username)
                 = link_to new_race_path, class: 'btn btn-primary new-race' do
                   = fa_icon :plus, text: 'New Race'
+            - elsif current_page?(signin_path)
             - else
-              %li
-                = link_to '/auth/twitter' do
-                  = fa_icon :twitter, text: 'Login with Twitter'
-              %li
-                = link_to '/auth/facebook' do
-                  = fa_icon :facebook, text: 'Login with Facebook'
+              = link_to signin_path, class: 'btn btn-success' do
+                = fa_icon 'sign-in', text: 'Sign in'
           = link_to image_tag('voterace.jpg'), root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
@@ -47,7 +44,7 @@
               %li
                 = link_to new_race_path, class: 'btn btn-primary new-race' do
                   = fa_icon :plus, text: 'New Race'
-
+            - elsif current_page?(signin_path)
             - else
               %li
                 = link_to '/auth/twitter' do
