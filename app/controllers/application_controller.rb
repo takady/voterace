@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def current_user
     return unless session[:user_id]
 
-    User.find_by!(id: session[:user_id])
+    @user ||= User.find(session[:user_id])
   end
 
   def set_current_user
