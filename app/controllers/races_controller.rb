@@ -4,6 +4,7 @@ class RacesController < ApplicationController
 
   def index
     @races = Race.votable.page(params[:page]).order('id DESC')
+    @race = build_race
   end
 
   def show
@@ -11,11 +12,7 @@ class RacesController < ApplicationController
   end
 
   def new
-    @race = current_user.races.build
-
-    Candidate::ORDERS.each do |order|
-      @race.candidates.build(order: order)
-    end
+    @race = build_race
   end
 
   def create
@@ -41,6 +38,14 @@ class RacesController < ApplicationController
 
   def set_race
     @race = Race.find(params[:id])
+  end
+
+  def build_race
+    Race.new.tap {|race|
+      Candidate::ORDERS.each do |order|
+        race.candidates.build(order: order)
+      end
+    }
   end
 
   def race_params
