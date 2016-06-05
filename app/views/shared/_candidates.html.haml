@@ -10,7 +10,7 @@
           = candidate_1.name
           = fa_icon 'check-circle-o'
         - elsif race.votable?
-          %b= link_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), method: :post
+          %b= link_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), method: :post, data: {toggle: 'tooltip', placement: 'right'}, title: 'vote!'
         - else
           = candidate_1.name
     .candidate
@@ -20,17 +20,22 @@
           = candidate_2.name
           = fa_icon 'check-circle-o'
         - elsif race.votable?
-          %b= link_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), method: :post
+          %b= link_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), method: :post, data: {toggle: 'tooltip', placement: 'right'}, title: 'vote!'
         - else
           = candidate_2.name
   - else
     .candidate
       - if race.votable?
-        = button_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), class: 'btn btn-default'
+        = button_to candidate_1.name, race_votes_path(race_id: race.id, candidate_order: 1), class: 'btn btn-default', data: {toggle: 'tooltip', placement: 'right'}, title: 'vote!'
       - else
         %b= candidate_1.name
     .candidate
       - if race.votable?
-        = button_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), class: 'btn btn-default'
+        = button_to candidate_2.name, race_votes_path(race_id: race.id, candidate_order: 2), class: 'btn btn-default', data: {toggle: 'tooltip', placement: 'right'}, title: 'vote!'
       - else
         %b= candidate_2.name
+
+:javascript
+  $(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+  });
