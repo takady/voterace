@@ -2,6 +2,71 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.race-list {
+  .race {
+    background-color: #fff;
+    border: 1px solid #e1e8ed;
+    padding: 10px 13px;
+
+    img.avatar {
+      width: 37px;
+      height: 37px;
+    }
+
+    .race-owner a.username {
+      color: #0d3c5f;
+      font-weight: bold;
+      font-size: 15px;
+      margin-left: 5px;
+    }
+
+    .race-detail {
+      padding-left: 20px;
+
+      .title a {
+        text-decoration: initial;
+      }
+    }
+  }
+}
+
+.race-permalink {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 30px 40px;
+
+  .race-owner {
+    img.avatar {
+      width: 48px;
+      height: 48px;
+    }
+
+    .fullname {
+      font-size: 18px;
+      font-weight: bold;
+      color: #0d3c5f;
+      margin-left: 5px;
+    }
+
+    .username {
+      font-size: 14px;
+      color: #8899a6;
+      margin-left: 5px;
+    }
+
+    a:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+
+.create-new-race {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 30px 40px;
+}
+
 .candidates {
   margin: 30px 30px 30px 0;
 
@@ -20,5 +85,17 @@
         background: #D9EDF7;
       }
     }
+  }
+}
+
+.start-race-box {
+  background-color: #DFECF3;
+  border: 1px solid #e1e8ed;
+  margin: 0;
+  padding: 30px 30px 8px 3px;
+
+  img.avatar {
+    width: 30px;
+    height: 30px;
   }
 }

@@ -1,8 +1,9 @@
 class Race < ActiveRecord::Base
   belongs_to :user
   has_many :candidates, dependent: :destroy
-
   accepts_nested_attributes_for :candidates
+
+  DEFAULT_LIFETIME = 30.days
 
   validates :title, :expired_at, presence: true
   validate do |race|
