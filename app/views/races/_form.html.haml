@@ -1,13 +1,13 @@
 = simple_form_for @race do |f|
   .form-group
-    = f.input :title, placeholder: 'Race Title', class: 'form-control'
+    = f.input :title, placeholder: 'Race Title'
   - @race.candidates.each do |candidate|
     .form-group
       = f.fields_for :candidates, candidate do |candidate_field|
         = candidate_field.hidden_field :order, value: candidate.order
-        = candidate_field.input :name, label: "Candidate #{candidate.order}", placeholder: "Candidate #{candidate.order}", class: 'form-control'
+        = candidate_field.input :name, label: "Candidate #{candidate.order}", placeholder: "Candidate #{candidate.order}"
   .form-group
-    = f.input :expired_at, as: :date_time_picker, placeholder: 'Expired Time', class: 'form-control'
+    = f.input :expired_at, as: :date_time_picker, placeholder: 'Expired Time'
   .form-group
     = f.submit 'Start race', class: 'btn btn-primary'
 
