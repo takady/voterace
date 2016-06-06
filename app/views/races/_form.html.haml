@@ -1,30 +1,17 @@
-= form_for @race do |f|
-  - if @race.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@race.errors.count, "error")} prohibited this race from being saved:"
-      %ul
-        - @race.errors.full_messages.each do |msg|
-          %li= msg
-
+= simple_form_for @race do |f|
   .form-group
-    = f.label :title
-    = f.text_field :title, placeholder: 'Race Title', class: 'form-control'
+    = f.input :title, placeholder: 'Race Title'
   - @race.candidates.each do |candidate|
     .form-group
       = f.fields_for :candidates, candidate do |candidate_field|
-        = candidate_field.label "candidate #{candidate.order}"
         = candidate_field.hidden_field :order, value: candidate.order
-        = candidate_field.text_field :name, placeholder: 'Candidate Name', class: 'form-control'
+        = candidate_field.input :name, label: "Candidate #{candidate.order}", placeholder: "Candidate #{candidate.order}"
   .form-group
-    = f.label :expired_at
-    #datetimepicker1.input-group.date
-      = f.text_field :expired_at, placeholder: 'Expired Time', class: 'form-control'
-      .input-group-addon
-        .glyphicon.glyphicon-calendar
+    = f.input :expired_at, as: :date_time_picker, placeholder: 'Expired Time'
   .form-group
     = f.submit 'Start race', class: 'btn btn-primary'
 
 :javascript
-  $(function () {
-    $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss', sideBySide: true});
+  $(function() {
+    $('.form_datetime').datetimepicker({format: 'YYYY-MM-DD HH:mm:ss', sideBySide: true});
   });
