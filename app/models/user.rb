@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :votes
   has_many :races
 
-  validates :username, presence: true
+  validates :username, :fullname, :email, :image_url, presence: true
   validates :username, uniqueness: true, case_sensitive: false
   validates :username, exclusion: { in: RESERVED_USERNAME }
 

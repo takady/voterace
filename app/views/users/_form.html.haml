@@ -1,26 +1,14 @@
-= form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-
+= simple_form_for @user do |f|
   .form-group
-    = f.label :username, class: 'form-label'
-    = f.text_field :username, placeholder: "Pick a username", class: 'form-control'
+    = f.input :username, placeholder: 'Pick a username'
   .form-group
-    = f.label :fullname, class: 'form-label'
-    = f.text_field :fullname, placeholder: "Your name", class: 'form-control'
+    = f.input :fullname, placeholder: 'Your name'
   .form-group
-    = f.label :email, class: 'form-label'
-    = f.text_field :email, placeholder: "Your email", class: 'form-control'
+    = f.input :email, placeholder: 'Your email'
   .form-group
-    = f.label :image_url, class: 'form-label'
-    = f.text_field :image_url, placeholder: "Your image url", class: 'form-control'
+    = f.input :image_url, placeholder: 'Your image url'
   .form-group
-    = f.label :description, class: 'form-label'
-    = f.text_area :description, rows: 4, placeholder: "Introduce yourself", class: 'form-control'
+    = f.input :description, input_html: {rows: 4}, placeholder: 'Introduce yourself'
   .form-group
     - if controller.action_name == 'new'
       = f.submit 'Sign up', class: 'btn btn-success'
