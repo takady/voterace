@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.6'
 gem 'mysql2'
 gem 'pry-rails'
 gem 'sass-rails'
@@ -27,12 +27,15 @@ group :development do
   gem 'capistrano3-unicorn'
 end
 
-group :development, :test do
-  gem 'byebug'
+group :development do
   gem 'web-console', '~> 2.0'
-  gem 'spring'
-  gem 'guard-rspec'
-  gem 'factory_girl_rails'
+
+  group :test do
+    gem 'byebug'
+    gem 'spring'
+    gem 'guard-rspec'
+    gem 'factory_girl_rails'
+  end
 end
 
 group :test do
