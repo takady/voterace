@@ -1,4 +1,4 @@
-class Race < ActiveRecord::Base
+class Race < ApplicationRecord
   belongs_to :user
   has_many :candidates, dependent: :destroy
   accepts_nested_attributes_for :candidates
