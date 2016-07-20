@@ -1,4 +1,4 @@
-class Candidate < ActiveRecord::Base
+class Candidate < ApplicationRecord
   belongs_to :race
   has_many :votes, dependent: :destroy
 
