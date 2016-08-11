@@ -19,6 +19,8 @@ gem 'bootstrap3-datetimepicker-rails'
 gem 'google-analytics-rails'
 gem 'font-awesome-rails'
 gem 'simple_form'
+gem 'act-fluent-logger-rails'
+gem 'lograge'
 
 group :development do
   gem 'capistrano-rails'
