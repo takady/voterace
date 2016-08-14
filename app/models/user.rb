@@ -9,10 +9,8 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, case_sensitive: false
   validates :username, exclusion: { in: RESERVED_USERNAME }
 
-  def vote_for(race_id:, candidate_order:)
-    candidate = Candidate.find_by!(race_id: race_id, order: candidate_order)
-
-    Vote.find_or_initialize_by(race_id: race_id, user_id: self.id).update(candidate_id: candidate.id)
+  def vote_for(candidate)
+    Vote.find_or_initialize_by(race_id: candidate.race_id, user_id: id).update(candidate_id: candidate.id)
   end
 
   def voted_for?(race)
