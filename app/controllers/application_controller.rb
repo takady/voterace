@@ -7,7 +7,24 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?
 
+  rescue_from Exception, with: :render_500
+  rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :render_404
+
   private
+
+  def render_404
+    render_error 404
+  end
+
+  def render_500(e = nil)
+    render_error 500, e
+  end
+
+  def render_error(status, e = nil)
+    @error_message = e.message if e
+
+    render template: "errors/#{status}", status: status, layout: 'application', content_type: 'text/html'
+  end
 
   def current_user
     return unless session[:user_id]
