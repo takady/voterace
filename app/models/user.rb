@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  RESERVED_USERNAME = %w(vote votes race races user users voterace voteraces mypage auth login logout signin signup signout admin status privacy about).freeze
+  RESERVED_USERNAME = %w(vote votes race races user users voterace voteraces mypage auth login logout signin signup signout admin status privacy about robots.txt).freeze
 
   has_many :social_profiles
   has_many :votes
