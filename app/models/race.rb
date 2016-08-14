@@ -6,17 +6,23 @@ class Race < ApplicationRecord
   DEFAULT_LIFETIME = 30.days
 
   validates :title, :expired_at, presence: true
-  validate do |race|
-    errors.add(:expired_at, 'must be in a year from now') unless race.expired_at.present? && Time.zone.now < race.expired_at && race.expired_at < Time.zone.now.years_since(1)
-  end
+  validate :expired_in_a_year
 
   paginates_per 10
   max_paginates_per 10
 
   scope :votable, -> { where('expired_at > ?', Time.zone.now) }
 
-  def votable?
-    expired_at > Time.zone.now
+  def expired_in_a_year(now: Time.zone.now)
+    return if errors.present?
+
+    unless now < expired_at && expired_at < now.years_since(1)
+      errors.add(:expired_at, 'must be in a year from now')
+    end
+  end
+
+  def votable?(at: Time.zone.now)
+    expired_at > at
   end
 
   def vote_rates
