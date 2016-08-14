@@ -43,6 +43,7 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'database_rewinder'
+  gem 'timecop'
 end
 
 group :production do

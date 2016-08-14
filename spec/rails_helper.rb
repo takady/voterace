@@ -33,6 +33,12 @@ RSpec.configure do |config|
     DatabaseRewinder.clean
   end
 
+  config.around freeze_time: true do |example|
+    Timecop.freeze do
+      example.run
+    end
+  end
+
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
