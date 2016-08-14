@@ -60,14 +60,14 @@
           %p.copy Which one would you vote for ?
 
     .container.main-content
-      .row
-        .col-md-12
-          - if flash[:notice]
+      - if flash[:notice]
+        .row
+          .col-md-12
             .alert.alert-success
               = flash[:notice]
-      .row
-        .col-md-12
-          - if flash[:alert]
+      - if flash[:alert]
+        .row
+          .col-md-12
             .alert.alert-danger
               = flash[:alert]
       = yield

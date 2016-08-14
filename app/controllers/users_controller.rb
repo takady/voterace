@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to :settings, notice: 'User was successfully updated.'
+      redirect_to :settings, notice: 'You are successfully updated.'
     else
       render :edit
     end
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   def destroy
     current_user.destroy
 
-    redirect_to root_path, notice: 'User was successfully destroyed.'
+    redirect_to root_path
   end
 
   def signin
