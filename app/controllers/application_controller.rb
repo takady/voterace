@@ -3,14 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :authenticate
+  before_action :authenticate, except: [:render_404, :render_500]
 
   helper_method :current_user, :signed_in?
 
   rescue_from Exception, with: :render_500
   rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :render_404
-
-  private
 
   def render_404
     render_error 404
@@ -19,6 +17,8 @@ class ApplicationController < ActionController::Base
   def render_500(e = nil)
     render_error 500, e
   end
+
+  private
 
   def render_error(status, e = nil)
     @error_message = e.message if e
