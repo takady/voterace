@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   def render_error(status, e = nil)
     @error_message = e.message if e
 
-    render template: "errors/#{status}", status: status, layout: 'application', content_type: 'text/html'
+    render template: "errors/#{status}.html", status: status, layout: 'application', content_type: 'text/html'
   end
 
   def current_user
