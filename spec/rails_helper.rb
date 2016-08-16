@@ -5,6 +5,11 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'capybara/rails'
+require 'capybara/rspec'
+require 'capybara/poltergeist'
+
+Capybara.javascript_driver = :poltergeist
 
 # The following line is provided for convenience purposes. It has the downside
 # of increasing the boot-up time by auto-requiring all files in the support
@@ -27,6 +32,10 @@ RSpec.configure do |config|
 
   config.before :suite do
     DatabaseRewinder.clean_all
+  end
+
+  config.before(:all, type: :feature) do
+    OmniAuth.config.test_mode = true
   end
 
   config.after :each do
