@@ -13,11 +13,12 @@ class UsersController < ApplicationController
 
       if social_profile.user
         session[:user_id] = social_profile.user.id
-        redirect_to root_path
-      else
-        session[:social_profile_id] = social_profile.id
-        @user = User.new(username: auth.info.nickname || auth.info.name.remove(' ').downcase, email: auth.info.email, fullname: auth.info.name, description: auth.info.description, image_url: auth.info.image)
+        redirect_to root_path and return
       end
+
+      session[:social_profile_id] = social_profile.id
+
+      @user = User.new(username: auth.info.nickname || auth.info.name.remove(' ').downcase, email: auth.info.email, fullname: auth.info.name, description: auth.info.description, image_url: auth.info.image)
     else
       reset_session
 
