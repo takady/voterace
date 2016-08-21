@@ -44,6 +44,8 @@ group :test do
   gem 'rspec-rails'
   gem 'database_rewinder'
   gem 'timecop'
+  gem 'capybara'
+  gem 'poltergeist'
 end
 
 group :production do
