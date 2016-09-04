@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'users#new'
   get '/signup' => 'users#new', as: :signup
   get '/signin' => 'users#signin', as: :signin
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy', as: :logout
 
   resources :races, only: [:index, :show, :new, :create, :destroy] do

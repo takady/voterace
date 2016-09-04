@@ -1,0 +1,21 @@
+.row.login
+  %h1 Sign in
+
+  .col-md-6.text-center.login-buttons
+    %h2 With SNS account
+    .login-with-twitter
+      = link_to '/auth/twitter', class: 'btn btn-info btn-block' do
+        = fa_icon :twitter, text: 'Sign in with Twitter'
+    .login-with-facebook
+      = link_to '/auth/facebook', class: 'btn btn-primary btn-block' do
+        = fa_icon :facebook, text: 'Sign in with Facebook'
+
+  .col-md-6.text-center
+    %h2 With Username or Email
+    = form_tag login_path, method: :post do
+      .form-group
+        = text_field_tag :identifier, @identifier, placeholder: 'Username or Email'
+      .form-group
+        = password_field_tag :password, '', placeholder: 'Password'
+      .form-group
+        = submit_tag 'login', class: 'btn'

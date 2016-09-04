@@ -7,14 +7,16 @@ feature 'Login', js: true do
         provider: 'twitter', uid: '1', info: {nickname: 'test', image: 'http://example.com/test.png'}
       })
 
-      visit root_path
+      visit login_path
     end
 
     feature 'sign up' do
       scenario 'creates new user account' do
         expect {
-          click_link 'Login with Twitter'
+          click_link 'Sign in with Twitter'
           fill_in 'Email', with: 'test@example.com'
+          fill_in 'Password', with: 'test'
+          fill_in 'Password Confirmation', with: 'test'
           click_button 'Sign up'
         }.to change(User, :count).by(1).and change(SocialProfile, :count).by(1)
 
@@ -31,7 +33,7 @@ feature 'Login', js: true do
 
       scenario 'login with existing user account' do
         expect {
-          click_link 'Login with Twitter'
+          click_link 'Sign in with Twitter'
         }.to change(User, :count).by(0).and change(SocialProfile, :count).by(0)
 
         expect(page.current_path).to eq(root_path)
@@ -45,14 +47,16 @@ feature 'Login', js: true do
         provider: 'facebook', uid: '1', info: {name: 'test', image: 'http://example.com/test.png'}
       })
 
-      visit root_path
+      visit login_path
     end
 
     feature 'sign up' do
       scenario 'creates new user account' do
         expect {
-          click_link 'Login with Facebook'
+          click_link 'Sign in with Facebook'
           fill_in 'Email', with: 'test@example.com'
+          fill_in 'Password', with: 'test'
+          fill_in 'Password Confirmation', with: 'test'
           click_button 'Sign up'
         }.to change(User, :count).by(1).and change(SocialProfile, :count).by(1)
 
@@ -69,7 +73,7 @@ feature 'Login', js: true do
 
       scenario 'login with existing user account' do
         expect {
-          click_link 'Login with Facebook'
+          click_link 'Sign in with Facebook'
         }.to change(User, :count).by(0).and change(SocialProfile, :count).by(0)
 
         expect(page.current_path).to eq(root_path)
