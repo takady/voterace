@@ -1,0 +1,29 @@
+.login {
+  max-width: 600px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 15px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 35px;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 35px;
+  }
+
+  .login-buttons {
+    .btn {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}
