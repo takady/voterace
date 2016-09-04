@@ -43,6 +43,6 @@ class ApplicationController < ActionController::Base
   def authenticate
     return if signed_in?
 
-    redirect_to login_path
+    redirect_to signin_path
   end
 end

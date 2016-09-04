@@ -7,7 +7,7 @@ feature 'Login', js: true do
         provider: 'twitter', uid: '1', info: {nickname: 'test', image: 'http://example.com/test.png'}
       })
 
-      visit login_path
+      visit signin_path
     end
 
     feature 'sign up' do
@@ -47,7 +47,7 @@ feature 'Login', js: true do
         provider: 'facebook', uid: '1', info: {name: 'test', image: 'http://example.com/test.png'}
       })
 
-      visit login_path
+      visit signin_path
     end
 
     feature 'sign up' do
