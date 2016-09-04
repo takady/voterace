@@ -14,7 +14,7 @@
   .form-group
     = f.input :description, input_html: {rows: 4}, placeholder: 'Introduce yourself'
   .form-group
-    - if controller.action_name == 'new'
+    - if context == :new
       = f.submit 'Sign up', class: 'btn btn-success'
     - else
       = f.submit 'Edit', class: 'btn btn-success'
