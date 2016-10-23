@@ -22,7 +22,6 @@
                 = link_to image_tag(current_user.image_url, class: 'avatar'), user_path(current_user.username)
                 = link_to new_race_path, class: 'btn btn-primary new-race' do
                   = fa_icon :plus, text: 'New Race'
-            - elsif current_page?(signin_path)
             - else
               = link_to signin_path, class: 'btn btn-success' do
                 = fa_icon 'sign-in', text: 'Sign in'
@@ -42,19 +41,32 @@
                     = link_to logout_path do
                       = fa_icon 'sign-out', text: 'Logout'
               %li
-                = link_to new_race_path, class: 'btn btn-primary new-race' do
+                = link_to new_race_path, class: 'btn', id: 'new-race-button' do
                   = fa_icon :plus, text: 'New Race'
-            - elsif current_page?(signin_path)
             - else
               %li
-                = link_to signin_path do
+                = link_to signin_path, class: 'btn', id: 'sign-in-button' do
                   = fa_icon 'sign-in', text: 'Sign in'
+              %li
+                = link_to signup_path, class: 'btn', id: 'sign-up-button' do
+                  = fa_icon 'sign-in', text: 'Sign up'
 
     - if current_page?(root_path) && !signed_in?
       %header.jumbotron
         .container
-          %h1.title VoteRace
-          %p.copy Which one would you vote for ?
+          .row
+            .col-md-5.col-md-offset-1
+              %h1.title VoteRace
+              %p.copy Which one would you vote for ?
+            .col-md-3.col-md-offset-1
+              %h2.title Sign in
+              = form_tag signin_path, method: :post do
+                .form-group
+                  = text_field_tag :identifier, @identifier, class: 'form-control', placeholder: 'Username or Email'
+                .form-group
+                  = password_field_tag :password, '', class: 'form-control', placeholder: 'Password'
+                .form-group
+                  = submit_tag 'Sign in', class: 'btn btn-success'
 
     .container.main-content
       - if flash[:notice]
