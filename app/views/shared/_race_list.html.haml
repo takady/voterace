@@ -1,7 +1,7 @@
 .row.race-list
   .col-md-12
     %ol.list-unstyled
-      - @races.each do |race|
+      - races.each do |race|
         %li
           .race
             .race-owner
@@ -10,4 +10,4 @@
             .race-detail
               %h2.title= link_to race.title, race
               = render partial: 'shared/candidates', locals: {race: race}
-      = paginate(@races)
+      = paginate(races)
