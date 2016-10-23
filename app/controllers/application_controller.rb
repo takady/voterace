@@ -7,8 +7,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?
 
-  rescue_from Exception, with: :render_500
-  rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :render_404
+  unless Rails.env == 'development'
+    rescue_from Exception, with: :render_500
+    rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :render_404
+  end
 
   def render_404
     render_error 404
