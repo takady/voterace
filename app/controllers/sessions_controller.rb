@@ -5,14 +5,17 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = find_user
+    unless user = find_user
+      redirect_to signin_path, alert: 'Username or email can\'t be blank.'
+      return
+    end
 
-    if user.password_digest.nil?
+    unless user.password_digest
       redirect_to signin_path, alert: 'You have not configure your password yet. Please sign in with sns account.'
       return
     end
 
-    if user && user.authenticate(params[:password])
+    if user.authenticate(params[:password])
       session[:user_id] = user.id
 
       redirect_to root_path, notice: 'You are successfully sign up!'
