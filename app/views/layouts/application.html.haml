@@ -58,10 +58,10 @@
       %header.jumbotron
         .container
           .row
-            .col-md-5.col-md-offset-1
+            .col-md-5.col-xs-12.col-md-offset-1
               %h1.title VoteRace
               %p.copy Which one would you vote for ?
-            .col-md-3.col-md-offset-1
+            .col-md-3.col-md-offset-1.col-xs-6.col-xs-offset-3
               %h2.title Sign in
               = form_tag signin_path, method: :post do
                 .form-group
@@ -69,7 +69,7 @@
                 .form-group
                   = password_field_tag :password, '', class: 'form-control', placeholder: 'Password'
                 .form-group
-                  = submit_tag 'Sign in', class: 'btn btn-success'
+                  = submit_tag 'Sign in', class: 'btn btn-success submit-sign-in-button'
 
     .container.main-content
       - if flash[:notice]
