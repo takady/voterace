@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_secure_password
+
   RESERVED_USERNAME = %w(vote votes race races user users voterace voteraces mypage auth login logout signin signup signout admin status privacy about robots.txt).freeze
 
   has_many :social_profiles
@@ -7,6 +9,7 @@ class User < ApplicationRecord
 
   validates :username, :fullname, :email, :image_url, presence: true
   validates :username, uniqueness: true, case_sensitive: false
+  validates :email, uniqueness: true, case_sensitive: false
   validates :username, exclusion: { in: RESERVED_USERNAME }
 
   def vote_for(candidate)

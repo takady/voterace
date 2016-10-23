@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate, except: [:show, :new, :create, :signin]
+  before_action :authenticate, except: [:show, :new, :create]
   before_action :set_current_user, only: [:edit, :update, :destroy]
 
   def show
@@ -58,12 +58,9 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def signin
-  end
-
   private
 
   def user_params
-    params.require(:user).permit(:username, :fullname, :email, :image_url, :description)
+    params.require(:user).permit(:username, :fullname, :email, :image_url, :description, :password, :password_confirmation)
   end
 end

@@ -5,4 +5,4 @@
     %h2.fullname= @user.fullname
     %h3.username= "@#{@user.username}"
     %p= @user.description
-= render 'shared/race_list'
+= render partial: 'shared/race_list', locals: {races: @races}

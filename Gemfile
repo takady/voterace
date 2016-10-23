@@ -21,6 +21,7 @@ gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'act-fluent-logger-rails'
 gem 'lograge'
+gem 'bcrypt'
 
 group :development do
   gem 'capistrano-rails'
