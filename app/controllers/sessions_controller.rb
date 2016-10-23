@@ -7,6 +7,11 @@ class SessionsController < ApplicationController
   def create
     user = find_user
 
+    if user.password_digest.nil?
+      redirect_to signin_path, alert: 'You have not configure your password yet. Please sign in with sns account.'
+      return
+    end
+
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
 
