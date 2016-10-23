@@ -79,26 +79,28 @@ nav {
   height: 30px;
 }
 
-header.jumbotron {
-  background-image: url('//unsplash.it/1600/400/?random');
-  background-position: center center;
-  background-size: cover;
+header {
+  .jumbotron {
+    background-image: url('//unsplash.it/1600/400/?random');
+    background-position: center center;
+    background-size: cover;
 
-  .container {
-    margin-top: 100px;
-    margin-bottom: 7%;
-    text-align: center;
+    .container {
+      margin-top: 100px;
+      margin-bottom: 7%;
+      text-align: center;
 
-    .title {
-      color: #fff;
-    }
+      .title {
+        color: #fff;
+      }
 
-    .copy {
-      color: hsla(0, 100%, 100%, 0.8);
-    }
+      .copy {
+        color: hsla(0, 100%, 100%, 0.8);
+      }
 
-    .submit-sign-in-button {
-      width: 100%;
+      .submit-sign-in-button {
+        width: 100%;
+      }
     }
   }
 }
