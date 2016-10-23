@@ -13,8 +13,8 @@
     %nav.navbar.navbar-default.navbar-fixed-top
       .container
         .navbar-header
-          .navbar-toggle
-            - if signed_in?
+          - if signed_in?
+            .navbar-toggle
               - if current_page?(user_path(current_user.username))
                 = link_to logout_path do
                   = fa_icon 'sign-out', text: 'Logout'
@@ -22,9 +22,12 @@
                 = link_to image_tag(current_user.image_url, class: 'avatar'), user_path(current_user.username)
                 = link_to new_race_path, class: 'btn btn-primary new-race' do
                   = fa_icon :plus, text: 'New Race'
-            - else
-              = link_to signin_path, class: 'btn btn-success' do
-                = fa_icon 'sign-in', text: 'Sign in'
+          - else
+            .navbar-toggle.collapsed{:type => 'button', :'data-toggle' => 'collapse', :'data-target' => '#navbar', :'aria-expanded' => 'false', :'aria-controls' => 'navbar'}
+              %span.sr-only
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
           = link_to image_tag('voterace.jpg'), root_path, class: 'navbar-brand'
         #navbar.collapse.navbar-collapse
           %ul.nav.navbar-nav.navbar-right
