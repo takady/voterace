@@ -13,6 +13,10 @@ class Race < ApplicationRecord
 
   scope :votable, -> { where('expired_at > ?', Time.zone.now) }
 
+  Candidate::ORDERS.each do |order|
+    define_method("candidate_#{order}") { candidates.find_by(order: order) }
+  end
+
   def expired_in_a_year(now: Time.zone.now)
     return if errors.present?
 
