@@ -1,4 +1,6 @@
 class Race < ApplicationRecord
+  include ::Concerns::PercentageCalculable
+
   belongs_to :user
   has_many :candidates, dependent: :destroy
   accepts_nested_attributes_for :candidates
@@ -25,13 +27,17 @@ class Race < ApplicationRecord
     expired_at > at
   end
 
-  def vote_rates
-    votes_for_1 = candidates.find_by(order: 1).votes.count
-    votes_for_2 = candidates.find_by(order: 2).votes.count
-    total_votes = votes_for_1 + votes_for_2
-    vote_rate_of_1 = ((votes_for_1/total_votes.to_f) * 100).round
-    vote_rate_of_2 = ((votes_for_2/total_votes.to_f) * 100).round
+  def vote_rates_of_each_candidate
+    votes_of_each_candidate = candidates.order(:order).map {|candidate|
+      candidate.votes.count
+    }
 
-    [vote_rate_of_1, vote_rate_of_2]
+    percents_of(votes_of_each_candidate).each_with_index.each_with_object({}) {|(percent, index), result|
+      result[index+1] = percent
+    }
+  end
+
+  def most_voted_candidate
+    candidates.max {|a, b| a.votes.count <=> b.votes.count }
   end
 end
