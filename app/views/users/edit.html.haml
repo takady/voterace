@@ -1,7 +1,8 @@
-.row
-  .col-md-9.col-md-offset-1
-    %h1 Profile
+.row.edit-profile
+  .row
+    .col-md-9.col-md-offset-1
+      %h1 Profile
 
-.row
-  .col-md-9.col-md-offset-1
-    = render partial: 'form', locals: {user: current_user, context: :edit}
+  .row
+    .col-md-9.col-md-offset-1
+      = render partial: 'form', locals: {user: current_user, context: :edit}
