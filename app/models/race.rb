@@ -1,23 +1,32 @@
 class Race < ApplicationRecord
   include ::Concerns::PercentageCalculable
 
+  DEFAULT_LIFETIME = 30.days
+  REQUIRED_NUMBER_OF_CANDIDATES = 2
+
   belongs_to :user
   has_many :candidates, dependent: :destroy
-  accepts_nested_attributes_for :candidates
-
-  DEFAULT_LIFETIME = 30.days
-
+  accepts_nested_attributes_for :candidates, reject_if: :surplus_candidate?
+  before_create :compact_candidate_order
   validates :title, :expired_at, presence: true
-  validate :expired_in_a_year
+  validate :will_be_expired_in_a_year, if: -> { expired_at.present? }
 
   paginates_per 10
   max_paginates_per 10
 
   scope :votable, -> { where('expired_at > ?', Time.zone.now) }
 
-  def expired_in_a_year(now: Time.zone.now)
-    return if errors.present?
+  def surplus_candidate?(candidate)
+    candidate['order'].to_i > REQUIRED_NUMBER_OF_CANDIDATES && candidate['name'].blank?
+  end
 
+  def compact_candidate_order
+    candidates.each.with_index(1) do |candidate, index|
+      candidate.order = index
+    end
+  end
+
+  def will_be_expired_in_a_year(now: Time.zone.now)
     unless now < expired_at && expired_at < now.years_since(1)
       errors.add(:expired_at, 'must be in a year from now')
     end
