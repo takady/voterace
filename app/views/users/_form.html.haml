@@ -16,6 +16,6 @@
     = f.input :password_confirmation, placeholder: 'Password Confirmation', required: context == :new
   .form-group
     - if context == :new
-      = f.submit 'Sign up', class: 'btn btn-success'
+      = f.submit 'Sign up', class: 'btn btn-success submit-sign-up-button'
     - else
       = f.submit 'Edit', class: 'btn btn-success'

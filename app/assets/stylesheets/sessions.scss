@@ -1,4 +1,4 @@
-.signin {
+.signin, .signup {
   max-width: 600px;
   margin-right: auto;
   margin-left: auto;
@@ -20,7 +20,7 @@
     margin-bottom: 35px;
   }
 
-  .signin-with-sns-account {
+  .with-sns-account {
     margin-bottom: 30px;
 
     .btn {
@@ -29,11 +29,11 @@
     }
   }
 
-  .signin-with-user-identifier {
+  .with-user-identifier {
     margin-bottom: 30px;
   }
 
-  .submit-sign-in-button {
+  .submit-sign-in-button, .submit-sign-up-button {
     width: 100%;
   }
 }
