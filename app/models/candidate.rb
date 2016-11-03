@@ -4,9 +4,13 @@ class Candidate < ApplicationRecord
 
   validates :name, presence: true
 
-  ORDERS = 1..2.freeze
+  ORDERS = 1..4.freeze
 
   def voted_by?(user)
     votes.find_by(user_id: user.id).present?
+  end
+
+  def required_order?
+    order <= Race::REQUIRED_NUMBER_OF_CANDIDATES
   end
 end

@@ -21,6 +21,10 @@ class RacesController < ApplicationController
     if @race.save
       redirect_to @race, notice: 'Race was successfully created.'
     else
+      (Candidate::ORDERS.to_a - @race.candidates.map(&:order)).each do |order|
+        @race.candidates.build(order: order)
+      end
+
       render :new
     end
   end
