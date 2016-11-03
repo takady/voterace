@@ -6,15 +6,16 @@
   .form-group
     = f.input :email, placeholder: 'Your email'
   .form-group
-    = f.input :password, placeholder: 'Password'
-  .form-group
-    = f.input :password_confirmation, placeholder: 'Password Confirmation'
-  .form-group
     = f.input :image_url, placeholder: 'Your image url'
+  - if context == :edit
+    .form-group
+      = f.input :description, input_html: {rows: 4}, placeholder: 'Introduce yourself'
   .form-group
-    = f.input :description, input_html: {rows: 4}, placeholder: 'Introduce yourself'
+    = f.input :password, placeholder: 'Password', required: context == :new
+  .form-group
+    = f.input :password_confirmation, placeholder: 'Password Confirmation', required: context == :new
   .form-group
     - if context == :new
-      = f.submit 'Sign up', class: 'btn btn-success'
+      = f.submit 'Sign up', class: 'btn btn-success submit-sign-up-button'
     - else
       = f.submit 'Edit', class: 'btn btn-success'
