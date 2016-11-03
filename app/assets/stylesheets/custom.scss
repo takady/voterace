@@ -121,3 +121,9 @@ footer {
 .profile {
   margin-bottom: 20px;
 }
+
+abbr[title] {
+  color: red;
+  cursor: initial;
+  border-bottom: initial;
+}
