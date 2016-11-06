@@ -19,8 +19,3 @@
           = button_to candidate.name, race_votes_path(race_id: race.id, candidate_order: candidate.order), class: 'btn btn-default', data: {toggle: 'tooltip', placement: 'right'}, title: 'vote!'
         - else
           %b= candidate.name
-
-:javascript
-  $(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-  });
