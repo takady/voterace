@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in?
 
   unless Rails.env == 'development'
-    rescue_from Exception, with: :render_500
+    rescue_from StandardError, with: :render_500
     rescue_from ActionController::RoutingError, ActiveRecord::RecordNotFound, with: :render_404
   end
 
@@ -16,14 +16,22 @@ class ApplicationController < ActionController::Base
     render_error 404
   end
 
-  def render_500(e = nil)
-    render_error 500, e
+  def render_500(error = nil)
+    if error
+      Rails.logger.error(
+        error_class: error.class,
+        error_message: error.message,
+        error_backtrace: error.backtrace
+      )
+    end
+
+    render_error 500, error
   end
 
   private
 
-  def render_error(status, e = nil)
-    @error_message = e.message if e
+  def render_error(status, error = nil)
+    @error_message = error.message if error
 
     render template: "errors/#{status}.html", status: status, layout: 'application', content_type: 'text/html'
   end
