@@ -81,13 +81,16 @@ nav {
 
 header {
   .jumbotron {
-    background-image: url('//unsplash.it/1600/400/?random');
+    height: 100vh;
+    background-image: image-url('jumbotron.jpg');
     background-position: center center;
     background-size: cover;
 
     .container {
-      margin-top: 100px;
-      margin-bottom: 7%;
+      position: absolute;
+      top: 35%;
+      right: 0;
+      left: 0;
       text-align: center;
 
       .title {
