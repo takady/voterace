@@ -5,8 +5,4 @@
       = react_component 'CandidateWithChart', { name: candidate.name, voteUrl: race_votes_path(race_id: race.id, candidate_order: candidate.order), voteRate: vote_rates[candidate.order], mostVoted: race.most_voted_candidate.order == candidate.order, votable: race.votable?}
   - else
     - race.candidates.order(:order).each do |candidate|
-      .candidate
-        - if race.votable?
-          = button_to candidate.name, race_votes_path(race_id: race.id, candidate_order: candidate.order), class: 'btn btn-default', data: {toggle: 'tooltip', placement: 'right'}, title: 'vote!'
-        - else
-          %b= candidate.name
+      = react_component 'CandidateWithoutChart', { name: candidate.name, voteUrl: race_votes_path(race_id: race.id, candidate_order: candidate.order), votable: race.votable?}
