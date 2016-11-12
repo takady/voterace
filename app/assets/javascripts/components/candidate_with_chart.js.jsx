@@ -1,10 +1,10 @@
 var CandidateWithChart = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
-    order: React.PropTypes.number.isRequired,
     voteUrl: React.PropTypes.string.isRequired,
     voteRate: React.PropTypes.number.isRequired,
-    mostVoted: React.PropTypes.bool
+    votable: React.PropTypes.bool.isRequired,
+    mostVoted: React.PropTypes.bool.isRequired
   },
 
   render: function() {
@@ -18,7 +18,7 @@ var CandidateWithChart = React.createClass({
           <i className='voted fa fa-check-circle-o'></i>
         </div>
       )
-    } else {
+    } else if (this.props.votable) {
       chart = (
         <div className='candidate-chart' style={{width : this.props.voteRate + '%'}}>
           <b className='vote-rate'>{this.props.voteRate}%</b>
@@ -27,6 +27,13 @@ var CandidateWithChart = React.createClass({
               {this.props.name}
             </a>
           </b>
+        </div>
+      )
+    } else {
+      chart = (
+        <div className='candidate-chart' style={{width : this.props.voteRate + '%'}}>
+          <b className='vote-rate'>{this.props.voteRate}%</b>
+          <b>{this.props.name}</b>
         </div>
       )
     }
