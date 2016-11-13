@@ -2,7 +2,7 @@
   - if signed_in? && current_user.voted_for?(race)
     - vote_rates = race.vote_rates_of_each_candidate
     - race.candidates.order(:order).each do |candidate|
-      = react_component 'CandidateWithChart', { name: candidate.name, voteUrl: race_votes_path(race_id: race.id, candidate_order: candidate.order), voteRate: vote_rates[candidate.order], mostVoted: race.most_voted_candidate.order == candidate.order, votable: race.votable?}
+      = react_component 'CandidateWithChart', { name: candidate.name, voteUrl: race_votes_path(race_id: race.id, candidate_order: candidate.order), votable: race.votable?, voted: candidate.voted_by?(current_user), voteRate: vote_rates[candidate.order], mostVoted: candidate.most_voted?}
   - else
     - race.candidates.order(:order).each do |candidate|
       = react_component 'CandidateWithoutChart', { name: candidate.name, voteUrl: race_votes_path(race_id: race.id, candidate_order: candidate.order), votable: race.votable?}

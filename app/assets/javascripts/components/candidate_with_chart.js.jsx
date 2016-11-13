@@ -2,45 +2,47 @@ var CandidateWithChart = React.createClass({
   propTypes: {
     name: React.PropTypes.string.isRequired,
     voteUrl: React.PropTypes.string.isRequired,
-    voteRate: React.PropTypes.number.isRequired,
     votable: React.PropTypes.bool.isRequired,
+    voted: React.PropTypes.bool.isRequired,
+    voteRate: React.PropTypes.number.isRequired,
     mostVoted: React.PropTypes.bool.isRequired
   },
 
   render: function() {
-    let chart;
+    let candidate;
+    let additional_class = '';
 
     if (this.props.mostVoted) {
-      chart = (
-        <div className='candidate-chart most-voted' style={{width : this.props.voteRate + '%'}}>
-          <b className='vote-rate'>{this.props.voteRate}%</b>
+      additional_class = ' most-voted'
+    }
+
+    if (this.props.voted) {
+      candidate = (
+        <b>
           {this.props.name}
           <i className='voted fa fa-check-circle-o'></i>
-        </div>
+        </b>
       )
     } else if (this.props.votable) {
-      chart = (
-        <div className='candidate-chart' style={{width : this.props.voteRate + '%'}}>
-          <b className='vote-rate'>{this.props.voteRate}%</b>
-          <b>
-            <a data-toggle='tooltip' data-placement='right' rel='nofollow' data-method='post' href={this.props.voteUrl} data-original-title='vote!'>
-              {this.props.name}
-            </a>
-          </b>
-        </div>
+      candidate = (
+        <b>
+          <a data-toggle='tooltip' data-placement='right' rel='nofollow' data-method='post' href={this.props.voteUrl} data-original-title='vote!'>
+            {this.props.name}
+          </a>
+        </b>
       )
     } else {
-      chart = (
-        <div className='candidate-chart' style={{width : this.props.voteRate + '%'}}>
-          <b className='vote-rate'>{this.props.voteRate}%</b>
-          <b>{this.props.name}</b>
-        </div>
+      candidate = (
+        <b>{this.props.name}</b>
       )
     }
 
     return (
       <div className='candidate'>
-        { chart }
+        <div className={'candidate-chart' + additional_class} style={{width : this.props.voteRate + '%'}}>
+          <b className='vote-rate'>{this.props.voteRate}%</b>
+          { candidate }
+        </div>
       </div>
     );
   }

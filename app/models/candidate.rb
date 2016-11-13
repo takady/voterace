@@ -13,4 +13,8 @@ class Candidate < ApplicationRecord
   def required_order?
     order <= Race::REQUIRED_NUMBER_OF_CANDIDATES
   end
+
+  def most_voted?
+    order == race.most_voted_candidate.order
+  end
 end
