@@ -2,25 +2,7 @@
   - if signed_in? && current_user.voted_for?(race)
     - vote_rates = race.vote_rates_of_each_candidate
     - race.candidates.order(:order).each do |candidate|
-      .candidate
-        .candidate-chart{style: "width: #{vote_rates[candidate.order]}%;", class: "#{'most-voted' if race.most_voted_candidate.order == candidate.order}"}
-          %b= "#{vote_rates[candidate.order]}%"
-          - if candidate.voted_by?(current_user)
-            = candidate.name
-            = fa_icon 'check-circle-o'
-          - elsif race.votable?
-            %b= link_to candidate.name, race_votes_path(race_id: race.id, candidate_order: candidate.order), method: :post, data: {toggle: 'tooltip', placement: 'right'}, title: 'vote!'
-          - else
-            = candidate.name
+      = react_component 'CandidateWithChart', { name: candidate.name, voteUrl: race_votes_path(race_id: race.id, candidate_order: candidate.order), voteRate: vote_rates[candidate.order], mostVoted: race.most_voted_candidate.order == candidate.order, votable: race.votable?}
   - else
     - race.candidates.order(:order).each do |candidate|
-      .candidate
-        - if race.votable?
-          = button_to candidate.name, race_votes_path(race_id: race.id, candidate_order: candidate.order), class: 'btn btn-default', data: {toggle: 'tooltip', placement: 'right'}, title: 'vote!'
-        - else
-          %b= candidate.name
-
-:javascript
-  $(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-  });
+      = react_component 'CandidateWithoutChart', { name: candidate.name, voteUrl: race_votes_path(race_id: race.id, candidate_order: candidate.order), votable: race.votable?}

@@ -84,6 +84,14 @@
       &.most-voted {
         background: #D9EDF7;
       }
+
+      .vote-rate {
+        margin-right: 10px;
+      }
+
+      i.voted {
+        margin-left: 5px;
+      }
     }
   }
 }
