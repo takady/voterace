@@ -15,6 +15,6 @@ class Candidate < ApplicationRecord
   end
 
   def most_voted?
-    order == race.most_voted_candidate.order
+    id == race.most_voted_candidate.id
   end
 end
