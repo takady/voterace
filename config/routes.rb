@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   resources :users, param: :username, path: '/', only: [:show, :update, :destroy]
   resources :users, only: [:new, :create]
 
+  namespace :api do
+    resources :races, only: [:index, :show]
+  end
+
   match '*path' => 'application#render_404', via: :all
 end
