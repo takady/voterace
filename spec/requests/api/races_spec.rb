@@ -30,12 +30,17 @@ RSpec.describe 'Races', type: :request do
 
     context 'Valid parameter' do
       it { is_expected.to eq(201) }
+      it { expect { subject }.to change { Race.count }.by(1).and change { Candidate.count }.by(2) }
     end
 
     context 'blank title' do
       let(:title) { '' }
 
       it { is_expected.to eq(400) }
+      it {
+        expect { subject }.not_to change { Race.count }
+        expect { subject }.not_to change { Candidate.count }
+      }
     end
 
     context 'less than two candidates' do
@@ -46,6 +51,10 @@ RSpec.describe 'Races', type: :request do
       }
 
       it { is_expected.to eq(400) }
+      it {
+        expect { subject }.not_to change { Race.count }
+        expect { subject }.not_to change { Candidate.count }
+      }
     end
   end
 end
