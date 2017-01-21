@@ -1,12 +1,13 @@
 module Resource
   class Race < Base
-    delegate :id, :user_id, :title, to: :model
+    delegate :id, :user_id, :title, :expired_at, to: :model
 
     def to_response
       {
         id: id,
         user_id: user_id,
         title: title,
+        expired_at: expired_at,
         candidates: candidates
       }
     end
