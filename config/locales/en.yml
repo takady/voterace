@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  errors:
+    messages:
+      has_at_least_two_candidates: must have more than two candidates.

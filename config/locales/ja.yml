@@ -1,2 +1,5 @@
 ja:
   hello: 'こんにちは'
+  errors:
+    messages:
+      has_at_least_two_candidates: 候補を2つ以上指定してください
