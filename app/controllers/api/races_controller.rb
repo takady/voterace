@@ -1,6 +1,6 @@
 class Api::RacesController < Api::ApiController
   before_action :authenticate, except: [:index, :show]
-  before_action :set_race, only: [:show]
+  before_action :set_race, only: [:show, :destroy]
 
   def index
     races = Race.votable.page(params[:page]).order('id DESC')
@@ -20,6 +20,14 @@ class Api::RacesController < Api::ApiController
     else
       render json: {validation_errors: race.errors}, status: :bad_request
     end
+  end
+
+  def destroy
+    head :bad_request and return unless current_user.id == @race.user_id
+
+    @race.destroy!
+
+    head :ok
   end
 
   private
