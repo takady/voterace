@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   namespace :api do
-    resources :races, only: [:index, :show]
+    resources :races, only: [:index, :show, :create]
   end
 
   match '*path' => 'application#render_404', via: :all

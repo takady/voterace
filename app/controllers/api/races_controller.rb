@@ -11,9 +11,24 @@ class Api::RacesController < Api::ApiController
   def show
     render json: Resource::Race.new(@race, current_user: current_user).to_response
   end
+
+  def create
+    race = current_user.races.build_with_candidates(create_params)
+
+    if race.save
+      render json: Resource::Race.new(race, current_user: current_user).to_response, status: :created
+    else
+      render json: {validation_errors: race.errors}, status: :bad_request
+    end
+  end
+
   private
 
   def set_race
     @race = Race.find(params[:id])
+  end
+
+  def create_params
+    params.permit(:title, :expired_at, candidates: [:name, :order])
   end
 end
