@@ -39,7 +39,7 @@ class Race < ApplicationRecord
 
   def will_be_expired_in_a_year(now: Time.zone.now)
     unless now < expired_at && expired_at < now.years_since(1)
-      errors.add(:expired_at, 'must be in a year from now')
+      errors.add(:expired_at, :must_be_in_a_year_from_now)
     end
   end
 
