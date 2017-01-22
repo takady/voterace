@@ -10,11 +10,22 @@ class Race < ApplicationRecord
   before_create :compact_candidate_order
   validates :title, :expired_at, presence: true
   validate :will_be_expired_in_a_year, if: -> { expired_at.present? }
+  validate :has_at_least_two_candidates
 
   paginates_per 10
   max_paginates_per 10
 
   scope :votable, -> { where('expired_at > ?', Time.zone.now) }
+
+  class << self
+    def build_with_candidates(attributes)
+      new(title: attributes[:title], expired_at: attributes[:expired_at]).tap {|race|
+        attributes[:candidates].each do |name, order|
+          race.candidates.build(name: name, order: order)
+        end
+      }
+    end
+  end
 
   def surplus_candidate?(candidate)
     candidate['order'].to_i > REQUIRED_NUMBER_OF_CANDIDATES && candidate['name'].blank?
@@ -28,8 +39,14 @@ class Race < ApplicationRecord
 
   def will_be_expired_in_a_year(now: Time.zone.now)
     unless now < expired_at && expired_at < now.years_since(1)
-      errors.add(:expired_at, 'must be in a year from now')
+      errors.add(:expired_at, :must_be_in_a_year_from_now)
     end
+  end
+
+  def has_at_least_two_candidates
+    return if candidates.size >= REQUIRED_NUMBER_OF_CANDIDATES
+
+    errors.add(:base, :has_at_least_two_candidates)
   end
 
   def votable?(at: Time.zone.now)

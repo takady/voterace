@@ -17,4 +17,8 @@ class Candidate < ApplicationRecord
   def most_voted?
     id == race.most_voted_candidate.id
   end
+
+  def votes_count
+    votes.count
+  end
 end

@@ -21,3 +21,14 @@
 
 en:
   hello: "Hello world"
+  errors:
+    messages:
+      has_at_least_two_candidates: must have more than two candidates.
+
+  activerecord:
+    errors:
+      models:
+        race:
+          attributes:
+            expired_at:
+              must_be_in_a_year_from_now: must be in a year from now.
