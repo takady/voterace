@@ -1,4 +1,7 @@
 var Races = React.createClass({
+  propTypes: {
+    url: React.PropTypes.string.isRequired
+  },
   getInitialState: function() {
     return {data: []};
   },
@@ -33,6 +36,9 @@ var Races = React.createClass({
 });
 
 var Race = React.createClass({
+  propTypes: {
+    data: React.PropTypes.object.isRequired
+  },
   getInitialState: function() {
     return {data: this.props.data};
   },

@@ -1,4 +1,9 @@
 var Candidates = React.createClass({
+  propTypes: {
+    data: React.PropTypes.array.isRequired,
+    withChart: React.PropTypes.bool.isRequired,
+    voteFor: React.PropTypes.func.isRequired
+  },
   totalVotesCount(candidates) {
     const total_votes = candidates.reduce((a, b) => ({votes_count: a.votes_count + b.votes_count}));
     return total_votes.votes_count;
@@ -28,6 +33,12 @@ var Candidates = React.createClass({
 });
 
 var Candidate = React.createClass({
+  propTypes: {
+    data: React.PropTypes.object.isRequired,
+    onClick: React.PropTypes.func.isRequired,
+    withChart: React.PropTypes.bool.isRequired,
+    voteRate: React.PropTypes.number.isRequired
+  },
   render: function() {
     let candidate;
 
