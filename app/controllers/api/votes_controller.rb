@@ -1,6 +1,6 @@
 class Api::VotesController < Api::ApiController
   def create
-    candidate = Candidate.find_by(id: params[:candidate_id])
+    candidate = Candidate.find_by!(id: params[:candidate_id])
 
     head :bad_request and return unless candidate.votable?
 
