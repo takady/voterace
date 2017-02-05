@@ -3,7 +3,6 @@ class RacesController < ApplicationController
   before_action :set_race, only: [:show, :destroy]
 
   def index
-    @races = Race.votable.page(params[:page]).order('id DESC')
     @race = build_race
   end
 

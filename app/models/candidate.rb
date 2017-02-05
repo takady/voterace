@@ -7,6 +7,7 @@ class Candidate < ApplicationRecord
   ORDERS = 1..4.freeze
 
   def voted_by?(user)
+    return false unless user
     votes.find_by(user_id: user.id).present?
   end
 
@@ -20,5 +21,9 @@ class Candidate < ApplicationRecord
 
   def votes_count
     votes.count
+  end
+
+  def votable?
+    race.votable?
   end
 end

@@ -4,7 +4,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by!(username: params[:username])
-    @races = Race.where(user: @user).page(params[:page]).order('id DESC')
   end
 
   def new

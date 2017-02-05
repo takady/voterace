@@ -1,6 +1,6 @@
 module Resource
   class Candidate < Base
-    delegate :id, :name, :order, to: :model
+    delegate :id, :name, :order, :votes_count, :most_voted?, :votable?, :voted_by?, to: :model
 
     def initialize(model, current_user:, voted:)
       super(model, current_user: current_user)
@@ -12,9 +12,11 @@ module Resource
       {
         id: id,
         name: name,
-        order: order
-      }.tap {|response|
-        response[:votes_count] = model.votes_count if voted?
+        order: order,
+        votes_count: voted? ? votes_count : nil,
+        most_voted: voted? ? most_voted? : nil,
+        votable: votable? && !voted_by?(current_user),
+        voted: voted_by?(current_user)
       }
     end
 

@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :user do
-    username 'test_user'
+    sequence(:username) {|n| "username_#{n}" }
     fullname 'Test User'
-    email 'test@example.com'
+    sequence(:email) {|n| "test_#{n}@example.com" }
     image_url 'http://pbs.twimg.com/profile_images/438644586575974401/a-mcG_Nw.jpeg'
     description 'this is test.'
     password 'password'
