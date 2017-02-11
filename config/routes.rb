@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   get '/settings/profile' => 'users#edit', as: :settings
 
+  # NOTE For Let's Encrypt
+  get '/.well-known' => redirect('/.well-known')
+
   resources :users, param: :username, path: '/', only: [:show, :update, :destroy]
   resources :users, only: [:new, :create]
 
