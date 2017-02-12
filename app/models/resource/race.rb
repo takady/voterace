@@ -27,11 +27,11 @@ module Resource
 
     def voted?
       return false unless current_user
-
       current_user.voted_for? model
     end
 
     def owner?
+      return false unless current_user
       user.id == current_user.id
     end
   end
