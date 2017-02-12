@@ -10,9 +10,6 @@ class Race < ApplicationRecord
   validate :will_be_expired_in_a_year, if: -> { expired_at.present? }
   validate :has_at_least_two_candidates
 
-  paginates_per 10
-  max_paginates_per 10
-
   scope :votable, -> { where('expired_at > ?', Time.zone.now) }
 
   class << self
