@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
 
   namespace :api do
-    resources :races, only: [:index, :show, :create, :destroy] do
+    resources :races, only: [:index, :show, :create, :destroy]
+    resources :candidates, only: [] do
       resource :vote, only: [:create]
     end
   end

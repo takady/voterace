@@ -1,14 +1,14 @@
 class RacesController < ApplicationController
   before_action :authenticate, except: [:index, :show]
-  before_action :set_race, only: [:show, :destroy]
+  before_action :set_race, only: [:destroy]
 
   def index
-    @races = Race.votable.page(params[:page]).order('id DESC')
     @race = build_race
   end
 
   def show
-    @title = @race.title
+    @id = params[:id]
+    @title = Race.find(params[:id]).title
   end
 
   def new

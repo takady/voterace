@@ -1,13 +1,18 @@
 module Resource
   class Race < Base
-    delegate :id, :user_id, :title, :expired_at, to: :model
+    delegate :id, :user, :title, :expired_at, to: :model
 
     def to_response
       {
         id: id,
-        user_id: user_id,
+        user_id: user.id,
+        user_name: user.username,
+        user_image_url: user.image_url,
+        user_fullname: user.fullname,
         title: title,
         expired_at: expired_at,
+        voted: voted?,
+        owner: owner?,
         candidates: candidates
       }
     end
@@ -24,6 +29,10 @@ module Resource
       return false unless current_user
 
       current_user.voted_for? model
+    end
+
+    def owner?
+      user.id == current_user.id
     end
   end
 end

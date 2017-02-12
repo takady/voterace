@@ -16,4 +16,4 @@
             = f.hidden_field :expired_at, value: Time.zone.now + Race::DEFAULT_LIFETIME
           .form-group.text-right
             = f.submit 'Start race', class: 'btn btn-primary'
-= render partial: 'shared/races', locals: {races: @races}
+= render partial: 'shared/races'

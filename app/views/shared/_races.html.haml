@@ -1,10 +1,1 @@
-.row.races
-  .col-md-12
-    %ol.list-unstyled
-      - races.each do |race|
-        %li.race
-          = react_component 'RaceOwner', {userName: race.user.username, userPageUrl: user_path(race.user.username), imageUrl: race.user.image_url}
-          .race-detail
-            %h2.title= link_to race.title, race
-            = render partial: 'shared/candidates', locals: {race: race}
-      = paginate(races)
+= react_component 'Races', url: '/api/races.json'
