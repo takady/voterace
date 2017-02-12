@@ -71,7 +71,7 @@ var Candidate = React.createClass({
     }
 
     if (this.props.withChart) {
-      const vote_rate = this.props.voteRate * 100;
+      const vote_rate = Math.round(this.props.voteRate * 100);
       const additional_class = this.props.data.most_voted ? ' most-voted' : '';
       candidate = (
         <div className={'candidate-chart' + additional_class} style={{width : vote_rate + '%'}}>
