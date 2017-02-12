@@ -4,7 +4,6 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require tooltip
-//= require races
 //= require react
 //= require react_ujs
 //= require components

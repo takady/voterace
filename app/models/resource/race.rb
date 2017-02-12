@@ -8,9 +8,11 @@ module Resource
         user_id: user.id,
         user_name: user.username,
         user_image_url: user.image_url,
+        user_fullname: user.fullname,
         title: title,
         expired_at: expired_at,
         voted: voted?,
+        owner: owner?,
         candidates: candidates
       }
     end
@@ -27,6 +29,10 @@ module Resource
       return false unless current_user
 
       current_user.voted_for? model
+    end
+
+    def owner?
+      user.id == current_user.id
     end
   end
 end
