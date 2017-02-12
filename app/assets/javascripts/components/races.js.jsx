@@ -60,7 +60,7 @@ var Race = React.createClass({
       <li className="race">
         <RaceOwner userName={this.state.data.user_name} imageUrl={this.state.data.user_image_url} />
         <div className="race-detail">
-          <h2 className="title"><a href="/races/1">{this.state.data.title}</a></h2>
+          <h2 className="title"><a href={'/races/' + this.state.data.id}>{this.state.data.title}</a></h2>
           <Candidates
             data={this.state.data.candidates}
             withChart={this.state.data.voted}
