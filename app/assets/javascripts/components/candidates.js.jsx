@@ -1,13 +1,14 @@
-var Candidates = React.createClass({
-  propTypes: {
-    data: React.PropTypes.array.isRequired,
-    withChart: React.PropTypes.bool.isRequired,
-    voteFor: React.PropTypes.func.isRequired
-  },
+class Candidates extends React.Component {
+  constructor(props) {
+    super(props);
+    this.renderCandidate = this.renderCandidate.bind(this);
+  }
+
   totalVotesCount(candidates) {
     const total_votes = candidates.reduce((a, b) => ({votes_count: a.votes_count + b.votes_count}));
     return total_votes.votes_count;
-  },
+  }
+
   renderCandidate(candidate) {
     let vote_rate = 0;
     if (this.props.withChart) {
@@ -22,24 +23,25 @@ var Candidates = React.createClass({
         voteRate={vote_rate}
       />
     );
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <div className="candidates">
         {this.props.data.map(this.renderCandidate)}
       </div>
     );
   }
-});
+}
 
-var Candidate = React.createClass({
-  propTypes: {
-    data: React.PropTypes.object.isRequired,
-    onClick: React.PropTypes.func.isRequired,
-    withChart: React.PropTypes.bool.isRequired,
-    voteRate: React.PropTypes.number.isRequired
-  },
-  render: function() {
+Candidates.propTypes = {
+  data: React.PropTypes.array.isRequired,
+  withChart: React.PropTypes.bool.isRequired,
+  voteFor: React.PropTypes.func.isRequired
+};
+
+class Candidate extends React.Component {
+  render() {
     let candidate;
 
     if (this.props.data.voted) {
@@ -83,8 +85,15 @@ var Candidate = React.createClass({
 
     return (
       <div className='candidate'>
-        { candidate }
+        {candidate}
       </div>
     );
   }
-});
+}
+
+Candidate.propTypes = {
+  data: React.PropTypes.object.isRequired,
+  onClick: React.PropTypes.func.isRequired,
+  withChart: React.PropTypes.bool.isRequired,
+  voteRate: React.PropTypes.number.isRequired
+}

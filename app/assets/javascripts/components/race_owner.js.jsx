@@ -1,10 +1,5 @@
-var RaceOwner = React.createClass({
-  propTypes: {
-    userName: React.PropTypes.string.isRequired,
-    imageUrl: React.PropTypes.string.isRequired
-  },
-
-  render: function() {
+class RaceOwner extends React.Component {
+  render() {
     return (
       <div className='race-owner'>
         <a href={'/' + this.props.userName}><img className='avatar' src={this.props.imageUrl} alt={this.props.userName} /></a>
@@ -12,4 +7,9 @@ var RaceOwner = React.createClass({
       </div>
     );
   }
-});
+}
+
+RaceOwner.propTypes = {
+  userName: React.PropTypes.string.isRequired,
+  imageUrl: React.PropTypes.string.isRequired
+}

@@ -1,11 +1,10 @@
-var RaceDetail = React.createClass({
-  propTypes: {
-    id: React.PropTypes.string.isRequired
-  },
-  getInitialState: function() {
-    return {data: null};
-  },
-  componentDidMount: function() {
+class RaceDetail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {data: null};
+  }
+
+  componentDidMount() {
     $.ajax({
       url: '/api/races/' + this.props.id + '.json',
       dataType: 'json',
@@ -16,24 +15,28 @@ var RaceDetail = React.createClass({
         console.error('', status, err.toString());
       }.bind(this)
     });
-  },
-  render: function() {
+  }
+
+  render() {
     if (this.state.data == null) {
       return null;
     }
     return <RaceDetailContent data={this.state.data} deletable={this.state.data.owner} />;
   }
-});
+}
 
-var RaceDetailContent = React.createClass({
-  propTypes: {
-    data: React.PropTypes.object.isRequired,
-    deletable: React.PropTypes.bool.isRequired,
-  },
-  getInitialState: function() {
-    return {data: this.props.data};
-  },
-  voteFor: function(candidate) {
+RaceDetail.propTypes = {
+  id: React.PropTypes.string.isRequired
+}
+
+class RaceDetailContent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {data: this.props.data};
+    this.voteFor = this.voteFor.bind(this);
+  }
+
+  voteFor(candidate) {
     $.ajax({
       url: '/api/candidates/' + candidate.id + '/vote',
       dataType: 'json',
@@ -45,8 +48,9 @@ var RaceDetailContent = React.createClass({
         console.error('candidate', status, err.toString());
       }.bind(this)
     });
-  },
-  render: function() {
+  }
+
+  render() {
     let delete_button = null;
     if (this.props.deletable) {
       delete_button = <DeleteButton id={this.props.data.id} />;
@@ -75,13 +79,20 @@ var RaceDetailContent = React.createClass({
     </div>
     );
   }
-});
+}
 
-var DeleteButton = React.createClass({
-  propTypes: {
-    id: React.PropTypes.number.isRequired
-  },
-  render: function() {
+RaceDetailContent.propTypes = {
+  data: React.PropTypes.object.isRequired,
+  deletable: React.PropTypes.bool.isRequired,
+}
+
+class DeleteButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {data: null};
+  }
+
+  render() {
     return (
       <p>
         <a
@@ -96,4 +107,8 @@ var DeleteButton = React.createClass({
       </p>
     );
   }
-});
+}
+
+DeleteButton.propTypes = {
+  id: React.PropTypes.number.isRequired
+}
