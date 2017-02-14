@@ -1,45 +1,43 @@
-var Candidates = React.createClass({
-  propTypes: {
-    data: React.PropTypes.array.isRequired,
-    withChart: React.PropTypes.bool.isRequired,
-    voteFor: React.PropTypes.func.isRequired
-  },
+class Candidates extends React.Component {
   totalVotesCount(candidates) {
     const total_votes = candidates.reduce((a, b) => ({votes_count: a.votes_count + b.votes_count}));
     return total_votes.votes_count;
-  },
-  renderCandidate(candidate) {
-    let vote_rate = 0;
-    if (this.props.withChart) {
-      vote_rate = candidate.votes_count / this.totalVotesCount(this.props.data);
-    }
-    return (
-      <Candidate
-        key={candidate.id}
-        data={candidate}
-        onClick={() => this.props.voteFor(candidate)}
-        withChart={this.props.withChart}
-        voteRate={vote_rate}
-      />
-    );
-  },
-  render: function() {
+  }
+
+  render() {
+    const candidateNode = this.props.data.map((candidate) => {
+      let vote_rate = 0;
+      if (this.props.withChart) {
+        vote_rate = candidate.votes_count / this.totalVotesCount(this.props.data);
+      }
+
+      return (
+        <Candidate
+          key={candidate.id}
+          data={candidate}
+          onClick={() => this.props.voteFor(candidate)}
+          withChart={this.props.withChart}
+          voteRate={vote_rate}
+        />
+      );
+    });
+
     return (
       <div className="candidates">
-        {this.props.data.map(this.renderCandidate)}
+        {candidateNode}
       </div>
     );
   }
-});
+}
 
-var Candidate = React.createClass({
-  propTypes: {
-    data: React.PropTypes.object.isRequired,
-    onClick: React.PropTypes.func.isRequired,
-    withChart: React.PropTypes.bool.isRequired,
-    voteRate: React.PropTypes.number.isRequired
-  },
-  render: function() {
+Candidates.propTypes = {
+  data: React.PropTypes.array.isRequired,
+  withChart: React.PropTypes.bool.isRequired,
+  voteFor: React.PropTypes.func.isRequired
+};
+
+class Candidate extends React.Component {
+  render() {
     let candidate;
 
     if (this.props.data.voted) {
@@ -87,4 +85,11 @@ var Candidate = React.createClass({
       </div>
     );
   }
-});
+}
+
+Candidate.propTypes = {
+  data: React.PropTypes.object.isRequired,
+  onClick: React.PropTypes.func.isRequired,
+  withChart: React.PropTypes.bool.isRequired,
+  voteRate: React.PropTypes.number.isRequired
+}

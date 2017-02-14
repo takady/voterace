@@ -1,11 +1,10 @@
-var Races = React.createClass({
-  propTypes: {
-    url: React.PropTypes.string.isRequired
-  },
-  getInitialState: function() {
-    return {data: []};
-  },
-  componentDidMount: function() {
+class Races extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {data: []};
+  }
+
+  componentDidMount() {
     $.ajax({
       url: this.props.url,
       dataType: 'json',
@@ -16,9 +15,10 @@ var Races = React.createClass({
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
-  },
-  render: function() {
-    var raceNode = this.state.data.map((race) => {
+  }
+
+  render() {
+    const raceNode = this.state.data.map((race) => {
       return (
         <Race key={race.id} data={race} />
       );
@@ -33,16 +33,20 @@ var Races = React.createClass({
       </div>
     );
   }
-});
+}
 
-var Race = React.createClass({
-  propTypes: {
-    data: React.PropTypes.object.isRequired
-  },
-  getInitialState: function() {
-    return {data: this.props.data};
-  },
-  voteFor: function(candidate) {
+Races.propTypes = {
+  url: React.PropTypes.string.isRequired
+};
+
+class Race extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {data: props.data};
+    this.voteFor = this.voteFor.bind(this);
+  }
+
+  voteFor(candidate) {
     $.ajax({
       url: '/api/candidates/' + candidate.id + '/vote',
       dataType: 'json',
@@ -54,8 +58,9 @@ var Race = React.createClass({
         console.error('candidate', status, err.toString());
       }.bind(this)
     });
-  },
-  render: function() {
+  }
+
+  render() {
     return (
       <li className="race">
         <RaceOwner userName={this.state.data.user_name} imageUrl={this.state.data.user_image_url} />
@@ -70,4 +75,8 @@ var Race = React.createClass({
       </li>
     );
   }
-});
+}
+
+Race.propTypes = {
+  data: React.PropTypes.object.isRequired
+};
