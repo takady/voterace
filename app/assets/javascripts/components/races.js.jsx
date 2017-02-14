@@ -17,17 +17,16 @@ class Races extends React.Component {
     });
   }
 
+  renderRace(race) {
+    return <Race key={race.id} data={race} />;
+  }
+
   render() {
-    const raceNode = this.state.data.map((race) => {
-      return (
-        <Race key={race.id} data={race} />
-      );
-    });
     return (
       <div className="row races">
         <div className="col-md-12">
           <ol className="list-unstyled">
-            {raceNode}
+            {this.state.data.map(this.renderRace)}
           </ol>
         </div>
       </div>

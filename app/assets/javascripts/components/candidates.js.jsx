@@ -1,30 +1,34 @@
 class Candidates extends React.Component {
+  constructor(props) {
+    super(props);
+    this.renderCandidate = this.renderCandidate.bind(this);
+  }
+
   totalVotesCount(candidates) {
     const total_votes = candidates.reduce((a, b) => ({votes_count: a.votes_count + b.votes_count}));
     return total_votes.votes_count;
   }
 
+  renderCandidate(candidate) {
+    let vote_rate = 0;
+    if (this.props.withChart) {
+      vote_rate = candidate.votes_count / this.totalVotesCount(this.props.data);
+    }
+    return (
+      <Candidate
+        key={candidate.id}
+        data={candidate}
+        onClick={() => this.props.voteFor(candidate)}
+        withChart={this.props.withChart}
+        voteRate={vote_rate}
+      />
+    );
+  }
+
   render() {
-    const candidateNode = this.props.data.map((candidate) => {
-      let vote_rate = 0;
-      if (this.props.withChart) {
-        vote_rate = candidate.votes_count / this.totalVotesCount(this.props.data);
-      }
-
-      return (
-        <Candidate
-          key={candidate.id}
-          data={candidate}
-          onClick={() => this.props.voteFor(candidate)}
-          withChart={this.props.withChart}
-          voteRate={vote_rate}
-        />
-      );
-    });
-
     return (
       <div className="candidates">
-        {candidateNode}
+        {this.props.data.map(this.renderCandidate)}
       </div>
     );
   }
@@ -81,7 +85,7 @@ class Candidate extends React.Component {
 
     return (
       <div className='candidate'>
-        { candidate }
+        {candidate}
       </div>
     );
   }

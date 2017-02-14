@@ -11,5 +11,5 @@ class RaceOwner extends React.Component {
 
 RaceOwner.propTypes = {
   userName: React.PropTypes.string.isRequired,
-    imageUrl: React.PropTypes.string.isRequired
+  imageUrl: React.PropTypes.string.isRequired
 }
