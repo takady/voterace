@@ -54,8 +54,22 @@ class Race extends React.Component {
         this.setState({data: result});
       }.bind(this),
       error: function(xhr, status, err) {
-        console.error('candidate', status, err.toString());
-      }.bind(this)
+        switch (xhr.status) {
+          case 401:
+            window.location.href = '/signin';
+            break;
+          case 404:
+            window.location.href = '/404.html';
+            break;
+          case 500:
+            window.location.href = '/500.html';
+            break;
+          default:
+            window.location.href = '/500.html';
+            console.error('Something went wrong.', status, err.toString());
+            break;
+        }
+      }
     });
   }
 
