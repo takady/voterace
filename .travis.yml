@@ -5,6 +5,7 @@ rvm:
 
 bundler_args: --without development --deployment
 
+sudo: required
 dist: trusty
 
 cache: bundler
