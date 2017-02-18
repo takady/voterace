@@ -1,49 +1,13 @@
-class RaceDetail extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {data: null};
-  }
+import React, { PropTypes } from 'react';
+import Candidates from './Candidates';
+import DeleteButton from './DeleteButton';
 
-  componentDidMount() {
-    $.ajax({
-      url: '/api/races/' + this.props.id + '.json',
-      dataType: 'json',
-      success: function(result) {
-        this.setState({data: result});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        switch (xhr.status) {
-          case 401:
-            window.location.href = '/signin';
-            break;
-          case 404:
-            window.location.href = '/404.html';
-            break;
-          case 500:
-            window.location.href = '/500.html';
-            break;
-          default:
-            window.location.href = '/500.html';
-            console.error('Something went wrong.', status, err.toString());
-            break;
-        }
-      }
-    });
-  }
+export default class RaceDetailContent extends React.Component {
+  static propTypes = {
+    data: React.PropTypes.object.isRequired,
+    deletable: React.PropTypes.bool.isRequired,
+  };
 
-  render() {
-    if (this.state.data == null) {
-      return null;
-    }
-    return <RaceDetailContent data={this.state.data} deletable={this.state.data.owner} />;
-  }
-}
-
-RaceDetail.propTypes = {
-  id: React.PropTypes.string.isRequired
-}
-
-class RaceDetailContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {data: this.props.data};
@@ -107,36 +71,4 @@ class RaceDetailContent extends React.Component {
     </div>
     );
   }
-}
-
-RaceDetailContent.propTypes = {
-  data: React.PropTypes.object.isRequired,
-  deletable: React.PropTypes.bool.isRequired,
-}
-
-class DeleteButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {data: null};
-  }
-
-  render() {
-    return (
-      <p>
-        <a
-          data-confirm="Are you sure?"
-          className="btn btn-danger btn-destroy"
-          rel="nofollow"
-          data-method="delete"
-          href={'/races/' + this.props.id}
-        >
-          <i className="fa fa-trash-o"></i> Delete this race
-        </a>
-      </p>
-    );
-  }
-}
-
-DeleteButton.propTypes = {
-  id: React.PropTypes.number.isRequired
 }
