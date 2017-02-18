@@ -1,9 +1,8 @@
+//= require webpack-bundle
+
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require moment
 //= require bootstrap-datetimepicker
 //= require tooltip
-//= require react
-//= require react_ujs
-//= require components

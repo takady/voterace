@@ -8,7 +8,6 @@ gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'therubyracer', platforms: :ruby
 gem 'uglifier'
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -21,7 +20,8 @@ gem 'simple_form'
 gem 'act-fluent-logger-rails'
 gem 'lograge'
 gem 'bcrypt'
-gem 'react-rails'
+gem 'react_on_rails'
+gem 'mini_racer', platforms: :ruby
 
 group :development do
   gem 'capistrano-rails'

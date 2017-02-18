@@ -5,6 +5,9 @@ rvm:
 
 bundler_args: --without development --deployment
 
+sudo: required
+dist: trusty
+
 cache: bundler
 
 cache:
@@ -25,6 +28,7 @@ before_script:
   - cp config/database.travis.yml config/database.yml
   - bundle exec rake db:create
   - bundle exec rake db:migrate
+  - npm install
 
 script:
   - bundle exec rspec spec
