@@ -1,4 +1,11 @@
-class RaceOwner extends React.Component {
+import React, { PropTypes } from 'react';
+
+export default class RaceOwner extends React.Component {
+  static propTypes = {
+    userName: React.PropTypes.string.isRequired,
+    imageUrl: React.PropTypes.string.isRequired
+  };
+
   render() {
     return (
       <div className='race-owner'>
@@ -7,9 +14,4 @@ class RaceOwner extends React.Component {
       </div>
     );
   }
-}
-
-RaceOwner.propTypes = {
-  userName: React.PropTypes.string.isRequired,
-  imageUrl: React.PropTypes.string.isRequired
 }
