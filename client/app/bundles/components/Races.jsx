@@ -3,7 +3,7 @@ import Race from './Race';
 
 export default class Races extends React.Component {
   static propTypes = {
-    url: React.PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
   };
 
   constructor(props) {

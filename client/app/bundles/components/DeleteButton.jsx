@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 export default class DeleteButton extends React.Component {
   static propTypes = {
-    id: React.PropTypes.number.isRequired
+    id: PropTypes.number.isRequired
   };
 
   constructor(props) {

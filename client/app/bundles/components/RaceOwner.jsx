@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react';
 
 export default class RaceOwner extends React.Component {
   static propTypes = {
-    userName: React.PropTypes.string.isRequired,
-    imageUrl: React.PropTypes.string.isRequired
+    userName: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired
   };
 
   render() {

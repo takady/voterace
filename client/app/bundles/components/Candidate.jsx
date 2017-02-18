@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react';
 
 export default class Candidate extends React.Component {
   static propTypes = {
-    data: React.PropTypes.object.isRequired,
-    onClick: React.PropTypes.func.isRequired,
-    withChart: React.PropTypes.bool.isRequired,
-    voteRate: React.PropTypes.number.isRequired
+    data: PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired,
+    withChart: PropTypes.bool.isRequired,
+    voteRate: PropTypes.number.isRequired
   };
 
   render() {

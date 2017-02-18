@@ -4,8 +4,8 @@ import DeleteButton from './DeleteButton';
 
 export default class RaceDetailContent extends React.Component {
   static propTypes = {
-    data: React.PropTypes.object.isRequired,
-    deletable: React.PropTypes.bool.isRequired,
+    data: PropTypes.object.isRequired,
+    deletable: PropTypes.bool.isRequired,
   };
 
   constructor(props) {

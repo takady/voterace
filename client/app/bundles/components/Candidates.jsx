@@ -3,9 +3,9 @@ import Candidate from './Candidate';
 
 export default class Candidates extends React.Component {
   static propTypes = {
-    data: React.PropTypes.array.isRequired,
-    withChart: React.PropTypes.bool.isRequired,
-    voteFor: React.PropTypes.func.isRequired
+    data: PropTypes.array.isRequired,
+    withChart: PropTypes.bool.isRequired,
+    voteFor: PropTypes.func.isRequired
   };
 
   constructor(props) {

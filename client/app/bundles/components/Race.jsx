@@ -4,7 +4,7 @@ import Candidates from './Candidates';
 
 export default class Race extends React.Component {
   static propTypes = {
-    data: React.PropTypes.object.isRequired,
+    data: PropTypes.object.isRequired,
   };
 
   constructor(props) {
