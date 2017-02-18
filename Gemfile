@@ -21,7 +21,7 @@ gem 'simple_form'
 gem 'act-fluent-logger-rails'
 gem 'lograge'
 gem 'bcrypt'
-gem 'react-rails'
+gem 'react_on_rails'
 
 group :development do
   gem 'capistrano-rails'
