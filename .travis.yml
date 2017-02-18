@@ -5,14 +5,13 @@ rvm:
 
 bundler_args: --without development --deployment
 
+dist: trusty
+
 cache: bundler
 
 cache:
   directories:
     - "travis_phantomjs"
-
-dist: trusty
-sudo: true
 
 before_install:
   - "export PHANTOMJS_VERSION=2.1.1"
