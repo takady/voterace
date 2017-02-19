@@ -6,7 +6,7 @@
 # server 'example.com', user: 'deploy', roles: %w{app db web}, my_property: :my_value
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
-server 'sakura', user: 'takady', roles: %w{web app db}
+server 'digitalocean', user: 'takady', roles: %w{web app db}
 
 
 # role-based syntax
@@ -20,9 +20,9 @@ server 'sakura', user: 'takady', roles: %w{web app db}
 # role :app, %w{deploy@example.com}, my_property: :my_value
 # role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
 # role :db,  %w{deploy@example.com}
-role :app, %w{takady@sakura}
-role :web, %w{takady@sakura}
-role :db,  %w{takady@sakura}
+role :app, %w{takady@digitalocean}
+role :web, %w{takady@digitalocean}
+role :db,  %w{takady@digitalocean}
 
 
 # Configuration
@@ -62,8 +62,8 @@ role :db,  %w{takady@sakura}
 #     # password: 'please use keys'
 #   }
 set :ssh_options, {
-    port: ENV['SAKURA_VPS_SSH_PORT'],
-    keys: [File.expand_path('/Users/takady/.ssh/id_rsa_sakura')],
+    port: ENV['DIGITALOCEAN_SSH_PORT'],
+    keys: [File.expand_path('/Users/takady/.ssh/id_rsa_digitalocean')],
     forward_agent: false,
     auth_methods: %w(publickey)
 }
