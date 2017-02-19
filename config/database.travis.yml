@@ -1,5 +1,5 @@
 test:
   adapter: mysql2
   database: voterace_test
-  username: travis
+  username: root
   encoding: utf8
