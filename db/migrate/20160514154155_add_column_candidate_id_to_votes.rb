@@ -1,4 +1,4 @@
-class AddColumnCandidateIdToVotes < ActiveRecord::Migration
+class AddColumnCandidateIdToVotes < ActiveRecord::Migration[4.2]
   def up
     rename_column :votes, :candidate, :candidate_order
     add_column :votes, :candidate_id, :integer, null: false
