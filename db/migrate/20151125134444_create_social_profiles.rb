@@ -1,4 +1,4 @@
-class CreateSocialProfiles < ActiveRecord::Migration
+class CreateSocialProfiles < ActiveRecord::Migration[4.2]
   def change
     create_table :social_profiles do |t|
       t.references :user, index: true, foreign_key: true
