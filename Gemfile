@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '5.0.0'
+gem 'rails', '~> 5.1.0.beta1'
 gem 'mysql2'
 gem 'pry-rails'
 gem 'sass-rails'
@@ -32,7 +32,7 @@ group :development do
 end
 
 group :development do
-  gem 'web-console', '~> 2.0'
+  gem 'web-console'
 
   group :test do
     gem 'byebug'
