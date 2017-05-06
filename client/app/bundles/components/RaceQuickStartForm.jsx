@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class RaceCreateForm extends React.Component {
+export default class RaceQuickStartForm extends React.Component {
   static propTypes = {
     authenticity_token: PropTypes.string.isRequired,
     avatar_image_url: PropTypes.string.isRequired,

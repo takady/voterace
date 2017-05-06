@@ -1,10 +1,10 @@
 import ReactOnRails from 'react-on-rails';
 import Races from './components/Races';
 import RaceDetail from './components/RaceDetail';
-import RaceCreateForm from './components/RaceCreateForm';
+import RaceQuickStartForm from './components/RaceQuickStartForm';
 
 ReactOnRails.register({
   Races,
   RaceDetail,
-  RaceCreateForm,
+  RaceQuickStartForm,
 });

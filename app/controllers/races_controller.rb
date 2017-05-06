@@ -11,24 +11,6 @@ class RacesController < ApplicationController
     @title = Race.find(params[:id]).title
   end
 
-  def new
-    @race = build_race
-  end
-
-  def create
-    @race = current_user.races.build(race_params)
-
-    if @race.save
-      redirect_to @race, notice: 'Race was successfully created.'
-    else
-      (Candidate::ORDERS.to_a - @race.candidates.map(&:order)).each do |order|
-        @race.candidates.build(order: order)
-      end
-
-      render :new
-    end
-  end
-
   def destroy
     if current_user.id == @race.user_id
       @race.destroy

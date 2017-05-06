@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/signin' => 'sessions#create'
   get '/logout' => 'sessions#destroy', as: :logout
 
-  resources :races, only: [:index, :show, :new, :create, :destroy]
+  resources :races, only: [:index, :show, :destroy]
 
   get '/settings/profile' => 'users#edit', as: :settings
 
