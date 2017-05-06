@@ -3,7 +3,6 @@ class RacesController < ApplicationController
   before_action :set_race, only: [:destroy]
 
   def index
-    @race = build_race
   end
 
   def show
@@ -24,17 +23,5 @@ class RacesController < ApplicationController
 
   def set_race
     @race = Race.find(params[:id])
-  end
-
-  def build_race
-    Race.new.tap {|race|
-      Candidate::ORDERS.each do |order|
-        race.candidates.build(order: order)
-      end
-    }
-  end
-
-  def race_params
-    params.require(:race).permit(:title, :expired_at, candidates_attributes: [:name, :order])
   end
 end
