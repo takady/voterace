@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CandidateInputForm from "./CandidateInputForm";
 
 export default class RaceQuickStartForm extends React.Component {
   static propTypes = {
@@ -9,7 +10,17 @@ export default class RaceQuickStartForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {title: '', candidate_1: '', candidate_2: '', candidate_3: '', candidate_4: ''};
+    this.state = {
+      title: '',
+      candidate_1: '',
+      candidate_2: '',
+      candidate_3: '',
+      candidate_4: '',
+      candidate_1_has_error: false,
+      candidate_2_has_error: false,
+      candidate_3_has_error: false,
+      candidate_4_has_error: false,
+    };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -24,6 +35,14 @@ export default class RaceQuickStartForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+
+    if (this.state.candidate_1 == '') {
+      this.setState({candidate_1_has_error: true});
+      return;
+    } else if (this.state.candidate_2 == '') {
+      this.setState({candidate_2_has_error: true});
+      return;
+    }
 
     $.ajax({
       url: '/api/races',
@@ -45,7 +64,7 @@ export default class RaceQuickStartForm extends React.Component {
       error: function(xhr, status, err) {
         switch (xhr.status) {
         case 400:
-          console.error('Invalid.', status, xhr.responseJSON);
+          window.location.href = '/';
           break;
         case 401:
           window.location.href = '/signin';
@@ -87,12 +106,30 @@ export default class RaceQuickStartForm extends React.Component {
               />
             </div>
             <div className="collapse" id="form-hidden" aria-expanded="false">
-              <div className="form-group">
-                <input placeholder="Candidate 1" autoComplete="off" className="form-control" type="text" name="candidate_1" value={this.state.candidate_1} onChange={this.handleInputChange} />
-                <input placeholder="Candidate 2" autoComplete="off" className="form-control" type="text" name="candidate_2" value={this.state.candidate_2} onChange={this.handleInputChange} />
-                <input placeholder="Candidate 3 (Optional)" autoComplete="off" className="form-control" type="text" name="candidate_3" value={this.state.candidate_3} onChange={this.handleInputChange} />
-                <input placeholder="Candidate 4 (Optional)" autoComplete="off" className="form-control" type="text" name="candidate_4" value={this.state.candidate_4} onChange={this.handleInputChange} />
-              </div>
+              <CandidateInputForm
+                order={1}
+                value={this.state.candidate_1}
+                hasError={this.state.candidate_1_has_error}
+                onChange={this.handleInputChange}
+              />
+              <CandidateInputForm
+                order={2}
+                value={this.state.candidate_2}
+                hasError={this.state.candidate_2_has_error}
+                onChange={this.handleInputChange}
+              />
+              <CandidateInputForm
+                order={3}
+                value={this.state.candidate_3}
+                hasError={this.state.candidate_3_has_error}
+                onChange={this.handleInputChange}
+              />
+              <CandidateInputForm
+                order={4}
+                value={this.state.candidate_4}
+                hasError={this.state.candidate_4_has_error}
+                onChange={this.handleInputChange}
+              />
               <div className="form-group text-right">
                 <input type="submit" value="Start race" className="btn btn-primary" />
               </div>
