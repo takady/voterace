@@ -11,8 +11,8 @@ FactoryGirl.define do
       end
 
       after(:build) do |race, evaluator|
-        evaluator.number_of_candidates.times.with_index(1) do |index|
-          race.candidates.build(name: "name_#{index}", order: index)
+        evaluator.number_of_candidates.times do |index|
+          race.candidates.build(name: "name_#{index + 1}", order: index + 1)
         end
       end
     end
