@@ -16,6 +16,7 @@ export default class RaceQuickStartForm extends React.Component {
       candidate_2: '',
       candidate_3: '',
       candidate_4: '',
+      title_has_error: false,
       candidate_1_has_error: false,
       candidate_2_has_error: false,
       candidate_3_has_error: false,
@@ -36,11 +37,30 @@ export default class RaceQuickStartForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
+    let validationError = false;
+
+    if (this.state.title == '') {
+      this.setState({title_has_error: true});
+      validationError = true;
+    } else {
+      this.setState({title_has_error: false});
+    }
+
     if (this.state.candidate_1 == '') {
       this.setState({candidate_1_has_error: true});
-      return;
-    } else if (this.state.candidate_2 == '') {
+      validationError = true;
+    } else {
+      this.setState({candidate_1_has_error: false});
+    }
+
+    if (this.state.candidate_2 == '') {
       this.setState({candidate_2_has_error: true});
+      validationError = true;
+    } else {
+      this.setState({candidate_2_has_error: false});
+    }
+
+    if (validationError) {
       return;
     }
 
@@ -92,7 +112,7 @@ export default class RaceQuickStartForm extends React.Component {
         </div>
         <div className="col-md-11">
           <form className="new_race" id="new_race" acceptCharset="UTF-8" onSubmit={this.handleSubmit}>
-            <div className="form-group">
+            <div className={`form-group ${this.state.title_has_error && "has-error"}`}>
               <input placeholder="New Race Title"
                      autoComplete="off"
                      className="form-control race-title collapsed"
