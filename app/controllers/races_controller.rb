@@ -3,30 +3,11 @@ class RacesController < ApplicationController
   before_action :set_race, only: [:destroy]
 
   def index
-    @race = build_race
   end
 
   def show
     @id = params[:id]
     @title = Race.find(params[:id]).title
-  end
-
-  def new
-    @race = build_race
-  end
-
-  def create
-    @race = current_user.races.build(race_params)
-
-    if @race.save
-      redirect_to @race, notice: 'Race was successfully created.'
-    else
-      (Candidate::ORDERS.to_a - @race.candidates.map(&:order)).each do |order|
-        @race.candidates.build(order: order)
-      end
-
-      render :new
-    end
   end
 
   def destroy
@@ -42,17 +23,5 @@ class RacesController < ApplicationController
 
   def set_race
     @race = Race.find(params[:id])
-  end
-
-  def build_race
-    Race.new.tap {|race|
-      Candidate::ORDERS.each do |order|
-        race.candidates.build(order: order)
-      end
-    }
-  end
-
-  def race_params
-    params.require(:race).permit(:title, :expired_at, candidates_attributes: [:name, :order])
   end
 end

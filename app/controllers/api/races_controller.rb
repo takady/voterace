@@ -19,7 +19,7 @@ class Api::RacesController < Api::ApiController
     if race.save
       render json: Resource::Race.new(race, current_user: current_user).to_response, status: :created
     else
-      render json: {validation_errors: race.errors}, status: :bad_request
+      render json: race.errors.messages, status: :bad_request
     end
   end
 
@@ -38,6 +38,6 @@ class Api::RacesController < Api::ApiController
   end
 
   def create_params
-    params.permit(:title, :expired_at, candidates: [:name, :order])
+    params.permit(:title, :expired_at, candidates: [])
   end
 end

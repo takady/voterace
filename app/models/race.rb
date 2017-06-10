@@ -4,8 +4,6 @@ class Race < ApplicationRecord
 
   belongs_to :user
   has_many :candidates, dependent: :destroy
-  accepts_nested_attributes_for :candidates, reject_if: :surplus_candidate?
-  before_create :compact_candidate_order
   validates :title, :expired_at, presence: true
   validate :will_be_expired_in_a_year, if: -> { expired_at.present? }
   validate :has_at_least_two_candidates
@@ -14,21 +12,13 @@ class Race < ApplicationRecord
 
   class << self
     def build_with_candidates(attributes)
-      new(title: attributes[:title], expired_at: attributes[:expired_at]).tap {|race|
-        attributes[:candidates].each do |name, order|
-          race.candidates.build(name: name, order: order)
+      expired_at = attributes[:expired_at] || (Time.current + DEFAULT_LIFETIME)
+
+      new(title: attributes[:title], expired_at: expired_at).tap {|race|
+        attributes[:candidates].reject(&:blank?).each.with_index(1) do |candidate, order|
+          race.candidates.build(name: candidate, order: order)
         end
       }
-    end
-  end
-
-  def surplus_candidate?(candidate)
-    candidate['order'].to_i > REQUIRED_NUMBER_OF_CANDIDATES && candidate['name'].blank?
-  end
-
-  def compact_candidate_order
-    candidates.each.with_index(1) do |candidate, index|
-      candidate.order = index
     end
   end
 

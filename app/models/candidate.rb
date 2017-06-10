@@ -2,9 +2,10 @@ class Candidate < ApplicationRecord
   belongs_to :race
   has_many :votes, dependent: :destroy
 
-  validates :name, presence: true
-
   ORDERS = 1..4.freeze
+
+  validates :name, presence: true
+  validates :order, inclusion: { in: ORDERS }
 
   def voted_by?(user)
     return false unless user

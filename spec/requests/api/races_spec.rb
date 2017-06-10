@@ -11,12 +11,7 @@ RSpec.describe 'Races', type: :request do
   describe 'POST /api/races' do
     let(:title) { 'Title' }
     let(:expired_at) { Time.current + 1.month }
-    let(:candidates) {
-      [
-        {name: 'one', order: 1},
-        {name: 'two', order: 2}
-      ]
-    }
+    let(:candidates) { %w(one two) }
 
     subject {
       post api_races_path,
@@ -44,11 +39,7 @@ RSpec.describe 'Races', type: :request do
     end
 
     context 'less than two candidates' do
-      let(:candidates) {
-        [
-          {name: 'one', order: 1}
-        ]
-      }
+      let(:candidates) { %w(one) }
 
       it { is_expected.to eq(400) }
       it {

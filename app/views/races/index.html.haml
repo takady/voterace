@@ -1,19 +1,3 @@
 - if signed_in?
-  .row.start-race-box
-    .col-md-1.hidden-xs
-      = image_tag(current_user.image_url, class: 'avatar')
-    .col-md-11
-      = form_for @race do |f|
-        .form-group
-          = f.text_field :title, placeholder: 'New Race Title', autocomplete: 'off', class: 'form-control race-title', data: {toggle: 'collapse', target: '#form-hidden'}, aria: {expanded: 'false'}
-        #form-hidden.collapse
-          - @race.candidates.each do |candidate|
-            .form-group
-              = f.fields_for :candidates, candidate do |candidate_field|
-                = candidate_field.hidden_field :order, value: candidate.order
-                = candidate_field.text_field :name, placeholder: candidate_label(candidate), autocomplete: 'off', class: 'form-control'
-          .form-group
-            = f.hidden_field :expired_at, value: Time.zone.now + Race::DEFAULT_LIFETIME
-          .form-group.text-right
-            = f.submit 'Start race', class: 'btn btn-primary'
+  = react_component('RaceQuickStartForm', props: {authenticity_token: form_authenticity_token, avatar_image_url: current_user.image_url}, prerender: false)
 = render partial: 'shared/races'
