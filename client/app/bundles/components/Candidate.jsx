@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export default class Candidate extends React.Component {
   static propTypes = {
@@ -42,9 +43,11 @@ export default class Candidate extends React.Component {
 
     if (this.props.withChart) {
       const vote_rate = Math.round(this.props.voteRate * 100);
-      const additional_class = this.props.data.most_voted ? ' most-voted' : '';
       candidate = (
-        <div className={'candidate-chart' + additional_class} style={{width : vote_rate + '%'}}>
+        <div
+          className={classNames('candidate-chart', {'most-voted': this.props.data.most_voted})}
+          style={{width: vote_rate + '%'}}
+        >
           <b className='vote-rate'>{vote_rate}%</b>
           {candidate}
         </div>

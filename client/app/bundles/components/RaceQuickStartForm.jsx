@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CandidateInputForm from "./CandidateInputForm";
+import classNames from 'classnames';
 
 export default class RaceQuickStartForm extends React.Component {
   static propTypes = {
@@ -112,7 +113,7 @@ export default class RaceQuickStartForm extends React.Component {
         </div>
         <div className="col-md-11">
           <form className="new_race" id="new_race" acceptCharset="UTF-8" onSubmit={this.handleSubmit}>
-            <div className={`form-group ${this.state.title_has_error && "has-error"}`}>
+            <div className={classNames('form-group', {'has-error': this.state.title_has_error})}>
               <input placeholder="New Race Title"
                      autoComplete="off"
                      className="form-control race-title collapsed"
