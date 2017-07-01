@@ -1,6 +1,6 @@
 module Resource
   class Race < Base
-    delegate :id, :user, :title, :expired_at, to: :model
+    delegate :id, :user, :title, :expired_at, :voted_by?, to: :model
 
     def to_response
       {
@@ -20,14 +20,14 @@ module Resource
     private
 
     def candidates
-      model.candidates.order(:order).map {|candidate|
-        Resource::Candidate.new(candidate, current_user: current_user, voted: voted?).to_response
+      model.candidates.sort_by(&:order).map {|candidate|
+        Resource::Candidate.new(candidate, current_user: current_user, visible: voted?).to_response
       }
     end
 
     def voted?
       return false unless current_user
-      current_user.voted_for? model
+      voted_by?(current_user)
     end
 
     def owner?
