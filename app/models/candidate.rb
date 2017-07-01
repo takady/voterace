@@ -9,7 +9,7 @@ class Candidate < ApplicationRecord
 
   def voted_by?(user)
     return false unless user
-    votes.find_by(user_id: user.id).present?
+    votes.any? {|vote| vote.user_id == user.id }
   end
 
   def required_order?

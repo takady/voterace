@@ -1,6 +1,6 @@
 module Resource
   class Race < Base
-    delegate :id, :user, :title, :expired_at, to: :model
+    delegate :id, :user, :title, :expired_at, :voted_by?, to: :model
 
     def to_response
       {
@@ -27,7 +27,7 @@ module Resource
 
     def voted?
       return false unless current_user
-      current_user.voted_for? model
+      voted_by?(current_user)
     end
 
     def owner?

@@ -41,4 +41,8 @@ class Race < ApplicationRecord
   def most_voted_candidate
     candidates.max {|a, b| a.votes.count <=> b.votes.count }
   end
+
+  def voted_by?(user)
+    candidates.any? {|candidate| candidate.voted_by?(user) }
+  end
 end
