@@ -18,6 +18,8 @@ export default class RaceDetail extends React.Component {
       dataType: 'json',
       success: function(result) {
         this.setState({data: result});
+
+        document.title = `${result.title} - VoteRace`;
       }.bind(this),
       error: function(xhr, status, err) {
         switch (xhr.status) {
