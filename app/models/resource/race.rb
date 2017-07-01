@@ -20,8 +20,8 @@ module Resource
     private
 
     def candidates
-      model.candidates.order(:order).map {|candidate|
-        Resource::Candidate.new(candidate, current_user: current_user, voted: voted?).to_response
+      model.candidates.sort_by(&:order).map {|candidate|
+        Resource::Candidate.new(candidate, current_user: current_user, visible: voted?).to_response
       }
     end
 
