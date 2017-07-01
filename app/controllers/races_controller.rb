@@ -6,8 +6,6 @@ class RacesController < ApplicationController
   end
 
   def show
-    @id = params[:id]
-    @title = Race.find(params[:id]).title
   end
 
   def destroy
