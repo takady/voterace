@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export default class CandidateInputForm extends React.Component {
   static propTypes = {
@@ -13,20 +14,15 @@ export default class CandidateInputForm extends React.Component {
   constructor(props) {
     super(props);
     this.optionalLabel = this.optionalLabel.bind(this);
-    this.hasErrorClassName = this.hasErrorClassName.bind(this);
   }
 
   optionalLabel() {
     return [1, 2].includes(this.props.order) ? '' : ' (Optional)';
   }
 
-  hasErrorClassName() {
-    return this.props.hasError ? ' has-error' : '';
-  }
-
   render() {
     return (
-    <div className={'form-group' + this.hasErrorClassName()}>
+    <div className={classNames('form-group', {'has-error': this.props.hasError})}>
       <input
         placeholder={'Candidate ' + this.props.order + this.optionalLabel()}
         autoComplete="off"
