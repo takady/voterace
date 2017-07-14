@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import RaceDetailContent from './RaceDetailContent';
 
 export default class RaceDetail extends React.Component {
@@ -13,32 +14,28 @@ export default class RaceDetail extends React.Component {
   }
 
   componentDidMount() {
-    $.ajax({
-      url: '/api/races/' + this.props.id + '.json',
-      dataType: 'json',
-      success: function(result) {
-        this.setState({data: result});
-
-        document.title = `${result.title} - VoteRace`;
-      }.bind(this),
-      error: function(xhr, status, err) {
-        switch (xhr.status) {
-          case 401:
-            window.location.href = '/signin';
-            break;
-          case 404:
-            window.location.href = '/404.html';
-            break;
-          case 500:
-            window.location.href = '/500.html';
-            break;
-          default:
-            window.location.href = '/500.html';
-            console.error('Something went wrong.', status, err.toString());
-            break;
+    axios.get(`/api/races/${this.props.id}.json`)
+      .then(response => {
+        this.setState({data: response.data});
+        document.title = `${response.data.title} - VoteRace`;
+      })
+      .catch(error => {
+        switch (error.response.status) {
+        case 401:
+          window.location.href = '/signin';
+          break;
+        case 404:
+          window.location.href = '/404.html';
+          break;
+        case 500:
+          window.location.href = '/500.html';
+          break;
+        default:
+          window.location.href = '/500.html';
+          console.error(error);
+          break;
         }
-      }
-    });
+      });
   }
 
   render() {

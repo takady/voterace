@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactOnRails from 'react-on-rails';
 import CandidateInputForm from "./CandidateInputForm";
 import classNames from 'classnames';
+import axios from 'axios';
 
 export default class RaceQuickStartForm extends React.Component {
   static propTypes = {
@@ -65,25 +67,24 @@ export default class RaceQuickStartForm extends React.Component {
       return;
     }
 
-    $.ajax({
-      url: '/api/races',
-      dataType: 'json',
-      type: 'POST',
-      data: {
-        title: this.state.title,
-        candidates: [
-          this.state.candidate_1,
-          this.state.candidate_2,
-          this.state.candidate_3,
-          this.state.candidate_4,
-        ],
-        authenticity_token: this.props.authenticity_token,
-      },
-      success: function() {
+    axios.post('/api/races', {
+      title: this.state.title,
+      candidates: [
+        this.state.candidate_1,
+        this.state.candidate_2,
+        this.state.candidate_3,
+        this.state.candidate_4,
+      ],
+      authenticity_token: this.props.authenticity_token,
+    }, {
+      withCredentials: true,
+      headers: {'X-CSRF-TOKEN': ReactOnRails.authenticityToken()}
+    })
+      .then(() => {
         window.location.href = '/';
-      }.bind(this),
-      error: function(xhr, status, err) {
-        switch (xhr.status) {
+      })
+      .catch(error => {
+        switch (error.response.status) {
         case 400:
           window.location.href = '/';
           break;
@@ -98,11 +99,10 @@ export default class RaceQuickStartForm extends React.Component {
           break;
         default:
           window.location.href = '/500.html';
-          console.error('Something went wrong.', status, err.toString());
+          console.error(error);
           break;
         }
-      }
-    });
+      });
   }
 
   render() {
