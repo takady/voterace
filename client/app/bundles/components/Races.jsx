@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import Race from './Race';
 
 export default class Races extends React.Component {
@@ -13,16 +14,13 @@ export default class Races extends React.Component {
   }
 
   componentDidMount() {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      success: function(result) {
-        this.setState({data: result});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+    axios.get(this.props.url)
+      .then(response => {
+        this.setState({data: response.data})
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   renderRace(race) {

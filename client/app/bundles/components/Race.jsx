@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactOnRails from 'react-on-rails';
+import axios from 'axios';
 import RaceOwner from './RaceOwner';
 import Candidates from './Candidates';
 
@@ -15,31 +17,30 @@ export default class Race extends React.Component {
   }
 
   voteFor(candidate) {
-    $.ajax({
-      url: '/api/candidates/' + candidate.id + '/vote',
-      dataType: 'json',
-      type: 'POST',
-      success: function(result) {
-        this.setState({data: result});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        switch (xhr.status) {
-          case 401:
-            window.location.href = '/signin';
-            break;
-          case 404:
-            window.location.href = '/404.html';
-            break;
-          case 500:
-            window.location.href = '/500.html';
-            break;
-          default:
-            window.location.href = '/500.html';
-            console.error('Something went wrong.', status, err.toString());
-            break;
+    axios.post(`/api/candidates/${candidate.id}/vote`, null, {
+      withCredentials: true,
+      headers: {'X-CSRF-TOKEN': ReactOnRails.authenticityToken()}
+    })
+      .then(response => {
+        this.setState({data: response.data});
+      })
+      .catch(error => {
+        switch (error.response.status) {
+        case 401:
+          window.location.href = '/signin';
+          break;
+        case 404:
+          window.location.href = '/404.html';
+          break;
+        case 500:
+          window.location.href = '/500.html';
+          break;
+        default:
+          window.location.href = '/500.html';
+          console.error(error);
+          break;
         }
-      }
-    });
+      });
   }
 
   render() {
