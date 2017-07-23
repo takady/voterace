@@ -1,19 +1,19 @@
-!!!
-%html
-  %head
-    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
-    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1'}/
-    %title= 'VoteRace'
+doctype html
+html
+  head
+    meta http-equiv='Content-Type' content='text/html; charset=UTF-8'
+    meta name='viewport' content='width=device-width, initial-scale=1'
+    title= 'VoteRace'
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
     = favicon_link_tag
     = analytics_init if GoogleAnalytics.valid_tracker?
-  %body
+  body
     = render partial: 'shared/navbar'
 
     - if current_page?(root_path) && !signed_in?
-      %header
+      header
         = render partial: 'shared/jumbotron'
 
     .container.main-content
@@ -28,8 +28,8 @@
             .alert.alert-danger
               = flash[:alert]
       = yield
-    %footer.container-fluid
+    footer.container-fluid
       .container
         .row
           .col-md-12
-            %p.copyright.text-center= "© #{Time.zone.now.year} VoteRace."
+            p.copyright.text-center= "© #{Time.zone.now.year} VoteRace."

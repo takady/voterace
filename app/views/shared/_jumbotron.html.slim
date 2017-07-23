@@ -2,10 +2,10 @@
   .container
     .row
       .col-md-5.col-md-offset-1.col-xs-12
-        %h1.title VoteRace
-        %p.copy Which one would you vote for ?
+        h1.title VoteRace
+        p.copy Which one would you vote for ?
       .col-md-3.col-md-offset-1.col-xs-8.col-xs-offset-2
-        %h2.title Sign in
+        h2.title Sign in
         = form_tag signin_path, method: :post do
           .form-group
             = text_field_tag :identifier, '', class: 'form-control', placeholder: 'Username or Email'
