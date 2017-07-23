@@ -7,11 +7,6 @@ export default class DeleteButton extends React.Component {
     id: PropTypes.number.isRequired
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {data: null};
-  }
-
   deleteRace() {
     axios.delete(`/api/races/${this.props.id}`, {
       withCredentials: true,
